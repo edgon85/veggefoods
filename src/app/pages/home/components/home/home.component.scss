@@ -119,11 +119,112 @@
     }
   }
 }
-// content: '\f100';
 
-// border: 1px solid
-// #fff;
+// <== categorias ==> //
 
-// border-radius: 50%;
+@mixin texto-encima {
+  .texto-encima {
+    background-color: #82ad47;
+    position: absolute;
+    text-align: center;
+    bottom: 0px;
+    left: 0px;
+    a {
+      padding: 10px;
+      color: #fff;
+      font-size: 18px;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+  }
+}
 
-// padding: 15px;
+@mixin imagen {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.category {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr;
+  gap: 10px;
+  height: 600px;
+  grid-template-areas:
+    'fruit shop_now juice'
+    'vegetables shop_now dried';
+
+  .item-1 {
+    position: relative;
+    display: inline-block;
+    grid-area: fruit;
+    @include imagen;
+    @include texto-encima;
+  }
+  .item-2 {
+    position: relative;
+    grid-area: shop_now;
+    @include imagen;
+    .container-detail {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      h2 {
+        color: #82ae46;
+        font-family: $font-secondary;
+        font-style: italic;
+        font-size: 24px;
+      }
+      .btn-comprar {
+        background-color: $primary;
+        border: 1px solid $primary;
+        font-family: $font-primary;
+        color: #fff;
+      }
+      :hover {
+        background-color: #fff;
+        color: $primary;
+      }
+    }
+  }
+  .item-3 {
+    position: relative;
+    grid-area: juice;
+    @include imagen;
+    @include texto-encima;
+  }
+  .item-4 {
+    position: relative;
+    grid-area: vegetables;
+    @include imagen;
+    @include texto-encima;
+  }
+  .item-5 {
+    position: relative;
+    grid-area: dried;
+    @include imagen;
+    @include texto-encima;
+  }
+}
+
+// <====== responsive =======> //
+
+// @media only screen and (max-width: 768px) {
+//   .category {
+//     display: grid;
+//     grid-template: 1fr/ 1fr 1fr;
+//     gap: 10px;
+//     align-items: center;
+//     grid-template-areas:
+//       'shop_now'
+//       'fruit'
+//       'juice'
+//       'vegetables'
+//       'dried';
+//   }
+// }
