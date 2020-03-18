@@ -1,4 +1,129 @@
-// .contenedor {
-//   // position: relative;
-//   height: 200px !important;
-// }
+@import '../../../../../variables.scss';
+.my-padding {
+  padding: 6em 0;
+  .services {
+    display: grid;
+    grid-template: 1fr / repeat(4, 1fr);
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    .contenido {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .icon-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-1;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+
+        .flaticon-shipped {
+          font-size: 50px;
+          color: #fff;
+          border-radius: 50%;
+        }
+
+        ::before {
+          border: 1px solid #fff;
+          border-radius: 50%;
+          padding: 15px;
+        }
+        &:hover {
+          background-color: $primary;
+        }
+      }
+      .icon-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-2;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        .flaticon-diet {
+          font-size: 50px;
+          color: #fff;
+          border-radius: 50%;
+        }
+        ::before {
+          border: 1px solid #fff;
+          border-radius: 50%;
+          padding: 15px;
+        }
+        &:hover {
+          background-color: $primary;
+        }
+      }
+      .icon-3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-3;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        .flaticon-award {
+          font-size: 50px;
+          color: #fff;
+          border-radius: 50%;
+        }
+        ::before {
+          border: 1px solid #fff;
+          border-radius: 50%;
+          padding: 15px;
+        }
+        &:hover {
+          background-color: $primary;
+        }
+      }
+      .icon-4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-4;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        .flaticon-customer-service {
+          font-size: 50px;
+          color: #fff;
+          border-radius: 50%;
+        }
+        ::before {
+          border: 1px solid #fff;
+          border-radius: 50%;
+          padding: 15px;
+        }
+        &:hover {
+          background-color: $primary;
+        }
+      }
+      h3 {
+        margin-top: 10px;
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: 'Poppins', Arial, sans-serif;
+        color: $black;
+      }
+      span {
+        text-transform: uppercase;
+        color: rgba($color: #000000, $alpha: 0.5);
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+// content: '\f100';
+
+// border: 1px solid
+// #fff;
+
+// border-radius: 50%;
+
+// padding: 15px;
