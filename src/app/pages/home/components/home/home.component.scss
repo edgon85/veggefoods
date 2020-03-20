@@ -1,4 +1,15 @@
 @import '../../../../../variables.scss';
+
+a {
+  transition: 0.3s all ease;
+  color: $primary;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $primary;
+  }
+}
+
 .my-padding {
   padding: 6em 0;
   .services {
@@ -221,7 +232,34 @@
   }
 }
 
+// <============= featured products =============> //
+.featured-products-title {
+  margin: 100px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .subheading {
+    font-size: 18px;
+    font-family: $font-secondary;
+    color: $primary;
+    font-style: italic;
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    color: $black;
+    font-family: $font-primary;
+  }
+}
+
+.featured-products {
+  margin-top: 30px;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
 // <====== responsive =======> //
+// <============= Media Queries =============> //
 
 @media only screen and (max-width: 768px) {
   .services {

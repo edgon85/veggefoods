@@ -71,56 +71,14 @@
     </div>
 </section>
 
-
-
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
-<p>relleno de texto</p>
+<section class="container">
+    <div class="featured-products-title">
+        <span class="subheading">Productos destacados</span>
+        <h2 class="mb-4">Nuestros productos</h2>
+    </div>
+    <div class="featured-products">
+        <ng-container *ngFor="let prod of productos">
+            <app-card-product [producto]="prod"></app-card-product>
+        </ng-container>
+    </div>
+</section>

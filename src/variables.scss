@@ -1,3 +1,6 @@
+@import 'assets/bootstrap/bootstrap';
+@import 'assets/bootstrap/variables';
+
 $white: #fff;
 $black: #000000;
 // $darken: #3a4348;
@@ -13,3 +16,18 @@ $color-4: #dcd691;
 $font-primary: 'Poppins', Arial, sans-serif;
 $font-secondary: 'Lora', Georgia, serif;
 $font-tertiary: 'Amatic SC', cursive;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($transition) {
+  -moz-transition: all $transition ease;
+  -o-transition: all $transition ease;
+  -webkit-transition: all $transition ease;
+  -ms-transition: all $transition ease;
+  transition: all $transition ease;
+}
