@@ -72,13 +72,19 @@
 </section>
 
 <section class="container">
-    <div class="featured-products-title">
-        <span class="subheading">Productos destacados</span>
-        <h2 class="mb-4">Nuestros productos</h2>
+    <div *ngIf="cargando" class="loading mt-5">
+        <app-loading></app-loading>
     </div>
-    <div class="featured-products">
-        <ng-container *ngFor="let prod of productos">
-            <app-card-product [producto]="prod"></app-card-product>
-        </ng-container>
+    <div *ngIf="!cargando" class="container-products">
+        <div class="featured-products-title">
+            <span class="subheading">Productos destacados</span>
+            <h2 class="mb-4">Nuestros productos</h2>
+        </div>
+        <div class="featured-products">
+            <ng-container *ngFor="let prod of productos">
+                <app-card-product [producto]="prod"></app-card-product>
+            </ng-container>
+        </div>
     </div>
+
 </section>

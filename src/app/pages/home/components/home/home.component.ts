@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
     this.obtenerDestacados();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cargando = true;
+    this.obtenerDestacados();
+  }
 
   obtenerDestacados() {
     this._productService
@@ -24,7 +27,7 @@ export class HomeComponent implements OnInit {
       .pipe(map(p => p.filter(f => f.destacado === true)))
       .subscribe(resp => {
         this.productos = resp;
-        console.log(this.productos);
+        this.cargando = false;
       });
   }
 }
