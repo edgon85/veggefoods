@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   productos: ProductoModel[] = [];
   cargando: boolean = false;
 
+  // tslint:disable-next-line: variable-name
   constructor(private _productService: ProductService) {
     this.obtenerDestacados();
   }
