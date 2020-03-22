@@ -37,3 +37,21 @@
     //grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .header-product {
+    padding: 3em 0;
+    h2 {
+      font-weight: 600;
+      font-size: 22px;
+    }
+  }
+
+  .product-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'a_products' 'a_sidebar';
+  }
+}
+
+@media only screen and (max-width: 375px) {
+}
