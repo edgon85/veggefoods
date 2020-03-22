@@ -1,1 +1,17 @@
-<p>{{categoria}}</p>
+<section class="product-container container">
+    <div *ngIf="cargando" class="loading mt-5">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!cargando" class="container-products">
+        <div *ngIf="productos.length === 0" class="col-12 animate fadeIn mt-5">
+            <div class="alert-warning text-center">
+                <strong>No existen productos :(</strong>
+            </div>
+        </div>
+        <div class="featured-products">
+            <ng-container *ngFor="let prod of productos">
+                <app-card-product [producto]="prod"></app-card-product>
+            </ng-container>
+        </div>
+    </div>
+</section>

@@ -8,21 +8,13 @@ const routes: Routes = [
     path: ':id',
     component: ProductPageComponent,
     children: [
-      {
-        path: 'frutas',
-        component: ProductComponent
-      },
-      { path: 'verduras', component: ProductComponent }
+      { path: 'frutas', component: ProductComponent },
+      { path: 'vegetales', component: ProductComponent },
+      { path: 'semillas', component: ProductComponent },
+      { path: 'chiles', component: ProductComponent },
+      { path: 'aceites', component: ProductComponent }
     ]
   }
-  // {
-  //   path: '',
-  //   component: ProductComponent
-  // },
-  // {
-  //   path: ':id',
-  //   component: ProductDetailComponent
-  // }
 ];
 
 @NgModule({

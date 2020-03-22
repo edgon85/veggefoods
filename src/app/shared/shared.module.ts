@@ -5,20 +5,23 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     CardProductComponent,
-    LoadingComponent
+    LoadingComponent,
+    SidebarComponent
   ],
   imports: [CommonModule, RouterModule],
   exports: [
     FooterComponent,
     HeaderComponent,
     CardProductComponent,
-    LoadingComponent
+    LoadingComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule {}

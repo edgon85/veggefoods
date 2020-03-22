@@ -1,0 +1,17 @@
+@import '../../../../variables.scss';
+.list-group {
+  .list-group-item {
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  .active {
+    background-color: $primary;
+    border-color: $primary;
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

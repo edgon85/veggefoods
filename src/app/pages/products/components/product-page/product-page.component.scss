@@ -27,8 +27,6 @@
   grid-template-areas: 'a_sidebar a_products';
   .sidebar {
     grid-area: a_sidebar;
-    height: 100vh;
-    background-color: green;
   }
   .section-productos {
     grid-area: a_products;
