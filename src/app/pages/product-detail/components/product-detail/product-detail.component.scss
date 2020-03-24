@@ -1,0 +1,70 @@
+@import '../../../../../variables.scss';
+
+.single-product {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+
+  grid-template-areas: 'imagen descripcion';
+
+  .image-section {
+    grid-area: imagen;
+    .image {
+      width: 100%;
+      img {
+        width: 100%;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .description {
+    grid-area: descripcion;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-evenly;
+    h3 {
+      font-weight: 400;
+      font-size: 30px;
+      font-family: $font-primary;
+      color: $black;
+      text-transform: capitalize;
+      padding-top: 50px;
+    }
+    .price {
+      margin-bottom: 1rem;
+      span {
+        font-size: 30px;
+        color: $black;
+      }
+    }
+    .detail {
+      margin-bottom: 30px;
+    }
+
+    .contador {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 200px;
+    }
+
+    .btn-black {
+      background-color: $black;
+      border: 1px solid $black;
+      color: $white;
+      border-radius: 30px;
+      box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      text-transform: capitalize;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  //  grid-template-columns: repeat(2, 50%);
+
+  .single-product {
+    grid-template-columns: 100%;
+    grid-template-areas: 'imagen' 'descripcion';
+    row-gap: 10px;
+  }
+}
