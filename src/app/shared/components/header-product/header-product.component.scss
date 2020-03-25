@@ -1,0 +1,33 @@
+@import '../../../../variables.scss';
+
+.header-product {
+  padding: 5em 0;
+  display: flex;
+  justify-content: center;
+  //   background-image: url('../../../../../assets/images/bg_1.jpg');
+  background-image: url('../../../../assets/images/bg_1.jpg');
+  background-color: #4b4a4a;
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  h2 {
+    font-weight: 800;
+    color: $white;
+    font-size: 30px;
+    font-family: $font-primary;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header-product {
+    padding: 3em 0;
+    h2 {
+      font-weight: 600;
+      font-size: 22px;
+    }
+  }
+}

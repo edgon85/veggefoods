@@ -8,6 +8,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IncrementadorComponent } from './components/incrementador/incrementador.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderProductComponent } from './components/header-product/header-product.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     CardProductComponent,
     LoadingComponent,
     SidebarComponent,
-    IncrementadorComponent
+    IncrementadorComponent,
+    HeaderProductComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     CardProductComponent,
     LoadingComponent,
     SidebarComponent,
-    IncrementadorComponent
+    IncrementadorComponent,
+    HeaderProductComponent
   ]
 })
 export class SharedModule {}
