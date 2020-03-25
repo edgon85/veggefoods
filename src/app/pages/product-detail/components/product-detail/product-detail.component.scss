@@ -1,9 +1,16 @@
 @import '../../../../../variables.scss';
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+}
+
 .single-product {
   display: grid;
   grid-template-columns: repeat(2, 50%);
-
+  margin-top: 10px;
   grid-template-areas: 'imagen descripcion';
 
   .image-section {
@@ -32,6 +39,11 @@
     }
     .price {
       margin-bottom: 1rem;
+      .discount {
+        text-decoration: line-through;
+        color: lighten($black, 70%);
+        margin-left: 20px;
+      }
       span {
         font-size: 30px;
         color: $black;
@@ -45,6 +57,10 @@
       padding-top: 10px;
       padding-bottom: 10px;
       width: 200px;
+      span {
+        margin-left: 70px;
+        text-transform: capitalize;
+      }
     }
 
     .btn-black {

@@ -1,21 +1,29 @@
-<section class="single-product container">
+<div *ngIf="producto">
+    <app-header-product titulo="Detalle de {{ producto.nombre }}"></app-header-product>
+</div>
+
+<section class="container loading" *ngIf="!producto">
+    <app-loading></app-loading>
+</section>
+
+<section class="single-product container" *ngIf="producto">
     <div class="image-section">
         <div class="image">
-            <img src="assets/images/product-1.jpg" alt="">
+            <img [src]="producto.imagen" alt="">
         </div>
     </div>
     <div class="description">
-        <h3>nombre del product</h3>
+        <h3>{{ producto.nombre }}</h3>
         <p class="price">
-            <span>Q120.00</span>
+            <span>Q{{ producto.precio | number: '1.2'}}</span>
+            <span *ngIf="producto.precio < producto.descuento"
+                class="discount">Q{{ producto.descuento | number: '1.2'}}</span>
         </p>
-        <p class="detail">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non accusantium repellendus
-            inventore quos nihil
-            repudiandae dolorum. Temporibus deleniti, odit assumenda qui cupiditate aspernatur consequatur sequi
-            voluptates, vel voluptas, quam explicabo!</p>
+        <p class="detail">{{ producto.detalle }}</p>
 
         <div class="contador">
             <app-incrementador [progresoIncrementador]="progresoProductDetail"></app-incrementador>
+            <span>{{ producto.masa }}</span>
         </div>
         <p>
             <button class="btn btn-black">agregar a carrito</button>

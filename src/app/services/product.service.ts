@@ -12,16 +12,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+  // ==================================================== //
+  // Obtiene todos los productos
+  // ==================================================== //
   public getAllProducts() {
     let url = this.urlProduct + '/products.json';
-
-    const $data = this.http.get(url);
-
-    // $data.pipe(filter(p => p.destacado === false)).subscribe(console.log);
-    /* 
-    from($data)
-      .pipe(filter(p => p.destacado === true))
-      .subscribe(console.log); */
 
     const data = this.http.get(url).pipe(map(this.crearArreglo));
 
@@ -29,9 +24,18 @@ export class ProductService {
   }
 
   // ====================================================
+  // Obtiene un producto
+  // ====================================================
+  public getProduct(slug: string) {
+    let url = this.urlProduct + `/products/${slug}.json`;
+
+    return this.http.get(url);
+  }
+
+  // ==================================================== //
   // Conviert los datos d firebase a un arreglo para que
   // pueda recorerlos en el template
-  // ====================================================
+  // ==================================================== //
   private crearArreglo(productosObj: object) {
     const productos: ProductoModel[] = [];
     Object.keys(productosObj).forEach(key => {
