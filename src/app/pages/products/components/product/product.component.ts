@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
       .subscribe(resp => {
         this.productos = resp;
         this.cargando = false;
-        console.log(this.productos);
+        // console.log(this.productos);
       });
   }
 
@@ -59,7 +59,7 @@ export class ProductComponent implements OnInit {
   obtenerUltimoParametro() {
     this._getRutas.getRutas().subscribe(resp => {
       this.categoria = resp.path.split('-').join(' ');
-      console.log(this.categoria);
+      // console.log(this.categoria);
     });
   }
 }

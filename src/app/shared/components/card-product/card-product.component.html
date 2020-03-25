@@ -1,10 +1,10 @@
 <div class="product">
-    <a href="#" class="img-prod"><img class="img-fluid" [src]="producto.imagen" alt="">
+    <a routerLink="/producto/{{ producto._id }}" class="img-prod"><img class="img-fluid" [src]="producto.imagen" alt="">
         <!-- <span class="status">30%</span> -->
         <div class="overlay"></div>
     </a>
     <div class="text py-3 pb-4 px-3 text-center">
-        <h3><a href="#">{{producto.nombre}}</a></h3>
+        <h3><a routerLink="/producto/{{ producto._id }}">{{producto.nombre}}</a></h3>
         <div class="d-flex">
             <div class="pricing">
                 <p class="price">
