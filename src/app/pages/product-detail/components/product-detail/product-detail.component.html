@@ -15,19 +15,7 @@
             voluptates, vel voluptas, quam explicabo!</p>
 
         <div class="contador">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fas fa-minus"></i>
-                    </span>
-                </div>
-                <input type="text" class="form-control">
-                <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                </div>
-            </div>
+            <app-incrementador [progresoIncrementador]="progresoProductDetail"></app-incrementador>
         </div>
         <p>
             <button class="btn btn-black">agregar a carrito</button>

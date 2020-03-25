@@ -6,6 +6,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CardProductComponent } from './components/card-product/card-product.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { IncrementadorComponent } from './components/incrementador/incrementador.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,15 +15,17 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HeaderComponent,
     CardProductComponent,
     LoadingComponent,
-    SidebarComponent
+    SidebarComponent,
+    IncrementadorComponent
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   exports: [
     FooterComponent,
     HeaderComponent,
     CardProductComponent,
     LoadingComponent,
-    SidebarComponent
+    SidebarComponent,
+    IncrementadorComponent
   ]
 })
 export class SharedModule {}
