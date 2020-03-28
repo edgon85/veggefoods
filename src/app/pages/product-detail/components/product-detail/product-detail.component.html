@@ -22,11 +22,11 @@
         <p class="detail">{{ producto.detalle }}</p>
 
         <div class="contador">
-            <app-incrementador [progresoIncrementador]="progresoProductDetail"></app-incrementador>
+            <app-incrementador [progresoIncrementador]="cantidadProductDetail"></app-incrementador>
             <span>{{ producto.masa }}</span>
         </div>
         <p>
-            <button class="btn btn-black">agregar a carrito</button>
+            <button (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
         </p>
     </div>
 </section>
