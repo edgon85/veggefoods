@@ -1,0 +1,4 @@
+<div *ngFor="let product of products$ | async">
+    <h3>producto: {{ product.product.nombre }}</h3>
+    <span>cantidad: {{ product.quantity }}</span>
+</div>

@@ -21,12 +21,17 @@
         </p>
         <p class="detail">{{ producto.detalle }}</p>
 
-        <div class="contador">
-            <app-incrementador [progresoIncrementador]="cantidadProductDetail"></app-incrementador>
+        <div *ngIf="!estaEnCarrito" class="contador">
+            <app-incrementador (actualizaValor)="cantidadProductDetail = $event"
+                [progresoIncrementador]="cantidadProductDetail">
+            </app-incrementador>
             <span>{{ producto.masa }}</span>
         </div>
         <p>
-            <button (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
+            <button *ngIf="!estaEnCarrito" (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
+        </p>
+        <p>
+            <button class="btn btn-black">ir a la caja</button>
         </p>
     </div>
 </section>

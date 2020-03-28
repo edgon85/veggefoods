@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-incrementador',
@@ -11,8 +19,13 @@ export class IncrementadorComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('progresoIncrementador') progreso: number = 1;
 
+  // tslint:disable-next-line: no-output-rename
+  @Output('actualizaValor') cambioValor: EventEmitter<
+    number
+  > = new EventEmitter();
+
   constructor() {
-    console.log('prgreso: ', this.progreso);
+    //  console.log('prgreso: ', this.progreso);
   }
 
   ngOnInit() {}
@@ -28,6 +41,8 @@ export class IncrementadorComponent implements OnInit {
 
     this.txtProgress.nativeElement.value = this.progreso;
     // this.txtProgress.nativeElement.focus();  // <=== para ponerlo en focus
+
+    this.cambioValor.emit(this.progreso);
   }
 
   cambiarValor(valor: number) {
@@ -42,5 +57,8 @@ export class IncrementadorComponent implements OnInit {
     }
 
     this.progreso = this.progreso + valor;
+    this.cambioValor.emit(this.progreso);
+
+    // this.txtProgress.nativeElement.focus();
   }
 }

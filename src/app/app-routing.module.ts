@@ -24,6 +24,11 @@ const routes: Routes = [
             m => m.ProductsDetailModule
           )
       },
+      {
+        path: 'cart',
+        loadChildren: () =>
+          import('./pages/order/order.module').then(m => m.OrderModule)
+      },
       { path: '', redirectTo: '/inicio', pathMatch: 'full' }
     ]
   }

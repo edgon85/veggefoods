@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoModel } from '../../../../models/product.model';
 import { ProductService } from '../../../../services/product.service';
 import { CartService } from '../../../../services/cart.service';
-import { pluck } from 'rxjs/operators';
+import { pluck, map, mapTo, filter, mergeAll } from 'rxjs/operators';
+import { CartInterface } from '../../../../interfaces/cart.interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,8 @@ export class ProductDetailComponent implements OnInit {
 
   producto: ProductoModel;
   cantidadProductDetail: number = 1;
+
+  estaEnCarrito: boolean = false;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -37,7 +40,8 @@ export class ProductDetailComponent implements OnInit {
   obtenerProductos(prodId: string) {
     this._productoService.getProduct(prodId).subscribe((resp: any) => {
       this.producto = resp;
-      console.log(this.producto);
+      // console.log(this.producto);
+      this.revisarSiEstaEnCarrito();
     });
   }
 
@@ -45,7 +49,24 @@ export class ProductDetailComponent implements OnInit {
   // agregar al carrito //
   // ========================================================== //
   addToCart() {
-    this.cartService.addToCart(this.producto);
+    const cart: CartInterface = {
+      cartItemId: this.producto._id,
+      quantity: this.cantidadProductDetail,
+      product: this.producto
+    };
+
+    this.cartService.addToCart(cart);
+  }
+
+  revisarSiEstaEnCarrito() {
+    this.cartService.cart$
+      .pipe(mergeAll(), pluck('product', '_id'))
+      .subscribe(resp => {
+        if (resp === this.producto._id) {
+          this.estaEnCarrito = true;
+          console.log('esta en carrito: ', this.estaEnCarrito);
+        }
+      });
   }
 
   /// prueba del plunk
@@ -56,3 +77,14 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(console.log);
   } */
 }
+
+/*
+        map(resp => {
+          if (resp !== []) {
+            mapTo(false);
+            // no pasa nada
+          } else {
+            return 'hay data';
+          }
+        })
+*/
