@@ -72,6 +72,22 @@
       padding: 1rem;
       text-transform: capitalize;
     }
+
+    .redirect-button {
+      .btn-seguir-comprando {
+        background-color: $primary;
+        color: $white;
+        margin-right: 20px;
+        border-radius: 30px;
+        box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.2);
+      }
+      .btn-ir-carrito {
+        background-color: $color-4;
+        color: $black;
+        border-radius: 30px;
+        box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.2);
+      }
+    }
   }
 }
 

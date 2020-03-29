@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductoModel } from '../../../models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-product',
@@ -9,7 +10,12 @@ import { ProductoModel } from '../../../models/product.model';
 export class CardProductComponent implements OnInit {
   @Input() producto: ProductoModel;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  getProduct(productId: string, categoryPrd: string) {
+    localStorage.setItem('redirectProd', `/productos/categoria/${categoryPrd}`);
+    this.router.navigate(['/producto', productId]);
+  }
 }

@@ -30,8 +30,9 @@
         <p>
             <button *ngIf="!estaEnCarrito" (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
         </p>
-        <p>
-            <button class="btn btn-black">ir a la caja</button>
-        </p>
+        <div *ngIf="estaEnCarrito" class="redirect-button">
+            <a class="btn btn-seguir-comprando" [routerLink]="[seguirComprandoURl]">Seguir comprando</a>
+            <a class="btn btn-ir-carrito" routerLink="/cart">Ir al carrito</a>
+        </div>
     </div>
 </section>

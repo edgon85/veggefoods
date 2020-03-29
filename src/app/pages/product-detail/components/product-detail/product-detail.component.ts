@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoModel } from '../../../../models/product.model';
 import { ProductService } from '../../../../services/product.service';
 import { CartService } from '../../../../services/cart.service';
-import { pluck, map, mapTo, filter, mergeAll } from 'rxjs/operators';
+import { pluck, mergeAll } from 'rxjs/operators';
 import { CartInterface } from '../../../../interfaces/cart.interface';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,6 +21,8 @@ export class ProductDetailComponent implements OnInit {
 
   estaEnCarrito: boolean = false;
 
+  seguirComprandoURl: string = '';
+
   constructor(
     private activatedRouter: ActivatedRoute,
     private _productoService: ProductService,
@@ -32,7 +36,13 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem('redirectProd') !== null) {
+      this.seguirComprandoURl = localStorage.getItem('redirectProd');
+    } else {
+      this.seguirComprandoURl = '/productos/categoria';
+    }
+  }
 
   // ========================================================== //
   // Obtener producto //
@@ -56,6 +66,13 @@ export class ProductDetailComponent implements OnInit {
     };
 
     this.cartService.addToCart(cart);
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `Se agrego ${this.producto.nombre} al carrito`,
+      showConfirmButton: false,
+      timer: 2500
+    });
   }
 
   revisarSiEstaEnCarrito() {

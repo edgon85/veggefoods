@@ -1,8 +1,9 @@
 <div class="product">
-    <a routerLink="/producto/{{ producto._id }}" class="img-prod"><img class="img-fluid" [src]="producto.imagen" alt="">
+    <div (click)="getProduct(producto._id, producto.categoria)" class="img-prod"><img class="img-fluid"
+            [src]="producto.imagen" alt="">
         <!-- <span class="status">30%</span> -->
         <div class="overlay"></div>
-    </a>
+    </div>
     <div class="text py-3 pb-4 px-3 text-center">
         <h3><a routerLink="/producto/{{ producto._id }}">{{producto.nombre}}</a></h3>
         <div class="d-flex">
