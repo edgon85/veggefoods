@@ -21,11 +21,13 @@ a {
   @include media-breakpoint-down(md) {
     margin-bottom: 30px;
   }
+  .cursor {
+    cursor: pointer;
+  }
   .img-prod {
     position: relative;
     display: block;
     overflow: hidden;
-    cursor: pointer;
     .overlay {
       position: absolute;
       top: 0;

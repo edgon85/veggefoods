@@ -1,11 +1,11 @@
 <div class="product">
-    <div (click)="getProduct(producto._id, producto.categoria)" class="img-prod"><img class="img-fluid"
+    <div (click)="getProduct(producto._id, producto.categoria)" class="img-prod cursor"><img class="img-fluid"
             [src]="producto.imagen" alt="">
         <!-- <span class="status">30%</span> -->
         <div class="overlay"></div>
     </div>
     <div class="text py-3 pb-4 px-3 text-center">
-        <h3><a routerLink="/producto/{{ producto._id }}">{{producto.nombre}}</a></h3>
+        <h3 class="cursor" (click)="getProduct(producto._id, producto.categoria)">{{producto.nombre}}</h3>
         <div class="d-flex">
             <div class="pricing">
                 <p class="price">
@@ -20,12 +20,16 @@
                 <!-- <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                     <span><i class="ion-ios-menu"></i></span>
                 </a> -->
-                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                    <span><i class="ion-ios-cart"></i></span>
+                <a *ngIf="!estaEnCarrito" (click)="addToCart()"
+                    class="cursor buy-now d-flex justify-content-center align-items-center mx-1">
+                    <span><i class="fas fa-cart-plus"></i></span>
                 </a>
-                <!-- <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                    <span><i class="ion-ios-heart"></i></span>
-                </a> -->
+                <a *ngIf="estaEnCarrito" routerLink="/cart"
+                    class="cursor buy-now d-flex justify-content-center align-items-center mx-1">
+                    <span>
+                        <i class="fas fa-check"></i>
+                    </span>
+                </a>
             </div>
         </div>
     </div>
