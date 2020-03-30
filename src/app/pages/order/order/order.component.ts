@@ -10,6 +10,11 @@ import { CartInterface } from '../../../interfaces/cart.interface';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  //
+
+  // photo: string = 'assets/images/product-1.jpg';
+  photo: string = 'https://via.placeholder.com/150';
+
   products$: Observable<CartInterface[]>;
 
   constructor(private _cartService: CartService) {
