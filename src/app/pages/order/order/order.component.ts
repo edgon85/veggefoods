@@ -12,8 +12,7 @@ import { CartInterface } from '../../../interfaces/cart.interface';
 export class OrderComponent implements OnInit {
   //
 
-  // photo: string = 'assets/images/product-1.jpg';
-  photo: string = 'https://via.placeholder.com/150';
+  cantidadProductCart: number = 1;
 
   products$: Observable<CartInterface[]>;
 
