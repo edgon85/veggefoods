@@ -56,6 +56,11 @@ td {
       font-size: 12px;
     }
   }
+  .contenedor-incrementador {
+    max-width: 150px;
+    margin: auto;
+  }
+
   &:nth-child(2) {
     text-align: left;
   }

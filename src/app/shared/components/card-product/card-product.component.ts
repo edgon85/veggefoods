@@ -31,6 +31,7 @@ export class CardProductComponent implements OnInit {
     const cart: CartInterface = {
       cartItemId: this.producto._id,
       quantity: 1,
+      total: 1 * this.producto.precio,
       product: this.producto
     };
 

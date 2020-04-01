@@ -62,6 +62,7 @@ export class ProductDetailComponent implements OnInit {
     const cart: CartInterface = {
       cartItemId: this.producto._id,
       quantity: this.cantidadProductDetail,
+      total: this.cantidadProductDetail * this.producto.precio,
       product: this.producto
     };
 

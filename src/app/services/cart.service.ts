@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, from } from 'rxjs';
 import { CartInterface } from '../interfaces/cart.interface';
 
 @Injectable({
@@ -43,9 +43,36 @@ export class CartService {
     this.itemsCarrito.filter(item => {
       if (item.cartItemId === cartItemId) {
         item.quantity = newquantity;
+        item.total = item.product.precio * newquantity;
       }
 
       return item;
     });
+    this.getTotal();
+    console.log(this.itemsCarrito);
+  }
+
+  /**
+   * getTotal
+   */
+  getTotal() {
+    this.itemsCarrito = [...this.itemsCarrito];
+    const subtotal = this.itemsCarrito.reduce(
+      (total, cart: CartInterface) => total + cart.total,
+      0
+    );
+
+    const delivery = subtotal >= 100 ? 0 : 12;
+    const discount = 0.0;
+
+    const totales = {
+      subtotal_: subtotal,
+      envio: delivery,
+      descuento: discount
+    };
+
+    this.cart.next(this.itemsCarrito);
+    console.log(totales);
+    return totales;
   }
 }

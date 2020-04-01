@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { ContactModule } from './pages/contact/contact.module';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
           import('./pages/product-detail/products-detail.module').then(
             m => m.ProductsDetailModule
           )
+      },
+      {
+        path: 'contacto',
+        loadChildren: () =>
+          import('./pages/contact/contact.module').then(m => m.ContactModule)
       },
       {
         path: 'cart',
