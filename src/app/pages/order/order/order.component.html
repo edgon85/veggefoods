@@ -37,11 +37,13 @@
                             <td>
                                 <!-- {{ producto.quantity }} -->
                                 <app-incrementador (actualizaValor)="producto.quantity = $event"
-                                    [progresoIncrementador]="producto.quantity">
+                                    [progresoIncrementador]="producto.quantity" [cartItemId]="producto.cartItemId">
                                 </app-incrementador>
                             </td>
                             <td><strong>Q 9.90</strong></td>
-                            <td><button class="btn"><i class="far fa-trash-alt"></i></button></td>
+                            <td><button (click)="deleteToCart(producto.cartItemId)" class="btn"><i
+                                        class="far fa-trash-alt"></i></button>
+                            </td>
                         </tr>
                         <!-- <tr>
                             <td>

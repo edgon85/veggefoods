@@ -22,4 +22,9 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  deleteToCart(cartItemId: string) {
+    this._cartService.clearCarrito(cartItemId);
+    // console.log(cartItemId);
+  }
 }

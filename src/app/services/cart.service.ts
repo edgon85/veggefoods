@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
-import { ProductoModel } from '../models/product.model';
 import { CartInterface } from '../interfaces/cart.interface';
 
 @Injectable({
@@ -25,5 +24,28 @@ export class CartService {
   addToCart(cart: CartInterface) {
     this.itemsCarrito = [...this.itemsCarrito, cart];
     this.cart.next(this.itemsCarrito);
+  }
+
+  /**
+   * clearCarrito
+   */
+  clearCarrito(cartItemId: string) {
+    this.itemsCarrito = this.itemsCarrito.filter(
+      carrito => carrito.cartItemId !== cartItemId
+    );
+    this.cart.next(this.itemsCarrito);
+    console.log(this.itemsCarrito);
+  }
+
+  updateItemCart(cartItemId: string, newquantity: number) {
+    this.itemsCarrito = [...this.itemsCarrito];
+    // const filteredDataSource = this.itemsCarrito.filter(item => {
+    this.itemsCarrito.filter(item => {
+      if (item.cartItemId === cartItemId) {
+        item.quantity = newquantity;
+      }
+
+      return item;
+    });
   }
 }

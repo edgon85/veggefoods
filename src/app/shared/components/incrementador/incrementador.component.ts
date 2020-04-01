@@ -1,3 +1,4 @@
+import { CartService } from '../../../services/cart.service';
 import {
   Component,
   OnInit,
@@ -19,12 +20,15 @@ export class IncrementadorComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('progresoIncrementador') progreso: number = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('cartItemId') cartId: string = '';
+
   // tslint:disable-next-line: no-output-rename
   @Output('actualizaValor') cambioValor: EventEmitter<
     number
   > = new EventEmitter();
 
-  constructor() {
+  constructor(private cartService: CartService) {
     //  console.log('prgreso: ', this.progreso);
   }
 
@@ -59,6 +63,9 @@ export class IncrementadorComponent implements OnInit {
     this.progreso = this.progreso + valor;
     this.cambioValor.emit(this.progreso);
 
+    this.cartService.updateItemCart(this.cartId, this.progreso);
+    // console.log(`valor: ${this.progreso}`);
+    // console.log(`cartId: ${this.cartId}`);
     // this.txtProgress.nativeElement.focus();
   }
 }
