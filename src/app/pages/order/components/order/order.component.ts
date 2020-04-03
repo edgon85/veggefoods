@@ -6,8 +6,8 @@ import {
   OnChanges
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from '../../../services/cart.service';
-import { CartInterface } from '../../../interfaces/cart.interface';
+import { CartService } from '../../../../services/cart.service';
+import { CartInterface } from '../../../../interfaces/cart.interface';
 
 @Component({
   selector: 'app-order',

@@ -35,7 +35,14 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/order/order.module').then(m => m.OrderModule)
       },
-      { path: '', redirectTo: '/inicio', pathMatch: 'full' }
+      // { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+      {
+        path: '**',
+        loadChildren: () =>
+          import('./pages/page-not-found/page-not-found.module').then(
+            m => m.PageNotFoudModule
+          )
+      }
     ]
   }
 ];
