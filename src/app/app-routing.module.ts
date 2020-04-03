@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/order/order.module').then(m => m.OrderModule)
       },
+      {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+      },
       // { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       {
         path: '**',
