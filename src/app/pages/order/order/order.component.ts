@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+  OnChanges
+} from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductoModel } from '../../../models/product.model';
 import { CartService } from '../../../services/cart.service';
 import { CartInterface } from '../../../interfaces/cart.interface';
 
@@ -18,7 +23,6 @@ export class OrderComponent implements OnInit {
 
   constructor(private _cartService: CartService) {
     this.products$ = _cartService.cart$;
-    this.products$.subscribe(console.log);
   }
 
   ngOnInit() {}

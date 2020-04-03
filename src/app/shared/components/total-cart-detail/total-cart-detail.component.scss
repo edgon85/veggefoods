@@ -1,0 +1,17 @@
+@import '../../../../variables.scss';
+
+.btn-pagar {
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+  background-color: $primary;
+  color: $white;
+  transition: box-shadow 0.3s linear;
+  border-radius: 20px;
+  &:hover {
+    background: $white;
+    color: $primary;
+  }
+}

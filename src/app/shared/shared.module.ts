@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IncrementadorComponent } from './components/incrementador/incrementador.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderProductComponent } from './components/header-product/header-product.component';
+import { TotalCartDetailComponent } from './components/total-cart-detail/total-cart-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderProductComponent } from './components/header-product/header-produ
     LoadingComponent,
     SidebarComponent,
     IncrementadorComponent,
-    HeaderProductComponent
+    HeaderProductComponent,
+    TotalCartDetailComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -28,7 +30,8 @@ import { HeaderProductComponent } from './components/header-product/header-produ
     LoadingComponent,
     SidebarComponent,
     IncrementadorComponent,
-    HeaderProductComponent
+    HeaderProductComponent,
+    TotalCartDetailComponent
   ]
 })
 export class SharedModule {}

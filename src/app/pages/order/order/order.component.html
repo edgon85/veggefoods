@@ -1,11 +1,9 @@
-<!-- <div *ngFor="let product of products$ | async">
-    <h3>producto: {{ product.product.nombre }}</h3>
-    <span>cantidad: {{ product.quantity }}</span>
-</div> -->
-
-
-<section class="carrito-detail">
-    <ng-container *ngIf="(products$ | async) as productos">
+<ng-container *ngIf="(products$ | async) as productos">
+    <section *ngIf="productos.length === 0" class="cart-empty">
+        <p>OOOPS! Tu carrito de compras está vacío <br> selecciona una categoría</p>
+        <app-sidebar></app-sidebar>
+    </section>
+    <section *ngIf="productos.length > 0" class="carrito-detail">
         <div class="cart-list">
             <div class="responsiveTbl">
                 <table>
@@ -46,47 +44,12 @@
                                         class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>
-                        <!-- <tr>
-                            <td>
-                                <div class="image">
-                                    <img src="assets/images/product-3.jpg" alt="">
-                                </div>
-                            </td>
-                            <td>Platanos verdes</td>
-                            <!- - <td><span class="price">£40 / hr</span></td> - ->
-                            <td>Q 9.90</td>
-                            <td>1</td>
-                            <td>Q 9.90</td>
-                            <td><button class="btn"><i class="far fa-trash-alt"></i></button></td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="cart-price-detail">
-            <div class="cart-wrap ftco-animate fadeInUp ftco-animated">
-                <div class="cart-total mb-3">
-                    <h3>Total de compras</h3>
-                    <p class="d-flex">
-                        <span>Subtotal</span>
-                        <span>Q20.60</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Envío</span>
-                        <span>Q12.00</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Descuento</span>
-                        <span>Q0.00</span>
-                    </p>
-                    <hr>
-                    <p class="d-flex total-price">
-                        <span>Total</span>
-                        <span>Q17.60</span>
-                    </p>
-                </div>
-                <p><button class="btn-pagar">Pasar a caja</button></p>
-            </div>
+            <app-total-cart-detail></app-total-cart-detail>
         </div>
-    </ng-container>
-</section>
+    </section>
+</ng-container>

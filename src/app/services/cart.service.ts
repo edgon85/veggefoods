@@ -7,19 +7,12 @@ import { CartInterface } from '../interfaces/cart.interface';
   providedIn: 'root'
 })
 export class CartService {
-  /*   private products: ProductoModel[] = [];
-  private cart = new BehaviorSubject<ProductoModel[]>([]); */
   private itemsCarrito: CartInterface[] = [];
   private cart = new BehaviorSubject<CartInterface[]>([]);
 
   cart$ = this.cart.asObservable();
 
   constructor() {}
-
-  /*   addToCart(product: ProductoModel) {
-    this.products = [...this.products, product];
-    this.cart.next(this.products);
-  } */
 
   addToCart(cart: CartInterface) {
     this.itemsCarrito = [...this.itemsCarrito, cart];
@@ -34,7 +27,7 @@ export class CartService {
       carrito => carrito.cartItemId !== cartItemId
     );
     this.cart.next(this.itemsCarrito);
-    console.log(this.itemsCarrito);
+    // console.log(this.itemsCarrito);
   }
 
   updateItemCart(cartItemId: string, newquantity: number) {
@@ -48,31 +41,21 @@ export class CartService {
 
       return item;
     });
-    this.getTotal();
-    console.log(this.itemsCarrito);
+    this.getSubTotal();
+    // console.log(this.itemsCarrito);
   }
 
   /**
    * getTotal
    */
-  getTotal() {
+  getSubTotal() {
     this.itemsCarrito = [...this.itemsCarrito];
     const subtotal = this.itemsCarrito.reduce(
       (total, cart: CartInterface) => total + cart.total,
       0
     );
-
-    const delivery = subtotal >= 100 ? 0 : 12;
-    const discount = 0.0;
-
-    const totales = {
-      subtotal_: subtotal,
-      envio: delivery,
-      descuento: discount
-    };
-
     this.cart.next(this.itemsCarrito);
-    console.log(totales);
-    return totales;
+    //  console.log(totales);
+    return subtotal;
   }
 }
