@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CartInterface } from '../../../interfaces/cart.interface';
 import { map } from 'rxjs/operators';
 import { CartService } from '../../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-total-cart-detail',
@@ -16,7 +17,7 @@ export class TotalCartDetailComponent implements OnInit {
   discount: number = 0;
   total: number = 0;
 
-  constructor(private _cartService: CartService) {
+  constructor(private _cartService: CartService, private router: Router) {
     this.obtenerResultados();
   }
 
@@ -36,5 +37,10 @@ export class TotalCartDetailComponent implements OnInit {
         this.total = result > 0 ? result + this.delivery - this.discount : 0;
         // console.log(this.subtotal);
       });
+  }
+
+  checkout() {
+    this.router.navigateByUrl('/cart/checkout');
+    localStorage.setItem('ckeckoutUrl', '/cart/checkout');
   }
 }

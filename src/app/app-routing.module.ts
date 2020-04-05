@@ -39,7 +39,7 @@ const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       },
-      // { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+      { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       {
         path: '**',
         loadChildren: () =>
