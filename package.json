@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@babel/compat-data": "^7.8.0",
+    "angularfire2": "^5.4.2",
+    "firebase": "^7.13.2",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.10.7",
     "swiper": "^5.3.1",
