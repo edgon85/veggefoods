@@ -44,26 +44,21 @@ export class RegisterComponent implements OnInit {
     });
     Swal.showLoading();
 
-    this.auth.register(this.usuario).subscribe(
-      resp => {
-        Swal.close();
+    this.auth.register(this.usuario).subscribe(resp => {
+      // Swal.close();
 
-        console.log(resp);
-        if (this.recordarme) {
-          localStorage.setItem('email', this.usuario.email);
-        }
-
-        this.router.navigateByUrl(this.redirectCheckoutURL);
-      },
-      err => {
-        console.log(err.error.error.message);
-        Swal.fire({
-          title: 'Error al autenticar',
-          text: err.error.error.message,
-          icon: 'error',
-          showConfirmButton: true
-        });
+      console.log(resp);
+      if (this.recordarme) {
+        localStorage.setItem('email', this.usuario.email);
       }
-    );
+
+      this.auth
+        .crearNuevoUsuario(resp['localId'], this.usuario)
+        .subscribe(() => {
+          console.log('usuario creado satisfactoriamente');
+          Swal.close();
+          this.router.navigateByUrl(this.redirectCheckoutURL);
+        });
+    });
   }
 }
