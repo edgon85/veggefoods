@@ -48,25 +48,44 @@ export class LoginComponent implements OnInit {
     });
     Swal.showLoading();
 
-    this.auth.login(this.usuario).subscribe(
-      resp => {
-        console.log(resp);
+    this.auth
+      .loginWithEmailAndPassword(this.usuario)
+      .then(resp => {
         Swal.close();
         if (this.recordarme) {
           localStorage.setItem('email', this.usuario.email);
         }
-
         this.router.navigateByUrl(this.redirectCheckoutURL);
-      },
-      err => {
-        console.log(err.error.error.message);
+      })
+      .catch(err => {
+        console.log(err), Swal.close();
         Swal.fire({
           title: 'Error al autenticar',
-          text: err.error.error.message,
+          text: err.message,
           icon: 'error',
           showConfirmButton: true
         });
-      }
-    );
+      });
+
+    // this.auth.login(this.usuario).subscribe(
+    //   resp => {
+    //     console.log(resp);
+    //     Swal.close();
+    //     if (this.recordarme) {
+    //       localStorage.setItem('email', this.usuario.email);
+    //     }
+
+    //     this.router.navigateByUrl(this.redirectCheckoutURL);
+    //   },
+    //   err => {
+    //     console.log(err.error.error.message);
+    //     Swal.fire({
+    //       title: 'Error al autenticar',
+    //       text: err.error.error.message,
+    //       icon: 'error',
+    //       showConfirmButton: true
+    //     });
+    //   }
+    // );
   }
 }

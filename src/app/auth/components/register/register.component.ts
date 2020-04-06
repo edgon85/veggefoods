@@ -44,21 +44,24 @@ export class RegisterComponent implements OnInit {
     });
     Swal.showLoading();
 
-    this.auth.register(this.usuario).subscribe(resp => {
-      // Swal.close();
-
-      console.log(resp);
-      if (this.recordarme) {
-        localStorage.setItem('email', this.usuario.email);
-      }
-
-      this.auth
-        .crearNuevoUsuario(resp['localId'], this.usuario)
-        .subscribe(() => {
-          console.log('usuario creado satisfactoriamente');
-          Swal.close();
-          this.router.navigateByUrl(this.redirectCheckoutURL);
+    this.auth
+      .createAcount(this.usuario)
+      .then(resp => {
+        Swal.close();
+        if (this.recordarme) {
+          localStorage.setItem('email', this.usuario.email);
+        }
+        this.router.navigateByUrl(this.redirectCheckoutURL);
+      })
+      .catch(err => {
+        console.log(err.message);
+        Swal.close();
+        Swal.fire({
+          title: 'Error al crear cuenta',
+          text: err.message,
+          icon: 'error',
+          showConfirmButton: true
         });
-    });
+      });
   }
 }

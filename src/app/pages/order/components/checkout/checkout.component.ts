@@ -6,12 +6,15 @@ import { AuthService } from '../../../../services/auth.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, AfterViewInit {
+export class CheckoutComponent implements OnInit {
+  //
+
   constructor(private auth: AuthService) {
-    console.log(auth.userUId);
+    this.auth.getuser().subscribe(resp => console.log(resp.uid));
   }
   ngOnInit() {}
-  ngAfterViewInit(): void {
-    this.auth.getUserByID(this.auth.userUId).subscribe(console.log);
+
+  logout() {
+    this.auth.logout();
   }
 }

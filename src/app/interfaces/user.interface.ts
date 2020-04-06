@@ -6,5 +6,4 @@ export class UsuarioModel {
   telefono?: string;
   direccion?: string;
   timestamp?: string;
-  created_date?: string;
 }

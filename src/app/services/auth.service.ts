@@ -1,21 +1,91 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../interfaces/user.interface';
-import { map } from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { AngularFireAuth } from 'angularfire2/auth';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  constructor(
+    private http: HttpClient,
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
+  ) {}
+
+  // ========================================= //
+  // ccrear cuenta //
+  // ========================================= //
+  public createAcount(usuario: UsuarioModel) {
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(usuario.email, usuario.password)
+      .then(resp => {
+        this.createUserData(resp.user.uid, usuario);
+      });
+  }
+
+  // ========================================= //
+  // Login con email y password //
+  // ========================================= //
+  public loginWithEmailAndPassword(usuario: UsuarioModel) {
+    return this.afAuth.auth.signInWithEmailAndPassword(
+      usuario.email,
+      usuario.password
+    );
+  }
+
+  // ========================================= //
+  // Obtener el estado del usuario //
+  // ========================================= //
+  public getStatus() {
+    return this.afAuth.authState;
+  }
+
+  // ========================================= //
+  // obtener el usuario logueado //
+  // ========================================= //
+  public getuser() {
+    return this.afAuth.user;
+  }
+
+  // ========================================= //
+  // cerrar sesión //
+  // ========================================= //
+  public logout() {
+    return this.afAuth.auth.signOut();
+  }
+
+  // ========================================= //
+  // actualizar usuario //
+  // ========================================= //
+  private createUserData(id: string, usuario: UsuarioModel) {
+    const userRef: AngularFirestoreDocument = this.afs.doc(`users/${id}`);
+    //
+    const date = new Date();
+
+    const data = {
+      email: usuario.email,
+      nombre: usuario.nombre,
+      uid: id,
+      direccion: '',
+      telefono: '',
+      timestamp: date.toString()
+    };
+    return userRef.set(data, { merge: true });
+  }
+}
+/*   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   private apiKey = 'AIzaSyDvhxnteaAPdTVBw6_eFoLzNerjkAlVvHw';
   private urlUsers = 'https://de-volada-ce752.firebaseio.com/users';
 
   userToken: string;
   userUId: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private afAuth: AngularFireAuth) {
     this.leerToken();
   }
 
@@ -134,5 +204,4 @@ export class AuthService {
   public getUserByID(uid: string) {
     const url = 'https://de-volada-ce752.firebaseio.com/users';
     return this.http.get(`${this.urlUsers}/${uid}.json`);
-  }
-}
+  } */
