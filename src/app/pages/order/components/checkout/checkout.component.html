@@ -1,4 +1,101 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <p>checkout works!</p>
     <button (click)="logout()">logout</button>
-</div>
+</div> -->
+
+<section class="checkout-detail">
+    <div class="chekout-data">
+        <h2>Datos de cuenta</h2>
+        <form #forma="ngForm" (ngSubmit)="sendData( forma )">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Correo</label>
+                    <input [(ngModel)]="checkoutData.correo" name="correo" type="email" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Teléfono</label>
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">+502</div>
+                        <input [(ngModel)]="checkoutData.telefono" name="telefono" type="number" class="form-control"
+                            minlength="8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [(ngModel)]="checkoutData.nombre" name="nombre" type="text" class="form-control">
+            </div>
+
+
+            <div class="txt-shiping">
+                <h2>Dirección de entrega</h2>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Departamento</label>
+                    <select [(ngModel)]="checkoutData.departamento" name="departamento" class="form-control">
+                        <option *ngFor="let depto of departamento" [value]="depto.key">{{ depto.label }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Municipio</label>
+                    <select [(ngModel)]="checkoutData.municipio" name="municipio" class="form-control">
+                        <option *ngFor="let muni of municipio" [value]="muni.key">{{ muni.key }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Zona</label>
+                    <select [(ngModel)]="checkoutData.zona" name="zona" class="form-control">
+                        <option *ngFor="let zo of zona" [value]="zo.key">{{ zo.key }}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Dirección</label>
+                <input [(ngModel)]="checkoutData.direccion" name="direccion" type="text" class="form-control"
+                    placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <label>Referencia</label>
+                <input [(ngModel)]="checkoutData.referencia" name="referencia" type="text" class="form-control"
+                    placeholder="Apartamento, casa">
+            </div>
+            <!-- <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div> -->
+            <div class="txt-shiping">
+                <h2>Entregar</h2>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" [(ngModel)]="checkoutData.fechaEnvio" name="fechaEnvio"
+                        id="exampleRadios1" value="pronto" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Lo mas pronto posible
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" [(ngModel)]="checkoutData.fechaEnvio" name="fechaEnvio"
+                        id="exampleRadios2" value="fecha asignada">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Elegir fecha
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+    </div>
+    <div class="cart-price-detail">
+        <app-total-cart-detail></app-total-cart-detail>
+
+    </div>
+</section>

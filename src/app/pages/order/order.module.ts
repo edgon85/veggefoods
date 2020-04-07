@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { OrderRoutingModule } from './order-routing.module';
@@ -15,6 +16,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     RepeatNumberPipe,
     CheckoutComponent
   ],
-  imports: [CommonModule, OrderRoutingModule, SharedModule]
+  imports: [CommonModule, OrderRoutingModule, SharedModule, FormsModule]
 })
 export class OrderModule {}
