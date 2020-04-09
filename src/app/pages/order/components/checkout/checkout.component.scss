@@ -3,10 +3,10 @@
   grid-template-columns: 1fr 300px;
   grid-template-areas: 'lista price';
   gap: 10px;
-  padding: 10px 100px;
+  // padding: 10px 100px;
   .chekout-data {
     grid-area: lista;
-    padding: 0px 100px;
+    //  padding: 0px 100px;
   }
   .cart-price-detail {
     grid-area: price;
@@ -19,17 +19,20 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .container {
+    background-color: #f7f6f3;
+  }
   .checkout-detail {
     display: grid;
     grid-template-columns: 1fr;
-    padding: 10px;
+    //  padding: 10px;
     background-color: #f7f6f3;
-    padding: 10px 10px;
+    //  padding: 10px 10px;
     grid-template-areas:
       'lista'
       'price';
   }
   .chekout-data {
-    padding: 0px 10px !important;
+    // padding: 0px 10px !important;
   }
 }

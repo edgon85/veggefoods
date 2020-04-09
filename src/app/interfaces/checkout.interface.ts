@@ -3,20 +3,26 @@ export class Checkout {
   correo: string;
   nombre: string;
   telefono: string;
-  departamento: string;
-  municipio: string;
-  zona: string;
-  direccion: string;
-  referencia: string;
+  direccion: Direccion;
   totales: object;
   productos: CartInterface[];
   fechaCreacion: string;
   fechaEnvio: string;
+  tipoPago: string;
+  condiciones: boolean;
   $key?: string;
 }
 
+interface Direccion {
+  departamento: string;
+  municipio: string;
+  zona: string;
+  ubicacion: string;
+  referencia: string;
+}
+
 export enum Departamento {
-  Quetzaltenango = 'QUE'
+  Quetzaltenango = 'Quetzaltenango'
 }
 
 export enum Municipio {
