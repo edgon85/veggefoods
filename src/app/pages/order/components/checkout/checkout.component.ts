@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
@@ -13,41 +18,37 @@ import Swal from 'sweetalert2';
 import {
   Departamento,
   Municipio,
-  Zona
+  Zona,
 } from '../../../../interfaces/checkout.interface';
+
+import * as moment from 'moment';
+import { MY_FORMATS } from '../../../../material/material.module';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private userService: UserService,
-    private cartService: CartService
-  ) {
-    this.formularioCheckout();
-    this.formularioPago();
-    this.initDataUser();
-  }
   //
+
+  date = new FormControl(moment());
+
   usuario$: Observable<UsuarioModel>;
 
-  public departamento = Object.keys(Departamento).map(key => ({
+  public departamento = Object.keys(Departamento).map((key) => ({
     label: key,
-    key: Departamento[key]
+    key: Departamento[key],
   }));
 
-  public municipio = Object.keys(Municipio).map(key => ({
+  public municipio = Object.keys(Municipio).map((key) => ({
     label: key,
-    key: Municipio[key]
+    key: Municipio[key],
   }));
 
-  public zona = Object.keys(Zona).map(key => ({
+  public zona = Object.keys(Zona).map((key) => ({
     label: key,
-    key: Zona[key]
+    key: Zona[key],
   }));
 
   // checkoutData: Checkout;
@@ -72,20 +73,32 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   phoneNumber = '^(+d{1,3}[- ]?)?d{10}$';
 
+  // <=================================================================> //
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private cartService: CartService
+  ) {
+    this.formularioCheckout();
+    this.formularioPago();
+    this.initDataUser();
+  }
   //
 
   ngOnInit() {
     // this.checkoutData = new Checkout();
+    // console.log(this.date);
   }
 
   obtenerResultados() {
     this.cartService.cart$
       .pipe(
-        map(data =>
+        map((data) =>
           data.reduce((total, cart: CartInterface) => total + cart.total, 0)
         )
       )
-      .subscribe(result => {
+      .subscribe((result) => {
         this.subtotal = result;
         this.delivery = result >= 100 ? 0 : 12;
         this.discount = 0;
@@ -96,7 +109,7 @@ export class CheckoutComponent implements OnInit {
           subtotal: this.subtotal,
           delivery: this.delivery,
           discount: this.discount,
-          total: this.total
+          total: this.total,
         };
       });
   }
@@ -104,12 +117,14 @@ export class CheckoutComponent implements OnInit {
   // obtener uid de usuario y datos del productos //
   // <===============================================================> //
   initDataUser() {
-    this.cartService.cart$.subscribe(resp => (this.products = resp));
-    this.authService.getuser().subscribe(resp => this.obtenerUsuario(resp.uid));
+    this.cartService.cart$.subscribe((resp) => (this.products = resp));
+    this.authService
+      .getuser()
+      .subscribe((resp) => this.obtenerUsuario(resp.uid));
   }
 
   obtenerUsuario(uid: string) {
-    this.userService.getUserById(uid).subscribe(resp => {
+    this.userService.getUserById(uid).subscribe((resp) => {
       // this.forma.setValue({
       this.forma.reset({
         correo: resp.email,
@@ -120,18 +135,18 @@ export class CheckoutComponent implements OnInit {
           municipio: Municipio.Quetzaltenango,
           zona: Zona.Zona1,
           ubicacion: '',
-          referencia: ''
-        }
+          referencia: '',
+        },
       });
     });
   }
   formularioCheckout() {
     this.forma = this.fb.group({
-      // correo: [
-      //   '',
-      //   [Validators.required, Validators.pattern(this.emailValidaror)]
-      // ],
-      correo: { value: '', disabled: true },
+      correo: [
+        '',
+        [Validators.required, Validators.pattern(this.emailValidaror)],
+      ],
+      // correo: [{ value: 'Nancy', disabled: true }, Validators.required],
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
       direccion: this.fb.group({
@@ -139,9 +154,10 @@ export class CheckoutComponent implements OnInit {
         municipio: ['', Validators.required],
         zona: ['', Validators.required],
         ubicacion: ['', Validators.required],
-        referencia: ['']
+        referencia: [''],
       }),
-      fechaEntreaga: ['', Validators.required]
+      fechaEntreaga: ['', Validators.required],
+      dates: [''],
     });
   }
 
@@ -156,7 +172,7 @@ export class CheckoutComponent implements OnInit {
   formularioPago() {
     this.formaPago = this.fb.group({
       tipoPago: ['', Validators.required],
-      condiciones: [false, [Validators.required, Validators.pattern('true')]]
+      condiciones: [false, [Validators.required, Validators.pattern('true')]],
     });
   }
   // <=================================================================> //
@@ -164,19 +180,24 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   hacerPedido() {
     //
+
     if (this.forma.invalid) {
-      return Object.values(this.forma.controls).forEach(control => {
+      return Object.values(this.forma.controls).forEach((control) => {
         if (control instanceof FormGroup) {
-          Object.values(control.controls).forEach(resp => resp.markAsTouched());
+          Object.values(control.controls).forEach((resp) =>
+            resp.markAsTouched()
+          );
         } else {
           control.markAsTouched();
         }
       });
     }
     if (this.formaPago.invalid) {
-      return Object.values(this.formaPago.controls).forEach(control => {
+      return Object.values(this.formaPago.controls).forEach((control) => {
         if (control instanceof FormGroup) {
-          Object.values(control.controls).forEach(resp => resp.markAsTouched());
+          Object.values(control.controls).forEach((resp) =>
+            resp.markAsTouched()
+          );
         } else {
           control.markAsTouched();
         }
@@ -184,6 +205,8 @@ export class CheckoutComponent implements OnInit {
     }
 
     if (this.forma.valid) {
+      // console.log(this.forma.value.dates);
+
       const fechaCheacion = new Date();
       this.obtenerResultados();
 
@@ -197,7 +220,7 @@ export class CheckoutComponent implements OnInit {
         fechaCreacion: fechaCheacion.toString(),
         fechaEnvio: this.forma.value.fechaEntreaga,
         tipoPago: this.formaPago.value.tipoPago,
-        condiciones: this.formaPago.value.condiciones
+        condiciones: this.formaPago.value.condiciones,
       };
 
       Swal.fire({
@@ -208,15 +231,15 @@ export class CheckoutComponent implements OnInit {
         <strong>Nombre:</strong> ${checkoutData.nombre}<br>
         <strong>Correo:</strong> ${checkoutData.correo}<br>
         <strong>Teléfono:</strong> ${checkoutData.telefono}<br>
-        <strong>Dirección:</strong> ${checkoutData.direccion.ubicacion} ${checkoutData.direccion.zona} 
+        <strong>Dirección:</strong> ${checkoutData.direccion.ubicacion} ${checkoutData.direccion.zona}
         ${checkoutData.direccion.municipio} ${checkoutData.direccion.departamento}<br>
         <strong>Total:</strong> ${checkoutData.totales['total']}</div>`,
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, Hacer pedido!',
-        showCancelButton: true
-      }).then(result => {
+        showCancelButton: true,
+      }).then((result) => {
         if (result.value) {
           Swal.fire('Enviado!', 'Su pedido se a procesado', 'success');
         }
@@ -227,5 +250,18 @@ export class CheckoutComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  cambioFecha(event: any): string {
+    const data = event;
+    console.log(data);
+    const formattedDate =
+      data['_i']['date'] +
+      '-' +
+      (data['_i']['month'] + 1) +
+      '-' +
+      data['_i']['year'];
+    console.log(formattedDate);
+    return formattedDate;
   }
 }

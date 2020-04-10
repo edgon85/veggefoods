@@ -8,20 +8,24 @@ import { RepeatNumberPipe } from '../../pipes/cart/repeat-number.pipe';
 import { DeleteRepeatPipe } from '../../pipes/cart/delete-repeat.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { MaterialModule } from '../../material/material.module';
+import { DisableControlDirective } from '../../directives/disable-control.directive';
 
 @NgModule({
   declarations: [
     OrderComponent,
     DeleteRepeatPipe,
     RepeatNumberPipe,
-    CheckoutComponent
+    CheckoutComponent,
+    // DisableControlDirective,
   ],
   imports: [
     CommonModule,
     OrderRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MaterialModule,
+  ],
 })
 export class OrderModule {}
