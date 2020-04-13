@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit {
   //
 
   usuario$: Observable<UsuarioModel>;
+  userUid: string = '';
 
   public departamento = Object.keys(Departamento).map((key) => ({
     label: key,
@@ -123,9 +124,10 @@ export class CheckoutComponent implements OnInit {
   // <===============================================================> //
   initDataUser() {
     this.cartService.cart$.subscribe((resp) => (this.products = resp));
-    this.authService
-      .getuser()
-      .subscribe((resp) => this.obtenerUsuario(resp.uid));
+    this.authService.getuser().subscribe((resp) => {
+      this.userUid = resp.uid;
+      this.obtenerUsuario(resp.uid);
+    });
   }
 
   // <===============================================================> //
@@ -235,6 +237,7 @@ export class CheckoutComponent implements OnInit {
       this.obtenerResultados();
 
       const checkoutData: Checkout = {
+        $key: Date.now().toString(),
         correo: this.forma.value.correo,
         nombre: this.forma.value.nombre,
         telefono: this.forma.value.telefono,
@@ -242,9 +245,10 @@ export class CheckoutComponent implements OnInit {
         totales: this.totales,
         productos: this.products,
         fechaCreacion: fechaCheacion.toString(),
-        fechaEnvio: dateEntrega,
+        fechaEntrega: dateEntrega,
         tipoPago: this.formaPago.value.tipoPago,
         condiciones: this.formaPago.value.condiciones,
+        status: 'Orden realizada',
       };
 
       Swal.fire({
@@ -266,7 +270,7 @@ export class CheckoutComponent implements OnInit {
         showCancelButton: true,
       }).then((result) => {
         if (result.value) {
-          Swal.fire('Enviado!', 'Su pedido se a procesado', 'success');
+          this.userService.sendOrder(this.userUid, checkoutData);
         }
       });
       console.log(checkoutData);

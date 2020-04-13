@@ -4,7 +4,7 @@ import { BehaviorSubject, from } from 'rxjs';
 import { CartInterface } from '../interfaces/cart.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private itemsCarrito: CartInterface[] = [];
@@ -24,16 +24,23 @@ export class CartService {
    */
   clearCarrito(cartItemId: string) {
     this.itemsCarrito = this.itemsCarrito.filter(
-      carrito => carrito.cartItemId !== cartItemId
+      (carrito) => carrito.cartItemId !== cartItemId
     );
     this.cart.next(this.itemsCarrito);
     // console.log(this.itemsCarrito);
   }
 
+  // <======================> //
+  // Limpia todo el carrito //
+  // <======================> //
+  clearAllCart() {
+    this.cart.next([]);
+  }
+
   updateItemCart(cartItemId: string, newquantity: number) {
     this.itemsCarrito = [...this.itemsCarrito];
     // const filteredDataSource = this.itemsCarrito.filter(item => {
-    this.itemsCarrito.filter(item => {
+    this.itemsCarrito.filter((item) => {
       if (item.cartItemId === cartItemId) {
         item.quantity = newquantity;
         item.total = item.product.precio * newquantity;

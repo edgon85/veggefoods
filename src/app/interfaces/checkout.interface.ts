@@ -7,9 +7,10 @@ export class Checkout {
   totales: object;
   productos: CartInterface[];
   fechaCreacion: string;
-  fechaEnvio: string;
+  fechaEntrega: string;
   tipoPago: string;
   condiciones: boolean;
+  status: string;
   $key?: string;
 }
 
@@ -22,14 +23,14 @@ interface Direccion {
 }
 
 export enum Departamento {
-  Quetzaltenango = 'Quetzaltenango'
+  Quetzaltenango = 'Quetzaltenango',
 }
 
 export enum Municipio {
   Quetzaltenango = 'Quetzaltenango',
   La_Esperanza = 'La esperanza',
   Salcaja = 'Salcaja',
-  Olintepeque = 'Olintepeque'
+  Olintepeque = 'Olintepeque',
 }
 
 export enum Zona {
@@ -43,5 +44,5 @@ export enum Zona {
   Zona8 = 'Zona 8',
   Zona9 = 'Zona 9',
   Zona10 = 'Zona 10',
-  Zona11 = 'Zona 11'
+  Zona11 = 'Zona 11',
 }
