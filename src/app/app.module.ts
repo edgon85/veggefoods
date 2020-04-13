@@ -22,6 +22,7 @@ import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { DisableControlDirective } from './directives/disable-control.directive';
 registerLocaleData(es);
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, DisableControlDirective],
@@ -34,8 +35,9 @@ registerLocaleData(es);
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features,
+    NgxMaterialTimepickerModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-GUA' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

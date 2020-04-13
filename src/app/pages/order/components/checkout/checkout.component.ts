@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -32,8 +32,6 @@ import { MY_FORMATS } from '../../../../material/material.module';
 export class CheckoutComponent implements OnInit {
   //
 
-  date = new FormControl(moment());
-
   usuario$: Observable<UsuarioModel>;
 
   public departamento = Object.keys(Departamento).map((key) => ({
@@ -51,29 +49,33 @@ export class CheckoutComponent implements OnInit {
     key: Zona[key],
   }));
 
-  // checkoutData: Checkout;
-  // products$: Observable<CartInterface[]>;
+  // para los productos
   products: CartInterface[];
-  totales: any = {};
 
   // variable de totales
+  totales: any = {};
   subtotal: number = 0;
   delivery: number = 0;
   discount: number = 0;
   total: number = 0;
 
+  // variable para el formulario
   forma: FormGroup;
   emailValidaror = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$';
 
   // forma para metodo de pago
   formaPago: FormGroup;
 
-  // <=================================================================> //
-  // todo respecto al formulario de envio
-  // <=================================================================> //
-  phoneNumber = '^(+d{1,3}[- ]?)?d{10}$';
+  // variables para fecha y hora de entrega
+  date = new FormControl(moment());
 
-  // <=================================================================> //
+  fechaEntregaInput: string = '';
+  diaDeHoy = new Date().getDay();
+
+  minDate: Date;
+  maxDate: Date;
+  //
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -83,14 +85,15 @@ export class CheckoutComponent implements OnInit {
     this.formularioCheckout();
     this.formularioPago();
     this.initDataUser();
+    this.fechasDeCalendario();
   }
   //
 
-  ngOnInit() {
-    // this.checkoutData = new Checkout();
-    // console.log(this.date);
-  }
+  ngOnInit() {}
 
+  // <=================================================================> //
+  //  obtener los resultados para subtotal, descuento y total //
+  // <=================================================================> //
   obtenerResultados() {
     this.cartService.cart$
       .pipe(
@@ -114,6 +117,8 @@ export class CheckoutComponent implements OnInit {
       });
   }
   // <===============================================================> //
+
+  // <===============================================================> //
   // obtener uid de usuario y datos del productos //
   // <===============================================================> //
   initDataUser() {
@@ -123,6 +128,10 @@ export class CheckoutComponent implements OnInit {
       .subscribe((resp) => this.obtenerUsuario(resp.uid));
   }
 
+  // <===============================================================> //
+  // Obtener un usuario por uid de firebase y llenar el formulario
+  // con sus datos //
+  // <===============================================================> //
   obtenerUsuario(uid: string) {
     this.userService.getUserById(uid).subscribe((resp) => {
       // this.forma.setValue({
@@ -140,6 +149,11 @@ export class CheckoutComponent implements OnInit {
       });
     });
   }
+  // <===============================================================> //
+
+  // <===============================================================> //
+  // Creacion del formulario de checkout //
+  // <===============================================================> //
   formularioCheckout() {
     this.forma = this.fb.group({
       correo: [
@@ -157,7 +171,7 @@ export class CheckoutComponent implements OnInit {
         referencia: [''],
       }),
       fechaEntreaga: ['', Validators.required],
-      dates: [''],
+      hora: [],
     });
   }
 
@@ -176,11 +190,12 @@ export class CheckoutComponent implements OnInit {
     });
   }
   // <=================================================================> //
-  // Hacer pedido
+
+  // <=================================================================> //
+  // enviar la orden a firebase
   // <=================================================================> //
   hacerPedido() {
-    //
-
+    // si la forma de checkout es valida
     if (this.forma.invalid) {
       return Object.values(this.forma.controls).forEach((control) => {
         if (control instanceof FormGroup) {
@@ -192,6 +207,8 @@ export class CheckoutComponent implements OnInit {
         }
       });
     }
+
+    // si la forma de pago es valida
     if (this.formaPago.invalid) {
       return Object.values(this.formaPago.controls).forEach((control) => {
         if (control instanceof FormGroup) {
@@ -204,8 +221,15 @@ export class CheckoutComponent implements OnInit {
       });
     }
 
+    // <== si la forma de checkout es valida ==> //
     if (this.forma.valid) {
       // console.log(this.forma.value.dates);
+      let dateEntrega: string = '';
+      if (this.forma.value.fechaEntreaga === 'fecha entrega') {
+        dateEntrega = `${this.fechaEntregaInput}, ${this.forma.value.hora}`;
+      } else {
+        dateEntrega = 'Lo mas pronto posible (de 3 a 4 horas)';
+      }
 
       const fechaCheacion = new Date();
       this.obtenerResultados();
@@ -218,7 +242,7 @@ export class CheckoutComponent implements OnInit {
         totales: this.totales,
         productos: this.products,
         fechaCreacion: fechaCheacion.toString(),
-        fechaEnvio: this.forma.value.fechaEntreaga,
+        fechaEnvio: dateEntrega,
         tipoPago: this.formaPago.value.tipoPago,
         condiciones: this.formaPago.value.condiciones,
       };
@@ -233,7 +257,8 @@ export class CheckoutComponent implements OnInit {
         <strong>Teléfono:</strong> ${checkoutData.telefono}<br>
         <strong>Dirección:</strong> ${checkoutData.direccion.ubicacion} ${checkoutData.direccion.zona}
         ${checkoutData.direccion.municipio} ${checkoutData.direccion.departamento}<br>
-        <strong>Total:</strong> ${checkoutData.totales['total']}</div>`,
+        <strong>Entrega:</strong> ${dateEntrega}<br>
+        <strong>Total:</strong> Q${checkoutData.totales['total']}</div>`,
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -252,6 +277,9 @@ export class CheckoutComponent implements OnInit {
     this.authService.logout();
   }
 
+  // <=================================================================> //
+  // obtener el cambio de fecha en datepicker
+  // <=================================================================> //
   cambioFecha(event: any): string {
     const data = event;
     console.log(data);
@@ -261,7 +289,17 @@ export class CheckoutComponent implements OnInit {
       (data['_i']['month'] + 1) +
       '-' +
       data['_i']['year'];
-    console.log(formattedDate);
+    // console.log(formattedDate);
+    this.fechaEntregaInput = formattedDate;
     return formattedDate;
+  }
+
+  // <=================================================================> //
+  // maximo y minio de fechas de entrega para datepicker
+  // <=================================================================> //
+  fechasDeCalendario() {
+    const todayDate = new Date();
+    this.minDate = new Date(todayDate.setDate(todayDate.getDate() + 1));
+    this.maxDate = new Date(todayDate.setDate(todayDate.getDate() + 20));
   }
 }

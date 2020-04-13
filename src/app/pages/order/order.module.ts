@@ -10,6 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MaterialModule } from '../../material/material.module';
 import { DisableControlDirective } from '../../directives/disable-control.directive';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DisableControlDirective } from '../../directives/disable-control.direct
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxMaterialTimepickerModule,
   ],
 })
 export class OrderModule {}

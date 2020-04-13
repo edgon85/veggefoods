@@ -4,27 +4,29 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 // import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 import {
   MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MAT_MOMENT_DATE_FORMATS,
 } from '@angular/material-moment-adapter';
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE,
 } from '@angular/material/core';
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'LL'
+    dateInput: 'LL',
   },
   display: {
     dateInput: 'LL',
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  }
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
 };
 
 @NgModule({
@@ -32,17 +34,24 @@ export const MY_FORMATS = {
   imports: [
     CommonModule,
     MatDatepickerModule,
-    MatFormFieldModule
-    // MatNativeDateModule
+    MatFormFieldModule,
+    // MatNativeDateModule,
+    MatInputModule,
   ],
-  exports: [MatDatepickerModule, MatFormFieldModule],
+  exports: [MatDatepickerModule, MatFormFieldModule, MatInputModule],
   providers: [
+    // {
+    //   provide: DateAdapter,
+    //   useClass: MomentDateAdapter,
+    //   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    // },
+    // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+      deps: [MAT_DATE_LOCALE],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
-  ]
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class MaterialModule {}
