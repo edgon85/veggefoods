@@ -4,11 +4,11 @@ import { UsuarioModel } from '../interfaces/user.interface';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from 'angularfire2/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   constructor(
@@ -23,7 +23,7 @@ export class AuthService {
   public createAcount(usuario: UsuarioModel) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(usuario.email, usuario.password)
-      .then(resp => {
+      .then((resp) => {
         this.createUserData(resp.user.uid, usuario);
       });
   }
@@ -73,7 +73,7 @@ export class AuthService {
       uid: id,
       direccion: '',
       telefono: '',
-      timestamp: date.toString()
+      timestamp: date.toString(),
     };
     return userRef.set(data, { merge: true });
   }

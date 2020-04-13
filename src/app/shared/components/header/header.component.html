@@ -46,9 +46,24 @@
                 </li>
                 <li class="nav-item"><a routerLink="/contacto" class="nav-link">Contacto</a></li>
                 <!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
-                <li class="nav-item cta cta-colored"><a routerLink="/cart" class="nav-link"><span
-                            class="icon-shopping_cart"><i
-                                class="fas fa-shopping-cart"></i></span>[{{ total$ | async }}]</a></li>
+                <li class="nav-item cta cta-colored">
+                    <a routerLink="/cart" class="nav-link">
+                        <span class="icon-shopping_cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>[{{ total$ | async }}]
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/login">Iniciar sesión</a>
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/register">Crear cuenta</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/auth/login">Mi Cuenta</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item pointer" (click)="logout()">Cerrar sesión</a>
+                    </div>
+                </li>
 
             </ul>
         </div>
