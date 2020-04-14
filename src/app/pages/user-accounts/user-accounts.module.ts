@@ -7,9 +7,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { MaterialModule } from '../../material/material.module';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
-  declarations: [LayoutAccountComponent, PerfilComponent, OrderListComponent],
+  declarations: [LayoutAccountComponent, PerfilComponent, OrderListComponent, EditUserComponent],
   imports: [
     CommonModule,
     UserAccountsRoutingModule,

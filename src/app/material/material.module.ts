@@ -12,6 +12,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {
   MomentDateAdapter,
@@ -51,6 +53,8 @@ export const MY_FORMATS = {
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatDividerModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatDatepickerModule,
@@ -63,6 +67,8 @@ export const MY_FORMATS = {
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatDividerModule,
+    MatCheckboxModule,
   ],
   providers: [
     // {

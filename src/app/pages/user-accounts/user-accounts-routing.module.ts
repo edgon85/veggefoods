@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutAccountComponent } from './components/layout-account/layout-account.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'perfil', component: PerfilComponent },
       { path: 'pedidos', component: OrderListComponent },
+      { path: 'editar', component: EditUserComponent },
     ],
   },
 ];
