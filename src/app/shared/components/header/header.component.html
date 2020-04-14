@@ -60,7 +60,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/login">Iniciar sesión</a>
                         <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/register">Crear cuenta</a>
-                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/auth/login">Mi Cuenta</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/perfil">Mi Cuenta</a>
                         <a *ngIf="isloggedIn" class="dropdown-item pointer" (click)="logout()">Cerrar sesión</a>
                     </div>
                 </li>

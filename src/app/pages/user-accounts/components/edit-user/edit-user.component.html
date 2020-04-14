@@ -1,29 +1,37 @@
 <div class="container">
-    <div class="header-edit-account">
-        <h2 class="title">Editar mis datos</h2>
-    </div>
-    <div class="content-edit-account">
-        <form class="form-data">
-            <mat-form-field class="full-width">
-                <mat-label>Correo</mat-label>
-                <input matInput placeholder="correo">
-            </mat-form-field>
+    <section class="mt-5" *ngIf="cargando">
+        <app-loading></app-loading>
+    </section>
+    <section *ngIf="!cargando">
 
-            <mat-form-field class="full-width">
-                <mat-label>Nombre completo</mat-label>
-                <input matInput placeholder="nombre">
-            </mat-form-field>
+        <div class="header-edit-account">
+            <h2 class="title">Editar mis datos</h2>
+        </div>
+        <div class="content-edit-account">
+            <form [formGroup]="forma" class="form-data">
+                <mat-form-field class="full-width">
+                    <mat-label>Correo</mat-label>
+                    <input formControlName="correo" matInput placeholder="correo" type="email" [attr.disabled]="true">
+                </mat-form-field>
 
-            <mat-form-field class="full-width">
-                <mat-label>Phone number</mat-label>
-                <!-- <example-tel-input required></example-tel-input> -->
-                <input matInput placeholder="517463547" type="tel">
-                <mat-icon matSuffix>phone</mat-icon>
-                <!-- <mat-hint>Include area code</mat-hint> -->
-            </mat-form-field>
-            <button class="mt-2" mat-stroked-button color="warn">Cambiar contraseña</button>
+                <mat-form-field class="full-width">
+                    <mat-label>Nombre completo</mat-label>
+                    <input formControlName="nombre" matInput placeholder="nombre">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Número de teléfono</mat-label>
+                    <!-- <example-tel-input required></example-tel-input> -->
+                    <input formControlName="telefono" matInput placeholder="517463547" type="tel">
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <!-- <mat-hint>Include area code</mat-hint> -->
+                </mat-form-field>
+                <button (click)="cambiarPassword()" class="mt-2" mat-stroked-button color="warn">Cambiar
+                    contraseña</button>
 
 
-        </form><button class="btn btn-edit mt-5">Actualizar</button>
-    </div>
+            </form>
+            <button (click)="actualizarPerfil()" class="btn btn-edit mt-5">Actualizar</button>
+        </div>
+    </section>
 </div>

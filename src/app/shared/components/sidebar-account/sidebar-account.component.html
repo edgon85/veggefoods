@@ -4,15 +4,17 @@
         <li><a routerLink="/cuenta/perfil"><i class="fas fa-house-user" routerLinkActive="active"></i>
                 <div class="text" routerLinkActive="active">Perfil</div>
             </a></li>
-        <li><a href="#"><i class="fas fa-user-edit"></i>
-                <div class="text"> Editar cuenta</div>
+
+        <li><a routerLink="/cuenta/editar" routerLinkActive="active"><i class="fas fa-user-edit"
+                    routerLinkActive="active"></i>
+                <div class="text" routerLinkActive="active">Editar cuenta</div>
             </a></li>
         <li><a routerLink="/cuenta/pedidos" routerLinkActive="active"><i class="far fa-list-alt"
                     routerLinkActive="active"></i>
-                <div class="text" routerLinkActive="active"> Mis pedidos</div>
+                <div class="text" routerLinkActive="active">Mis pedidos</div>
             </a></li>
-        <li><a href="#"><i class="fas fa-sign-out-alt"></i>
-                <div class="text"> Cerrar sesión</div>
+        <li><a (click)="logout()" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i>
+                <div class="text">Cerrar sesión</div>
             </a>
         </li>
 

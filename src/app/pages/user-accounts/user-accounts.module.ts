@@ -8,14 +8,23 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { MaterialModule } from '../../material/material.module';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { FirstWordPipe } from '../../pipes/first-word.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [LayoutAccountComponent, PerfilComponent, OrderListComponent, EditUserComponent],
+  declarations: [
+    LayoutAccountComponent,
+    PerfilComponent,
+    OrderListComponent,
+    EditUserComponent,
+    FirstWordPipe,
+  ],
   imports: [
     CommonModule,
     UserAccountsRoutingModule,
     SharedModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
 })
 export class UserAccountsModule {}

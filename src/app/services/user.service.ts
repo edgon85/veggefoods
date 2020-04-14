@@ -46,4 +46,8 @@ export class UserService {
         console.log(err);
       });
   }
+
+  updateUser(userUId: string, user: object) {
+    return this.afs.doc(`users/${userUId}`).update(user);
+  }
 }
