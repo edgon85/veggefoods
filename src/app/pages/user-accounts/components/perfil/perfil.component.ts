@@ -42,7 +42,7 @@ export class PerfilComponent implements OnInit {
     this.userService.getUserById(uid).subscribe((resp) => {
       this.usuario = resp;
       this.cargando = false;
-      console.log(this.usuario);
+      // console.log(this.usuario);
       // this.forma.setValue({
       /*       this.forma.reset({
         correo: resp.email,

@@ -29,9 +29,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    this.authService
-      .logout()
-      .then(() => this.router.navigateByUrl('/auth/login'));
+    this.authService.logout().then(() => {
+      this.router.navigateByUrl('/auth/login');
+      localStorage.removeItem('redirectProd');
+      localStorage.removeItem('ckeckoutUrl');
+    });
   }
 
   loggedIn() {

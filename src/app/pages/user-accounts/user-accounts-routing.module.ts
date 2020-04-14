@@ -4,15 +4,18 @@ import { LayoutAccountComponent } from './components/layout-account/layout-accou
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutAccountComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'perfil', component: PerfilComponent },
       { path: 'pedidos', component: OrderListComponent },
       { path: 'editar', component: EditUserComponent },
+      { path: '', redirectTo: '/cuenta/perfil', pathMatch: 'full' },
     ],
   },
 ];

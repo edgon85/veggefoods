@@ -13,6 +13,10 @@ export class SidebarAccountComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    this.authService.logout().then(() => this.router.navigateByUrl('/inicio'));
+    this.authService.logout().then(() => {
+      this.router.navigateByUrl('/inicio');
+      localStorage.removeItem('redirectProd');
+      localStorage.removeItem('ckeckoutUrl');
+    });
   }
 }
