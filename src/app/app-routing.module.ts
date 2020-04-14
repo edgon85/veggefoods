@@ -11,44 +11,54 @@ const routes: Routes = [
       {
         path: 'inicio',
         loadChildren: () =>
-          import('./pages/home/home.module').then(m => m.HomeModule)
+          import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'productos',
         loadChildren: () =>
-          import('./pages/products/products.module').then(m => m.ProductsModule)
+          import('./pages/products/products.module').then(
+            (m) => m.ProductsModule
+          ),
       },
       {
         path: 'producto',
         loadChildren: () =>
           import('./pages/product-detail/products-detail.module').then(
-            m => m.ProductsDetailModule
-          )
+            (m) => m.ProductsDetailModule
+          ),
       },
       {
         path: 'contacto',
         loadChildren: () =>
-          import('./pages/contact/contact.module').then(m => m.ContactModule)
+          import('./pages/contact/contact.module').then((m) => m.ContactModule),
       },
       {
         path: 'cart',
         loadChildren: () =>
-          import('./pages/order/order.module').then(m => m.OrderModule)
+          import('./pages/order/order.module').then((m) => m.OrderModule),
       },
       {
         path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+        loadChildren: () =>
+          import('./auth/auth.module').then((m) => m.AuthModule),
+      },
+      {
+        path: 'cuenta',
+        loadChildren: () =>
+          import('./pages/user-accounts/user-accounts.module').then(
+            (m) => m.UserAccountsModule
+          ),
       },
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       {
         path: '**',
         loadChildren: () =>
           import('./pages/page-not-found/page-not-found.module').then(
-            m => m.PageNotFoudModule
-          )
-      }
-    ]
-  }
+            (m) => m.PageNotFoudModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -56,9 +66,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       scrollPositionRestoration: 'enabled',
-      preloadingStrategy: PreloadAllModules
-    })
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

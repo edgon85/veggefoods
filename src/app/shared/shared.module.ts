@@ -10,6 +10,7 @@ import { IncrementadorComponent } from './components/incrementador/incrementador
 import { FormsModule } from '@angular/forms';
 import { HeaderProductComponent } from './components/header-product/header-product.component';
 import { TotalCartDetailComponent } from './components/total-cart-detail/total-cart-detail.component';
+import { SidebarAccountComponent } from './components/sidebar-account/sidebar-account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TotalCartDetailComponent } from './components/total-cart-detail/total-c
     SidebarComponent,
     IncrementadorComponent,
     HeaderProductComponent,
-    TotalCartDetailComponent
+    TotalCartDetailComponent,
+    SidebarAccountComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -31,7 +33,8 @@ import { TotalCartDetailComponent } from './components/total-cart-detail/total-c
     SidebarComponent,
     IncrementadorComponent,
     HeaderProductComponent,
-    TotalCartDetailComponent
-  ]
+    TotalCartDetailComponent,
+    SidebarAccountComponent,
+  ],
 })
 export class SharedModule {}

@@ -5,6 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 // import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 import {
   MomentDateAdapter,
@@ -37,8 +44,26 @@ export const MY_FORMATS = {
     MatFormFieldModule,
     // MatNativeDateModule,
     MatInputModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
   ],
-  exports: [MatDatepickerModule, MatFormFieldModule, MatInputModule],
+  exports: [
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+  ],
   providers: [
     // {
     //   provide: DateAdapter,
