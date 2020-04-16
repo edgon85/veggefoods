@@ -1,0 +1,333 @@
+@import '../../../../../variables.scss';
+
+.contenedor {
+  margin: 0 40px;
+}
+
+.header-list-order {
+  margin-top: 16px;
+  margin-left: 15px;
+  margin-right: 15px;
+  .title {
+    font-size: 35px;
+    color: $primary;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-family: $font-primary;
+    border-bottom: 4px solid $primary;
+    margin-bottom: 15px;
+  }
+}
+
+.no-orders {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: 300px;
+}
+
+// lista de pedidos
+.back {
+  float: right;
+}
+
+.pedidos-header {
+  margin-top: 60px;
+  margin-right: 15px;
+  margin-left: 15px;
+  .title-content {
+    display: flex;
+    flex-direction: column;
+    strong {
+      color: $black;
+      font-weight: bold;
+    }
+  }
+}
+
+.content-detail-order {
+  margin: 15px;
+  .card-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'a_card_1 a_card_2'
+      'a_card_3 .';
+    justify-content: center;
+    align-items: center;
+    .example-card {
+      max-width: 400px;
+      min-height: 300px;
+    }
+
+    .card-1 {
+      grid-area: a_card_1;
+    }
+    .card-2 {
+      grid-area: a_card_2;
+    }
+    .card-3 {
+      grid-area: a_card_3;
+    }
+    .card-4 {
+      grid-area: a_card_4;
+    }
+  }
+}
+.responsiveTbl {
+  margin-left: 15px;
+  margin-right: 15px;
+  table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    thead {
+      th {
+        background: $primary;
+        color: $white;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 25px 20px;
+        vertical-align: middle;
+      }
+    }
+    tbody {
+      tr {
+        border-bottom: 1px inset #f4f4f4;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background: $white;
+        padding: 15px 20px;
+        vertical-align: middle;
+        &:hover {
+          .msg {
+            opacity: 1;
+            top: 0;
+          }
+        }
+        td {
+          padding: 15px 20px;
+          .entregado {
+            color: red;
+          }
+          a {
+            text-decoration: none;
+            color: $primary;
+            &:hover {
+              color: $color-3;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.responsiveTbl2 {
+  margin-left: 15px;
+  margin-right: 15px;
+  table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    thead {
+      th {
+        background: $primary;
+        color: $white;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 25px 20px;
+        vertical-align: middle;
+      }
+    }
+    tbody {
+      tr {
+        border-bottom: 1px inset #f4f4f4;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background: $white;
+        padding: 15px 20px;
+        vertical-align: middle;
+        &:hover {
+          .msg {
+            opacity: 1;
+            top: 0;
+          }
+        }
+        td {
+          padding: 15px 20px;
+          .entregado {
+            color: yellow;
+          }
+          a {
+            text-decoration: none;
+            color: $primary;
+            &:hover {
+              color: $color-3;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.totales {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 30px;
+  .card-content {
+    strong {
+      margin-right: 10px;
+      color: $black;
+    }
+  }
+}
+
+// media queries
+@media only screen and (max-width: 767px) {
+  .contenedor {
+    margin: 0;
+  }
+
+  .header-list-order {
+    .title {
+      font-size: 16px;
+    }
+  }
+
+  .content-detail-order {
+    .card-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'a_card_1'
+        'a_card_2'
+        'a_card_3';
+    }
+  }
+
+  //boton regresar
+  .back {
+    float: left;
+  }
+
+  // tabla 1
+  .responsiveTbl {
+    table {
+      thead {
+        display: none;
+      }
+      tbody {
+        tr {
+          margin: 0 0 15px;
+          display: block;
+          font-size: 14px;
+          td {
+            position: relative;
+            display: block;
+            text-align: left;
+            padding: 10px 0px 10px 120px;
+            font-size: 14px;
+
+            &:before {
+              content: 'No. pedido';
+              font-weight: 500;
+              position: absolute;
+              top: 50%;
+              left: 10px;
+              font-size: 16px;
+              transform: translateY(-50%);
+            }
+
+            &:nth-of-type(2) {
+              &:before {
+                content: 'Fecha';
+              }
+            }
+
+            &:nth-of-type(3) {
+              &:before {
+                content: 'Destinatario';
+              }
+            }
+            &:nth-of-type(4) {
+              &:before {
+                content: 'Total';
+              }
+            }
+            &:nth-of-type(5) {
+              &:before {
+                content: 'Estado';
+              }
+            }
+            &:nth-of-type(6) {
+              &:before {
+                content: '';
+              }
+            }
+
+            strong {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //  tabla 2
+  .responsiveTbl2 {
+    margin-top: 10px;
+    table {
+      thead {
+        display: none;
+      }
+      tbody {
+        tr {
+          margin: 0 0 15px;
+          display: block;
+          font-size: 14px;
+          td {
+            position: relative;
+            display: block;
+            text-align: left;
+            font-size: 16px;
+            padding: 10px 0px 10px 120px;
+
+            &:before {
+              content: 'Producto';
+              font-weight: 500;
+              position: absolute;
+              top: 50%;
+              left: 10px;
+              transform: translateY(-50%);
+            }
+
+            &:nth-of-type(2) {
+              &:before {
+                content: 'Precio';
+              }
+            }
+
+            &:nth-of-type(3) {
+              &:before {
+                content: 'Cantidad';
+              }
+            }
+            &:nth-of-type(4) {
+              &:before {
+                content: 'Total';
+              }
+            }
+            strong {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
