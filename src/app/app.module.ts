@@ -16,6 +16,8 @@ import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import es from '@angular/common/locales/es';
@@ -34,6 +36,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features,
     NgxMaterialTimepickerModule,
   ],

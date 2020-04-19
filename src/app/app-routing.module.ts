@@ -33,6 +33,13 @@ const routes: Routes = [
           import('./pages/contact/contact.module').then((m) => m.ContactModule),
       },
       {
+        path: 'busqueda',
+        loadChildren: () =>
+          import('./pages/busqueda/busqueda.module').then(
+            (m) => m.BusquedaModule
+          ),
+      },
+      {
         path: 'cart',
         loadChildren: () =>
           import('./pages/order/order.module').then((m) => m.OrderModule),

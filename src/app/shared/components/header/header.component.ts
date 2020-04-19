@@ -49,4 +49,12 @@ export class HeaderComponent implements OnInit {
       // do your stuff here ..
     });
   }
+
+  buscar(termino: string) {
+    if (termino === '') {
+      return;
+    }
+
+    this.router.navigate(['/busqueda', termino]);
+  }
 }
