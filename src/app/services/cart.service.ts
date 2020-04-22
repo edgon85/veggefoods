@@ -62,7 +62,7 @@ export class CartService {
       0
     );
     this.cart.next(this.itemsCarrito);
-    console.log(subtotal);
+    // console.log(subtotal);
     return subtotal;
   }
 }

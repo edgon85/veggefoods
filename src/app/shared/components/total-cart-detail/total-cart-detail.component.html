@@ -3,20 +3,20 @@
         <h3>Total de compras</h3>
         <p class="d-flex">
             <span>Subtotal</span>
-            <span>Q{{ subtotal | number: '1.2' }}</span>
+            <span>Q{{ subtotal | number: '1.2':'en'}}</span>
         </p>
         <p class="d-flex">
             <span>Envío</span>
-            <span>Q{{ delivery | number: '1.2' }}</span>
+            <span>Q{{ delivery | number: '1.2':'en'}}</span>
         </p>
         <p class="d-flex">
             <span>Descuento</span>
-            <span>Q{{ discount | number: '1.2' }}</span>
+            <span>Q{{ discount | number: '1.2':'en'}}</span>
         </p>
         <hr>
         <p class="d-flex total-price">
             <span>Total</span>
-            <span>Q {{ total | number: '1.2' }}</span>
+            <span>Q {{ total | number: '1.2':'en'}}</span>
         </p>
     </div>
     <!-- <p><button (click)="checkout()" class="btn-pagar">Pasar a caja</button></p> -->

@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderProductComponent } from './components/header-product/header-product.component';
 import { TotalCartDetailComponent } from './components/total-cart-detail/total-cart-detail.component';
 import { SidebarAccountComponent } from './components/sidebar-account/sidebar-account.component';
+import { ReplacePipe } from '../pipes/replace.pipe';
+import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { SidebarAccountComponent } from './components/sidebar-account/sidebar-ac
     HeaderProductComponent,
     TotalCartDetailComponent,
     SidebarAccountComponent,
+    ReplacePipe,
+    CurrecyFormatPipe,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -35,6 +39,8 @@ import { SidebarAccountComponent } from './components/sidebar-account/sidebar-ac
     HeaderProductComponent,
     TotalCartDetailComponent,
     SidebarAccountComponent,
+    ReplacePipe,
+    CurrecyFormatPipe,
   ],
 })
 export class SharedModule {}

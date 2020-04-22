@@ -15,9 +15,9 @@
     <div class="description">
         <h3>{{ producto.nombre }}</h3>
         <p class="price">
-            <span>Q{{ producto.precio | number: '1.2'}}</span>
+            <span>Q{{ producto.precio | number: '1.2': 'en'}}</span>
             <span *ngIf="producto.precio < producto.descuento"
-                class="discount">Q{{ producto.descuento | number: '1.2'}}</span>
+                class="discount">Q{{ producto.descuento | number: '1.2':'en'}}</span>
         </p>
         <p class="detail">{{ producto.detalle }}</p>
 
@@ -30,7 +30,7 @@
         <p>
             <button *ngIf="!estaEnCarrito" (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
         </p>
-        <div *ngIf="estaEnCarrito" class="redirect-button">
+        <div *ngIf="estaEnCarrito" class="redirect-button mb-5">
             <a class="btn btn-seguir-comprando" [routerLink]="[seguirComprandoURl]">Seguir comprando</a>
             <a class="btn btn-ir-carrito" routerLink="/cart">Ir al carrito</a>
         </div>

@@ -56,7 +56,7 @@
                                     <strong>{{order.nombre}}</strong>
                                 </td>
 
-                                <td><strong>Q{{order.totales.total | number: '1.2'}}</strong></td>
+                                <td><strong>Q{{order.totales.total | number: '1.2':'en'}}</strong></td>
                                 <td><strong class="entregado">{{order.status}}</strong></td>
                                 <td><a (click)="verDetalle(order.$key)" style="cursor: pointer;">Ver pedido ></a>
                                 </td>
@@ -221,11 +221,11 @@
                             <td>
                                 <strong>{{ producto['product']['nombre']}}</strong>
                             </td>
-                            <td><strong>{{ producto['product']['precio']}}</strong></td>
+                            <td><strong>Q{{ producto['product']['precio'] | number: '1.2':'en'}}</strong></td>
                             <td>
                                 <strong>{{ producto['quantity']}}</strong>
                             </td>
-                            <td><strong>Q{{ producto['total'] | number: '1.2'}}</strong></td>
+                            <td><strong>Q{{ producto['total'] | number: '1.2':'en'}}</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -238,19 +238,19 @@
             <div class="totales">
                 <div class="card-content">
                     <strong>Subtotal: </strong>
-                    <span> Q{{ order.totales.subtotal | number: '1.2'}}</span>
+                    <span> Q{{ order.totales.subtotal | number: '1.2':'en'}}</span>
                 </div>
                 <div class="card-content">
                     <strong>Costo de envío: </strong>
-                    <span>Q {{ order.totales.delivery | number: '1.2'}}</span>
+                    <span>Q {{ order.totales.delivery | number: '1.2':'en'}}</span>
                 </div>
                 <div class="card-content">
                     <strong>Descuento: </strong>
-                    <span>Q {{ order.totales.discount | number: '1.2'}}</span>
+                    <span>Q {{ order.totales.discount | number: '1.2':'en'}}</span>
                 </div>
                 <div class="card-content">
                     <strong>Suma total: </strong>
-                    <span>Q {{ order.totales.total | number: '1.2'}}</span>
+                    <span>Q {{ order.totales.total | number: '1.2':'en'}}</span>
                 </div>
             </div>
             <!-- ===================================================================== -->

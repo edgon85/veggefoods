@@ -1,5 +1,8 @@
 <ng-container *ngIf="(products$ | async) as productos">
     <section *ngIf="productos.length === 0" class="cart-empty">
+        <div class="image">
+            <img src="assets/images/cart_empty.png" alt="">
+        </div>
         <p>OOOPS! Tu carrito de compras está vacío <br> selecciona una categoría</p>
         <app-sidebar></app-sidebar>
     </section>
@@ -31,7 +34,7 @@
                                 </div>
                             </td>
                             <!-- <td><span class="price">£40 / hr</span></td> -->
-                            <td>Q{{ producto.product.precio | number: '1.2'}}</td>
+                            <td>Q{{ producto.product.precio | number: '1.2':'en'}}</td>
                             <td>
                                 <div class="contenedor-incrementador">
                                     <app-incrementador (actualizaValor)="producto.quantity = $event"
@@ -39,7 +42,7 @@
                                     </app-incrementador>
                                 </div>
                             </td>
-                            <td><strong>Q {{ producto.total | number: '1.2'}}</strong></td>
+                            <td><strong>Q {{ producto.total | number: '1.2':'en'}}</strong></td>
                             <td><button (click)="deleteToCart(producto.cartItemId)" class="btn"><i
                                         class="far fa-trash-alt"></i></button>
                             </td>

@@ -59,8 +59,9 @@ export class SearchComponent implements OnInit {
         switchMap<string, Observable<ProductoModel[]>>((resp) => {
           // TODO : revisar si viene vacio mostrar mesaje que diga producto no encontrado
 
+          const search: string = resp.toLowerCase();
           this.isSearching = true;
-          return this.searchService.getBusqueda(resp);
+          return this.searchService.getBusqueda(search);
         })
       )
       .subscribe((resp) => {

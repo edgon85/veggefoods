@@ -20,11 +20,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import es from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
 import { DisableControlDirective } from './directives/disable-control.directive';
-registerLocaleData(es);
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
+// locale
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+import { CurrecyFormatPipe } from './pipes/currecy-format.pipe';
+registerLocaleData(es);
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, DisableControlDirective],
@@ -40,7 +43,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features,
     NgxMaterialTimepickerModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-GUA' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

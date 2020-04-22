@@ -1,11 +1,18 @@
 @import '../../../../../variables.scss';
 
 .cart-empty {
-  height: 50vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 60px;
+  .image {
+    max-width: 400px;
+    img {
+      width: 100%;
+    }
+  }
   p {
     text-align: center;
   }
@@ -17,6 +24,8 @@
   grid-template-areas: 'lista price';
   gap: 10px;
   padding: 10px 50px 10px 50px;
+  min-height: 70vh;
+  margin-top: 56px;
   .cart-list {
     grid-area: lista;
   }
@@ -124,6 +133,7 @@ th {
 
 @media only screen and (max-width: 767px) {
   .carrito-detail {
+    margin-top: 0px;
     display: grid;
     grid-template-columns: 1fr;
     padding: 10px;

@@ -186,7 +186,7 @@ h5,
   }
 }
 
-.ftco-navbar-light {
+/* .ftco-navbar-light {
   background: transparent !important;
   // position: absolute;
   // top: 20px;
@@ -402,7 +402,7 @@ h5,
       color: $black;
     }
   }
-}
+} */
 
 .navbar-brand {
   font-weight: 800;
@@ -734,9 +734,9 @@ h5,
   background: #f7f6f2 !important;
 }
 
-.bg-primary {
-  background: $primary;
-}
+// .bg-primary {
+//   background: $primary;
+// }
 .bg-secondary {
   background: $secondary !important;
 }
@@ -1548,9 +1548,9 @@ textarea.form-control {
   visibility: hidden;
 }
 
-.bg-primary {
-  background: $primary !important;
-}
+// .bg-primary {
+//   background: $primary !important;
+// }
 
 .bg-black {
   background: $black !important;
@@ -2592,5 +2592,11 @@ textarea.form-control {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

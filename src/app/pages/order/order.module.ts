@@ -9,7 +9,6 @@ import { DeleteRepeatPipe } from '../../pipes/cart/delete-repeat.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MaterialModule } from '../../material/material.module';
-import { DisableControlDirective } from '../../directives/disable-control.directive';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     DeleteRepeatPipe,
     RepeatNumberPipe,
     CheckoutComponent,
-    // DisableControlDirective,
   ],
   imports: [
     CommonModule,

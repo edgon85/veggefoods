@@ -78,7 +78,7 @@ export class UserService {
     this.itemsCollection = this.afs
       .collection<OrderInterface>('users')
       .doc(userUid)
-      .collection('order', (ref) => ref.orderBy('fechaCreacion', 'desc'));
+      .collection('order', (ref) => ref.orderBy('$key', 'desc'));
     this.items = this.itemsCollection.valueChanges();
 
     return this.items;

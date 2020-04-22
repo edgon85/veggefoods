@@ -30,6 +30,7 @@
   }
   .section-productos {
     grid-area: a_products;
+    min-height: 100vh;
     //padding: 25px;
     //display: grid;
     //grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

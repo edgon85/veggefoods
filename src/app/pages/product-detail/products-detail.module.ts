@@ -12,7 +12,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
     CommonModule,
     SharedModule,
     ProductsDetailRoutingModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
 export class ProductsDetailModule {}

@@ -50,11 +50,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  buscar(termino: string) {
-    if (termino === '') {
-      return;
-    }
-
-    this.router.navigate(['/busqueda', termino]);
+  redirectBuscar() {
+    this.router.navigateByUrl('/busqueda/q=');
   }
 }
