@@ -13,6 +13,7 @@ import { TotalCartDetailComponent } from './components/total-cart-detail/total-c
 import { SidebarAccountComponent } from './components/sidebar-account/sidebar-account.component';
 import { ReplacePipe } from '../pipes/replace.pipe';
 import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
+import { NoImagePipe } from '../pipes/no-image.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
     SidebarAccountComponent,
     ReplacePipe,
     CurrecyFormatPipe,
+    NoImagePipe,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -41,6 +43,7 @@ import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
     SidebarAccountComponent,
     ReplacePipe,
     CurrecyFormatPipe,
+    NoImagePipe,
   ],
 })
 export class SharedModule {}

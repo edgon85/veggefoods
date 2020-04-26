@@ -72,6 +72,9 @@ td {
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    strong {
+      text-transform: capitalize;
+    }
     span {
       font-size: 12px;
     }

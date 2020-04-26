@@ -9,16 +9,18 @@ const routes: Routes = [
     component: ProductPageComponent,
     children: [
       { path: 'frutas', component: ProductComponent },
-      { path: 'vegetales', component: ProductComponent },
+      { path: 'verduras', component: ProductComponent },
+      { path: 'especies', component: ProductComponent },
+      { path: 'combos', component: ProductComponent },
+      { path: 'jugos', component: ProductComponent },
       { path: 'semillas', component: ProductComponent },
-      { path: 'chiles', component: ProductComponent },
-      { path: 'aceites', component: ProductComponent }
-    ]
-  }
+      // { path: 'aceites', component: ProductComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ProductsRoutingModule {}

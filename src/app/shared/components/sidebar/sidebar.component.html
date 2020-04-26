@@ -1,13 +1,20 @@
 <div class="list-group">
-    <a routerLink="/productos/categoria/frutas" class="list-group-item list-group-item-action"
+
+    <ng-container *ngFor="let cat of categories">
+        <a routerLink="/productos/categoria/{{ cat }}" class="list-group-item list-group-item-action"
+            routerLinkActive="active">{{ cat }}</a>
+    </ng-container>
+    <!-- <a routerLink="/productos/categoria/frutas" class="list-group-item list-group-item-action"
         routerLinkActive="active">Frutas</a>
     <a routerLink="/productos/categoria/vegetales" class="list-group-item list-group-item-action"
         routerLinkActive="active">Vegetales</a>
     <a routerLink="/productos/categoria/semillas" class="list-group-item list-group-item-action"
         routerLinkActive="active">Semillas</a>
     <a routerLink="/productos/categoria/chiles" class="list-group-item list-group-item-action"
-        routerLinkActive="active">Chiles</a>
+        routerLinkActive="active">Especies</a>
     <a routerLink="/productos/categoria/aceites" class="list-group-item list-group-item-action"
         routerLinkActive="active">Productos regia</a>
+        <a routerLink="/productos/categoria/semillas" class="list-group-item list-group-item-action"
+        routerLinkActive="active">Semillas</a> -->
     <!-- <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a> -->
 </div>

@@ -21,11 +21,21 @@ export class EditUserComponent implements OnInit {
   forma: FormGroup;
   emailValidaror = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$';
 
+  minDate: Date;
+  maxDate: Date;
+  edadInput: Date;
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 80, 0, 1);
+    // this.maxDate = new Date(currentYear + 1, 11, 31);
+    this.maxDate = new Date(currentYear - 14, 11, 31);
+  }
 
   ngOnInit() {
     this.cargando = true;
@@ -49,11 +59,15 @@ export class EditUserComponent implements OnInit {
     this.userService.getUserById(uid).subscribe((resp) => {
       this.usuario = resp;
       this.cargando = false;
+
+      this.edadInput = new Date(resp.edad);
+
       // this.forma.setValue({
       this.forma.reset({
         correo: resp.email,
         nombre: resp.nombre,
         telefono: resp.telefono,
+        edad: this.edadInput,
         /* direccion: {
           departamento: Departamento.Quetzaltenango,
           municipio: Municipio.Quetzaltenango,
@@ -77,15 +91,7 @@ export class EditUserComponent implements OnInit {
       correo: [{ value: '', disabled: true }, Validators.required],
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
-      /*     direccion: this.fb.group({
-        departamento: ['', Validators.required],
-        municipio: ['', Validators.required],
-        zona: ['', Validators.required],
-        ubicacion: ['', Validators.required],
-        referencia: [''],
-      }),
-      fechaEntreaga: ['', Validators.required],
-      hora: [], */
+      edad: [{ value: this.edadInput, disabled: true }, , Validators.required],
     });
   }
 
@@ -107,6 +113,7 @@ export class EditUserComponent implements OnInit {
       const data: object = {
         nombre: this.forma.value.nombre,
         telefono: this.forma.value.telefono,
+        edad: this.edadInput,
       };
 
       this.userService
@@ -154,5 +161,18 @@ export class EditUserComponent implements OnInit {
         );
       }
     });
+  }
+
+  // <=================================================================> //
+  // obtener el cambio de fecha en datepicker
+  // <=================================================================> //
+  edadSelected(event: any): string {
+    const data = event;
+    console.log(data);
+
+    const formattedDate = data['_d'];
+    console.log(formattedDate.toString());
+    this.edadInput = formattedDate.toString();
+    return formattedDate;
   }
 }

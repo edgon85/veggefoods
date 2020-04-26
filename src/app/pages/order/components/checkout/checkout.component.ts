@@ -227,10 +227,19 @@ export class CheckoutComponent implements OnInit {
     if (this.forma.valid) {
       // console.log(this.forma.value.dates);
       let dateEntrega: string = '';
+      let formaPago: string = '';
+
       if (this.forma.value.fechaEntreaga === 'fecha entrega') {
         dateEntrega = `${this.fechaEntregaInput}, ${this.forma.value.hora}`;
       } else {
         dateEntrega = 'Lo mas pronto posible (de 3 a 4 horas)';
+      }
+
+      if (this.formaPago.value.tipoPago === 'credito-debito') {
+        formaPago =
+          'Tarjeta (Nuestro repartidor le cobrara en la entrega con un POS)';
+      } else {
+        formaPago = 'Efectivo';
       }
 
       const fechaCheacion = new Date();
@@ -262,12 +271,14 @@ export class CheckoutComponent implements OnInit {
         <strong>Dirección:</strong> ${checkoutData.direccion.ubicacion} ${checkoutData.direccion.zona}
         ${checkoutData.direccion.municipio} ${checkoutData.direccion.departamento}<br>
         <strong>Entrega:</strong> ${dateEntrega}<br>
+        <strong>Pago:</strong> ${formaPago}<br>
         <strong>Total:</strong> Q${checkoutData.totales['total']}</div>`,
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, Hacer pedido!',
         showCancelButton: true,
+        cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.value) {
           this.userService.sendOrder(this.userUid, checkoutData);

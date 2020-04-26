@@ -1,3 +1,5 @@
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
+
 export class UsuarioModel {
   email: string;
   password: string;
@@ -6,4 +8,5 @@ export class UsuarioModel {
   telefono?: string;
   direccion?: string;
   timestamp?: string;
+  edad?: string;
 }

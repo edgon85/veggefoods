@@ -235,7 +235,7 @@
             <!-- ===================================================================== -->
             <!-- Detalle de totales  -->
             <!-- ===================================================================== -->
-            <div class="totales">
+            <div class="totales" *ngIf="pedidoDetalle">
                 <div class="card-content">
                     <strong>Subtotal: </strong>
                     <span> Q{{ order.totales.subtotal | number: '1.2':'en'}}</span>

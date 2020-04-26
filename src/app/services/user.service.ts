@@ -47,7 +47,7 @@ export class UserService {
   }
 
   // ================================================================ //
-  // Obtener usuario por uid //
+  // Crear orden en usuario //
   // ================================================================ //
   public sendOrder(userUid: string, order: Checkout) {
     const orderRef: AngularFirestoreDocument = this.afs.doc(
@@ -57,14 +57,27 @@ export class UserService {
     return orderRef
       .set(order)
       .then(() => {
-        Swal.fire('Enviado!', 'Su pedido se a procesado', 'success');
-        this.cartService.clearAllCart();
-        this.router.navigateByUrl('/inicio');
+        this.createNewOrder(order);
       })
       .catch((err) => {
         Swal.fire('OOOPS!', 'ocurrio un error', 'error');
         console.log(err);
       });
+  }
+
+  // ================================================================ //
+  // Crear orden en usuario //
+  // ================================================================ //
+  createNewOrder(order: Checkout) {
+    const orderRef: AngularFirestoreDocument = this.afs.doc(
+      `orders/${order.$key}`
+    );
+
+    return orderRef.set(order).then(() => {
+      Swal.fire('Enviado!', 'Su pedido se a procesado', 'success');
+      this.cartService.clearAllCart();
+      this.router.navigateByUrl('/cuenta/pedidos');
+    });
   }
 
   updateUser(userUId: string, user: object) {
