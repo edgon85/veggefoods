@@ -69,6 +69,37 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  forgotPassword() {
+    Swal.fire({
+      /* title: 'Introduce tu correo electrónico',
+      text: 'Le enviaremos un correo electrónico para cambiar su contraseña.', */
+      html: `<h5>Introdusca su correo electrónico</h5> <br>Le enviaremos un correo electrónico para cambiar su contraseña.`,
+      input: 'email',
+      inputAttributes: {
+        autocapitalize: 'off',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      cancelButtonText: 'Cancelar',
+      // showLoaderOnConfirm: true,
+
+      // allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.value) {
+        this.auth
+          .resetPassword(result.value)
+          .then((resp) => {
+            Swal.fire({
+              html: `<h5>${result.value}</h5> <br>Consultar su correo electrónico`,
+            });
+          })
+          .catch((err) => {
+            Swal.fire('Upps ocurrio un error!', 'error');
+          });
+      }
+    });
+  }
+
   handleErrorAuth(error: string): string {
     let _authError: string;
 

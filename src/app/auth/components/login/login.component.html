@@ -24,7 +24,8 @@
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
+                <!-- <div class="flex-sb-m w-full p-t-3 p-b-24"> -->
+                <div class="recordar-usuario w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
                         <input [(ngModel)]="recordarme" class="input-checkbox100" id="ckb1" type="checkbox"
                             name="remember-me">
@@ -47,6 +48,9 @@
                 </div>
 
             </form>
+            <div class="container-login100-form-btn m-t-17">
+                <button (click)="forgotPassword()" class="container-forgot-password mb-5">Olvidé mi contraseña</button>
+            </div>
         </div>
     </div>
 </div>
