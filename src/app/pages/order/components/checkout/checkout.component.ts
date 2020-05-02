@@ -63,6 +63,7 @@ export class CheckoutComponent implements OnInit {
   // variable para el formulario
   forma: FormGroup;
   emailValidaror = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$';
+  phoneValidator: string = `^((\\+91-?)|0)?[0-9]{8}$`;
 
   // forma para metodo de pago
   formaPago: FormGroup;
@@ -164,7 +165,15 @@ export class CheckoutComponent implements OnInit {
       ],
       // correo: [{ value: 'Nancy', disabled: true }, Validators.required],
       nombre: ['', Validators.required],
-      telefono: ['', Validators.required],
+      telefono: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(new RegExp('^[0-9]*$')),
+          Validators.minLength(8),
+          Validators.maxLength(8),
+        ],
+      ],
       direccion: this.fb.group({
         departamento: ['', Validators.required],
         municipio: ['', Validators.required],
@@ -201,11 +210,13 @@ export class CheckoutComponent implements OnInit {
     if (this.forma.invalid) {
       return Object.values(this.forma.controls).forEach((control) => {
         if (control instanceof FormGroup) {
-          Object.values(control.controls).forEach((resp) =>
-            resp.markAsTouched()
+          Object.values(control.controls).forEach(
+            (resp) => resp.markAsTouched(),
+            Swal.fire('Llene campos obligatorios')
           );
         } else {
           control.markAsTouched();
+          Swal.fire('Llene campos obligatorios');
         }
       });
     }
@@ -284,7 +295,7 @@ export class CheckoutComponent implements OnInit {
           this.userService.sendOrder(this.userUid, checkoutData);
         }
       });
-      console.log(checkoutData);
+      // console.log(checkoutData);
     }
   }
 

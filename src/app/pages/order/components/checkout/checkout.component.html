@@ -13,10 +13,14 @@
                         <label>Teléfono</label>
                         <div class="input-group-prepend">
                             <div class="input-group-text">+502</div>
-                            <input formControlName="telefono" name="telefono" type="tel" maxlength="8"
-                                class="form-control">
+                            <!-- <input formControlName="telefono" name="telefono" type="tel" maxlength="8"
+                                class="form-control"> -->
+                            <input formControlName="telefono" name="telefono" class="form-control">
                         </div>
-                        <small *ngIf="validarCampo('telefono')" class="text-danger">* Teléfono es requerido</small>
+                        <small *ngIf="validarCampo('telefono')" class="text-danger">* Teléfono es requerido <br> 8
+                            dígitos por
+                            favor</small>
+
                     </div>
                 </div>
 
