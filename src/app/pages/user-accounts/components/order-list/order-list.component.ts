@@ -3,6 +3,7 @@ import { UserService } from '../../../../services/user.service';
 import { Observable } from 'rxjs';
 import { OrderInterface } from '../../../../interfaces/order.interface';
 import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
@@ -22,7 +23,8 @@ export class OrderListComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,17 +47,6 @@ export class OrderListComponent implements OnInit {
   /* Detalle de pedido */
   /* <====================================================> */
   verDetalle(orderId: string) {
-    console.log(this.userUid);
-    console.log(`orderId: ${orderId}`);
-    this.pedidoDetalle = true;
-
-    this.order$ = this.userService.getOrderItem(this.userUid, orderId);
-  }
-
-  /* <====================================================> */
-  /* Boton de regresar */
-  /* <====================================================> */
-  regresar() {
-    this.pedidoDetalle = false;
+    this.router.navigateByUrl(`/cuenta/pedidos/${orderId}`);
   }
 }

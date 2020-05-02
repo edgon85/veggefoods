@@ -14,6 +14,7 @@ import { SidebarAccountComponent } from './components/sidebar-account/sidebar-ac
 import { ReplacePipe } from '../pipes/replace.pipe';
 import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
 import { NoImagePipe } from '../pipes/no-image.pipe';
+import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NoImagePipe } from '../pipes/no-image.pipe';
     ReplacePipe,
     CurrecyFormatPipe,
     NoImagePipe,
+    OrderTrackingComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -44,6 +46,7 @@ import { NoImagePipe } from '../pipes/no-image.pipe';
     ReplacePipe,
     CurrecyFormatPipe,
     NoImagePipe,
+    OrderTrackingComponent,
   ],
 })
 export class SharedModule {}

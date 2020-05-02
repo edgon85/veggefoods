@@ -10,6 +10,7 @@ import { MaterialModule } from '../../material/material.module';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { FirstWordPipe } from '../../pipes/first-word.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrderListComponent,
     EditUserComponent,
     FirstWordPipe,
+    OrderDetailComponent,
   ],
   imports: [
     CommonModule,

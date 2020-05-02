@@ -7,7 +7,7 @@
 .header-list-order {
   margin-top: 16px;
   margin-left: 15px;
-  margin-right: 15px;
+  margin-right: 200px;
   .title {
     font-size: 35px;
     color: $primary;
@@ -34,7 +34,7 @@
 
 .pedidos-header {
   margin-top: 60px;
-  margin-right: 15px;
+  margin-right: 200px;
   margin-left: 15px;
   .title-content {
     display: flex;
@@ -47,7 +47,7 @@
 }
 
 .content-detail-order {
-  margin: 15px;
+  margin: 200px;
   .card-container {
     display: grid;
     gap: 10px;
@@ -127,7 +127,7 @@
 
 .responsiveTbl2 {
   margin-left: 15px;
-  margin-right: 15px;
+  margin-right: 200px;
   table {
     text-align: center;
     width: 100%;
@@ -179,6 +179,7 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 30px;
+  margin-right: 200px;
   .card-content {
     strong {
       margin-right: 10px;
@@ -188,18 +189,26 @@
 }
 
 // media queries
+@media only screen and (max-width: 971px) {
+  .pedidos-header {
+    margin-right: 30px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .contenedor {
     margin: 0;
   }
 
   .header-list-order {
+    margin-right: 15px;
     .title {
       font-size: 16px;
     }
   }
 
   .content-detail-order {
+    margin: 15px;
     .card-container {
       grid-template-columns: 1fr;
       grid-template-areas:
@@ -281,6 +290,7 @@
   //  tabla 2
   .responsiveTbl2 {
     margin-top: 10px;
+    margin-right: 15px;
     table {
       thead {
         display: none;
@@ -329,5 +339,15 @@
         }
       }
     }
+  }
+
+  .totales {
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .pedidos-header {
+    margin-right: 15px;
   }
 }

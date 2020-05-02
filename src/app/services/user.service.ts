@@ -76,7 +76,7 @@ export class UserService {
     return orderRef.set(order).then(() => {
       Swal.fire('Enviado!', 'Su pedido se a procesado', 'success');
       this.cartService.clearAllCart();
-      this.router.navigateByUrl('/cuenta/pedidos');
+      this.router.navigateByUrl(`/cuenta/pedidos/${order.$key}`);
     });
   }
 

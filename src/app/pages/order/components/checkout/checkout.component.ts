@@ -268,7 +268,7 @@ export class CheckoutComponent implements OnInit {
         fechaEntrega: dateEntrega,
         tipoPago: this.formaPago.value.tipoPago,
         condiciones: this.formaPago.value.condiciones,
-        status: 'Orden realizada',
+        status: 'processed',
       };
 
       Swal.fire({
