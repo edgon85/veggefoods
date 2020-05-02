@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       const termino = params['q'];
       // this.searchService.busquedaPorNombre(termino).subscribe(console.log);
-      console.log(termino);
+      // console.log(termino);
     });
   }
 
@@ -72,7 +72,7 @@ export class SearchComponent implements OnInit {
           } */
         this.busquedas = resp;
         this.isSearching = false;
-        console.log(resp);
+        // console.log(resp);
       });
   }
 

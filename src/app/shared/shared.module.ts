@@ -15,6 +15,7 @@ import { ReplacePipe } from '../pipes/replace.pipe';
 import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
 import { NoImagePipe } from '../pipes/no-image.pipe';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { OrderTrackingComponent } from './components/order-tracking/order-tracki
     CurrecyFormatPipe,
     NoImagePipe,
     OrderTrackingComponent,
+    WhatsappComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -47,6 +49,7 @@ import { OrderTrackingComponent } from './components/order-tracking/order-tracki
     CurrecyFormatPipe,
     NoImagePipe,
     OrderTrackingComponent,
+    WhatsappComponent,
   ],
 })
 export class SharedModule {}
