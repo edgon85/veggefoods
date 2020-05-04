@@ -2600,3 +2600,20 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+// <=================================================> //
+// lista de detalle del prodcto //
+// <=================================================> //
+.prod-detail {
+  min-height: 200px;
+  ul {
+    list-style-type: none !important;
+    padding-left: 5px;
+    li {
+      list-style-type: none;
+      font-size: 14px;
+      color: lighten($black, 70%);
+    }
+  }
+}
+// <=================================================> //

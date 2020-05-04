@@ -40,6 +40,7 @@
     }
     .price {
       margin-bottom: 1rem;
+      border-bottom: 1px solid lighten($black, 90%);
       .discount {
         text-decoration: line-through;
         color: lighten($black, 70%);
@@ -55,8 +56,16 @@
         color: $black;
       }
     }
-    .detail {
-      margin-bottom: 30px;
+    .prod-detail {
+      min-height: 200px;
+      ul::slotted {
+        list-style-type: none !important;
+        li {
+          list-style-type: none;
+          font-size: 8px;
+          color: lighten($black, 70%);
+        }
+      }
     }
 
     .contador {
@@ -104,5 +113,13 @@
     grid-template-columns: 100%;
     grid-template-areas: 'imagen' 'descripcion';
     row-gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .description {
+    .prod-detail {
+      min-height: 100px !important;
+    }
   }
 }

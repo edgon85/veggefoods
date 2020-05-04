@@ -20,7 +20,10 @@
                 class="discount">Q{{ producto.descuento | number: '1.2':'en'}}</span>
             <samp class="masa">c/{{producto.masa}}</samp>
         </p>
-        <p class="detail">{{ producto.detalle }}</p>
+        <!-- <p class="detail">{{ producto.detalle }}</p> -->
+        <div class="prod-detail">
+            <div [innerHTML]="producto.detalle | domeseguroProductdetail"></div>
+        </div>
 
         <div *ngIf="!estaEnCarrito" class="contador">
             <app-incrementador (actualizaValor)="cantidadProductDetail = $event"
