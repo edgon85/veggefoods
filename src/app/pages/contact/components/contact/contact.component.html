@@ -1,1 +1,105 @@
-<p>contacto works!!</p>
+<section class="contacto">
+    <div class="header">
+        <app-header-product titulo="Contactanos"></app-header-product>
+    </div>
+    <div class="container body-contact">
+        <div class="contact-info">
+            <div class="info-card info-card-1">
+                <div class="info bg-white p-4">
+                    <!-- <div class="icon"><i class="fas fa-mobile-alt"></i></div> -->
+                    <h3>Teléfonos</h3>
+                    <div><span><i class="fas fa-mobile-alt"></i></span><a href="tel://1234567920">+502 58327385</a>
+                    </div>
+                    <div><span><i class="fab fa-whatsapp"></i></span><a href="tel://1234567920">+502 51430832</a></div>
+                </div>
+            </div>
+            <div class="info-card info-card-2">
+                <div class="info bg-white p-4">
+                    <h3>Correos</h3>
+                    <!-- <div class="icon"><i class="far fa-envelope"></i></div> -->
+                    <div><span><i class="far fa-envelope"></i> </span> <a
+                            href="mailto:info@yoursite.com">info@yoursite.com</a></div>
+                    <div><span><i class="far fa-envelope"></i> </span> <a
+                            href="mailto:info@yoursite.com">ventas@yoursite.com</a></div>
+                </div>
+            </div>
+            <div class="info-card info-card-3">
+                <div class="info bg-white p-4">
+                    <h3>Redes sociales</h3>
+                    <div class="social-media">
+                        <span> <a href="#">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-contact">
+            <div class="formulario">
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="bg-white p-5 contact-form">
+                    <h3>Contáctanos</h3>
+                    <div class="form-group">
+                        <input (ngModel)='info.name' name="name" type="text" class="form-control" placeholder="Nombre"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <input (ngModel)='info.email' name="email" type="email" class="form-control"
+                            placeholder="correo" required>
+                    </div>
+                    <div class="form-group">
+                        <input (ngModel)='info.subject' name="subject" type="text" class="form-control"
+                            placeholder="Asunto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea (ngModel)='info.message' name="message" id="" cols="30" rows="7" class="form-control"
+                            placeholder="Mensaje" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Enviar mensaje" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="next">
+
+        </div>
+    </div>
+</section>
+
+
+<!-- <div class="row d-flex mb-5 contact-info">
+    <div class="w-100"></div>
+    <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+        </div>
+    </div>
+    <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+        </div>
+    </div>
+    <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+        </div>
+    </div>
+    <div class="col-md-3 d-flex">
+        <div class="info bg-white p-4">
+            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+        </div>
+    </div>
+</div> -->

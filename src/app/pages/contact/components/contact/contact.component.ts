@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm, FormArray } from '@angular/forms';
+import { ContactService } from '../../../../services/contact.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact',
@@ -6,7 +9,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
-  constructor() {}
+  info: any = {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  };
+
+  constructor(private contactService: ContactService) {}
 
   ngOnInit() {}
+
+  onSubmit(forma: NgForm) {
+    const date = new Date();
+    if (forma.invalid) {
+      return;
+    }
+
+    const data = {
+      name: forma.value.name.toString(),
+      email: forma.value.email.toString(),
+      subject: forma.value.subject.toString(),
+      message: forma.value.message.toString(),
+      date: date.toString(),
+    };
+
+    this.contactService
+      .sendMessage(data)
+      .then((resp) => {
+        Swal.fire(
+          'Mensaje enviado!',
+          'Pronto nos comunicaremos con usted',
+          'success'
+        );
+        forma.reset();
+      })
+      .catch((err) => Swal.fire('OOOPS!', 'ocurrio un error', 'error'));
+  }
 }
