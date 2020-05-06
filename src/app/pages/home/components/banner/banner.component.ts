@@ -5,25 +5,25 @@ import { logging } from 'protractor';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit, AfterViewInit {
   images: string[] = [
-    'assets/images/bg_1.jpg'
+    'assets/images/bg_1.jpg',
     // 'assets/images/bg_2.jpg'
   ];
 
   banerData = [
     {
       image: 'assets/images/bg_1.jpg',
-      title: 'Servimos frutas y verduras frescas',
-      subtitle: 'Entregamos frutas y verduras orgánicas'
+      title: 'Frutas y verduras a domicilio',
+      subtitle: 'Precios accesibles, lo mejor para tí',
     },
     {
       image: 'assets/images/bg_2.jpg',
-      title: 'Alimentos 100% frescos y orgánicos',
-      subtitle: 'Entregamos frutas y verduras orgánicas'
-    }
+      title: 'Alimentos 100% frescos',
+      subtitle: 'Precios accesible, lo mejor para tí',
+    },
   ];
 
   mySwiper: Swiper;
@@ -39,8 +39,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
       loop: true,
       autoplay: {
         delay: 5000,
-        disableOnInteraction: false
-      }
+        disableOnInteraction: false,
+      },
     });
   }
 }

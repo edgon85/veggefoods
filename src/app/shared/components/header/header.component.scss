@@ -43,6 +43,9 @@
 }
 
 @media only screen and (max-width: 991px) {
+  .up-head {
+    display: none;
+  }
   .icono-buscar {
     display: none;
   }
@@ -282,29 +285,3 @@
     }
   }
 }
-/* 
-        .main-input-container {
-          border-radius: 100px;
-          border: 1px solid #dfe1e5;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          .micro-icon {
-            background-image: url('https://cdn0.iconfinder.com/data/icons/very-basic-2-android-l-lollipop-icon-pack/24/search-512.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-          }
-
-          input {
-            width: 200px;
-            height: 40px;
-            border: none;
-            outline: none;
-          }
-        }
-      }
-*/
