@@ -56,6 +56,11 @@ const routes: Routes = [
             (m) => m.UserAccountsModule
           ),
       },
+      {
+        path: 'emp',
+        loadChildren: () =>
+          import('./pages/empresa/empresa.module').then((m) => m.EmpresaModule),
+      },
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       {
         path: '**',
