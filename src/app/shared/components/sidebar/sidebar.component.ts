@@ -11,11 +11,10 @@ export class SidebarComponent implements OnInit {
     'frutas',
     'verduras',
     'semillas',
-    'especies',
+    'especias',
     'jugos',
     'combos',
   ];
-
   constructor() {}
 
   ngOnInit() {}
