@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { ProductoModel } from 'src/app/models/product.model';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,13 +24,10 @@ export class HomeComponent implements OnInit {
   }
 
   obtenerDestacados() {
-    this._productService
-      .getAllProducts()
-      .pipe(map((p) => p.filter((f) => f.destacado === true)))
-      .subscribe((resp) => {
-        this.productos = resp;
-        this.cargando = false;
-      });
+    this._productService.getProductosDesacados().subscribe((resp) => {
+      this.productos = resp;
+      this.cargando = false;
+    });
   }
 
   navigateTo(category: string) {

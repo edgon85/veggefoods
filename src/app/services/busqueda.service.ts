@@ -25,9 +25,12 @@ export class BusquedaService {
       return of([]);
     }
 
-    return this.http
-      .get(url)
-      .pipe(map((data) => Object.keys(data).map((k) => data[k])));
+    return this.http.get(url).pipe(
+      map((data) => {
+        const resp = Object.keys(data).map((k) => data[k]);
+        return resp.filter((f) => f.disponibre === true);
+      })
+    );
   }
 }
 // public getSearch(start, end) {
