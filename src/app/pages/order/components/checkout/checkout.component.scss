@@ -10,6 +10,14 @@
   }
   .cart-price-detail {
     grid-area: price;
+    .aplicar-cupon {
+      input {
+        text-transform: uppercase;
+      }
+      .btn-apblicar {
+        cursor: pointer;
+      }
+    }
   }
 }
 

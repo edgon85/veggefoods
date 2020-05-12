@@ -140,6 +140,23 @@
         <div class="cart-price-detail">
             <app-total-cart-detail></app-total-cart-detail>
 
+            <div class="aplicar-cupon mb-3">
+                <button *ngIf="!tengoUnCupon" (click)="tengoCupon()" class="btn btn-outline-info">Aplicar cupón</button>
+
+                <div class="form-group" *ngIf="tengoUnCupon">
+                    <div class="input-group-prepend">
+                        <div (click)="aplicandoCupon()" class="input-group-text btn-apblicar">
+                            <span *ngIf="!loadingCupon">Aplicar</span>
+                            <i *ngIf="loadingCupon" class="fa fa-refresh fa-spin fa-2x"></i>
+                        </div>
+                        <form [formGroup]="formDescuento">
+                            <input formControlName="cupon" name="cupon" class="form-control">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="cart-detail p-3 p-md-4">
                 <h3 class="billing-heading mb-4">Método de pago</h3>
                 <form [formGroup]="formaPago">

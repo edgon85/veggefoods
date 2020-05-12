@@ -76,8 +76,13 @@ export class CheckoutComponent implements OnInit {
 
   minDate: Date;
   maxDate: Date;
-  //
 
+  tengoUnCupon: boolean = false;
+  loadingCupon: boolean = false;
+
+  formDescuento: FormGroup;
+
+  //
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -91,7 +96,11 @@ export class CheckoutComponent implements OnInit {
   }
   //
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formDescuento = this.fb.group({
+      cupon: ['', Validators.required],
+    });
+  }
 
   // <=================================================================> //
   //  obtener los resultados para subtotal, descuento y total //
@@ -327,5 +336,23 @@ export class CheckoutComponent implements OnInit {
     const todayDate = new Date();
     this.minDate = new Date(todayDate.setDate(todayDate.getDate() + 1));
     this.maxDate = new Date(todayDate.setDate(todayDate.getDate() + 20));
+  }
+
+  tengoCupon() {
+    this.tengoUnCupon = true;
+  }
+
+  aplicandoCupon() {
+    // si la forma de checkout es valida
+    if (this.formDescuento.invalid) {
+      return Swal.fire('Ingresa el codigo');
+    }
+
+    console.log(this.formDescuento.value);
+    this.loadingCupon = true;
+
+    setTimeout(() => {
+      this.loadingCupon = false;
+    }, 3000);
   }
 }

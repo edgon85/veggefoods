@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    canActivate: [ChekoutGuard],
+    // canActivate: [ChekoutGuard],
     component: CheckoutComponent,
   },
 ];
