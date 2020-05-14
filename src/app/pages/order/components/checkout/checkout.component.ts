@@ -23,6 +23,7 @@ import {
 
 import * as moment from 'moment';
 import { MY_FORMATS } from '../../../../material/material.module';
+import { CuponService } from '../../../../services/cupon.service';
 
 @Component({
   selector: 'app-checkout',
@@ -34,6 +35,7 @@ export class CheckoutComponent implements OnInit {
 
   usuario$: Observable<UsuarioModel>;
   userUid: string = '';
+  userEmail = '';
 
   public departamento = Object.keys(Departamento).map((key) => ({
     label: key,
@@ -81,13 +83,17 @@ export class CheckoutComponent implements OnInit {
   loadingCupon: boolean = false;
 
   formDescuento: FormGroup;
+  cuponValido: boolean = false;
+  cuponUsado: boolean = false;
+  valorCupon: number = 0.0;
 
   //
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private cuponService: CuponService
   ) {
     this.formularioCheckout();
     this.formularioPago();
@@ -136,6 +142,7 @@ export class CheckoutComponent implements OnInit {
     this.cartService.cart$.subscribe((resp) => (this.products = resp));
     this.authService.getuser().subscribe((resp) => {
       this.userUid = resp.uid;
+      this.userEmail = resp.email;
       this.obtenerUsuario(resp.uid);
     });
   }
@@ -348,11 +355,107 @@ export class CheckoutComponent implements OnInit {
       return Swal.fire('Ingresa el codigo');
     }
 
-    console.log(this.formDescuento.value);
+    const codigoForm = this.formDescuento.value.cupon;
+    const codigo: string = codigoForm.toLowerCase();
+
     this.loadingCupon = true;
 
-    setTimeout(() => {
-      this.loadingCupon = false;
-    }, 3000);
+    this.validarccupon(codigo);
   }
+
+  validarccupon(cuponId: string) {
+    this.cuponService
+      .getCupon(cuponId)
+      .pipe(
+        map((data: any) => {
+          if (data !== undefined) {
+            this.cuponValido = true;
+            // console.log(`cuponValido ${this.cuponValido}`);
+            const email = data['aplicados'].filter(
+              (mail) => mail === this.userEmail
+            );
+            // console.log(email);
+            if (email.length !== 1) {
+              this.cuponUsado = false;
+              // console.log(`cuponUsado ${this.cuponUsado}`);
+            } else {
+              this.cuponUsado = true;
+              // console.log(`cuponUsado ${this.cuponUsado}`);
+            }
+          } else {
+            this.cuponValido = false;
+            // console.log(`cuponValido ${this.cuponValido}`);
+          }
+
+          return data;
+        })
+      )
+      .subscribe((resp) => {
+        if (this.cuponValido === false) {
+          console.log('cupon no valido');
+          this.loadingCupon = false;
+          return;
+        } else {
+          if (this.cuponUsado === true) {
+            console.log('cupon ya usado');
+            this.loadingCupon = false;
+            return;
+          } else {
+            console.log(resp.valor);
+            console.log('cupon aplicado');
+          }
+        }
+
+        // console.log(`cuponValido => ${this.cuponValido}`);
+        // console.log(`cuponUsado => ${this.cuponUsado}`);
+      });
+  }
+
+  /*   validarCupon(codigo: string) {
+    this.cuponService
+      .getCupon(codigo)
+      .pipe(
+        map((resp) => {
+          if (resp !== undefined) {
+            this.cuponValido = true;
+          } else {
+            this.cuponValido = false;
+          }
+          return this.cuponValido;
+        })
+      )
+      .subscribe((resp) => {
+        // console.log(`cuponAplicado: ${this.cuponUsado}`);
+
+        // if (resp === true) {
+        //   console.log(`cuponValido: ${resp}`);
+        //   console.log(`verificar en usuario`);
+        //   this.validarCupon(codigo);
+        // } else {
+        //   console.log('Codigo no existe');
+        // }
+
+        this.cuponValido = resp;
+        // console.log(`cuponValido => ${resp}`);
+      });
+  }
+
+  validarCuponEnUsuario(codigoCupon: string) {
+    this.cuponService
+      .getCuponUser(this.userUid, codigoCupon)
+      .pipe(
+        map((resp) => {
+          if (resp !== undefined) {
+            this.cuponUsado = true;
+          } else {
+            this.cuponUsado = false;
+          }
+          return this.cuponUsado;
+        })
+      )
+      .subscribe((resp: any) => {
+        this.cuponUsado = resp;
+        // console.log(`cuponUsado => ${resp}`);
+      });
+  } */
 }

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-total-cart-detail',
   templateUrl: './total-cart-detail.component.html',
-  styleUrls: ['./total-cart-detail.component.scss']
+  styleUrls: ['./total-cart-detail.component.scss'],
 })
 export class TotalCartDetailComponent implements OnInit {
   //
@@ -26,14 +26,15 @@ export class TotalCartDetailComponent implements OnInit {
   obtenerResultados() {
     this._cartService.cart$
       .pipe(
-        map(data =>
+        map((data) =>
           data.reduce((total, cart: CartInterface) => total + cart.total, 0)
         )
       )
-      .subscribe(result => {
+      .subscribe((result) => {
         this.subtotal = result;
         this.delivery = result >= 100 ? 0 : 12;
-        this.discount = 0;
+        this.discount =
+          this.discount !== 0 ? result - result * this.discount : 0;
         this.total = result > 0 ? result + this.delivery - this.discount : 0;
         // console.log(this.subtotal);
       });

@@ -11,6 +11,11 @@
 .navbar {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   .container {
+    .navbar-brand {
+      img {
+        height: 55px;
+      }
+    }
     .collapse {
       .search-input {
         display: flex;
@@ -282,6 +287,22 @@
 
     .navbar-brand {
       color: $black;
+
+      img {
+        height: 30px !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .navbar {
+    .container {
+      .navbar-brand {
+        img {
+          height: 40px;
+        }
+      }
     }
   }
 }
