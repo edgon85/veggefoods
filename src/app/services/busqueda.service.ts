@@ -28,7 +28,7 @@ export class BusquedaService {
     return this.http.get(url).pipe(
       map((data) => {
         const resp = Object.keys(data).map((k) => data[k]);
-        return resp.filter((f) => f.disponibre === true);
+        return resp.filter((f) => f.disponible === true);
       })
     );
   }

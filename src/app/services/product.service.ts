@@ -16,7 +16,7 @@ export class ProductService {
   // ==================================================== //
   public getAllProducts() {
     const url =
-      this.urlProduct + '/products.json?orderBy="disponibre"&equalTo=true';
+      this.urlProduct + '/products.json?orderBy="disponible"&equalTo=true';
 
     const data = this.http.get(url).pipe(map(this.crearArreglo));
 
@@ -33,7 +33,7 @@ export class ProductService {
     return this.http.get(url).pipe(
       map((data) => {
         const datos = Object.keys(data).map((k) => data[k]);
-        return datos.filter((f) => f.disponibre === true);
+        return datos.filter((f) => f.disponible === true);
       })
     );
   }
