@@ -16,9 +16,15 @@ export class ContactComponent implements OnInit {
     message: '',
   };
 
+  contactInfo: any;
+
   constructor(private contactService: ContactService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.contactService
+      .getContact('contact')
+      .subscribe((resp) => (this.contactInfo = resp));
+  }
 
   onSubmit(forma: NgForm) {
     const date = new Date();

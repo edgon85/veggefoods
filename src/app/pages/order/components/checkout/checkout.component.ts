@@ -33,7 +33,7 @@ import { CuponService } from '../../../../services/cupon.service';
 export class CheckoutComponent implements OnInit {
   //
 
-  usuario$: Observable<UsuarioModel>;
+  // suario$: Observable<UsuarioModel>;
   userUid: string = '';
   userEmail = '';
 
@@ -285,6 +285,7 @@ export class CheckoutComponent implements OnInit {
         tipoPago: this.formaPago.value.tipoPago,
         condiciones: this.formaPago.value.condiciones,
         status: 'processed',
+        userUid: this.userUid,
       };
 
       Swal.fire({

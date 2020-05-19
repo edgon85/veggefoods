@@ -3,14 +3,18 @@
         <app-header-product titulo="Contáctanos"></app-header-product>
     </div>
     <div class="container body-contact">
-        <div class="contact-info">
+        <div class="contact-info" *ngIf="contactInfo">
             <div class="info-card info-card-1">
                 <div class="info bg-white p-4">
                     <!-- <div class="icon"><i class="fas fa-mobile-alt"></i></div> -->
                     <h3>Teléfonos</h3>
-                    <div><span><i class="fas fa-mobile-alt"></i></span><a href="tel://1234567920">+502 58327385</a>
+                    <!-- <div><span><i class="fas fa-mobile-alt"></i></span><a href="tel:+50251367524">+502
+                            {{contactInfo.telefono}}</a>
+                    </div> -->
+                    <div><span><i class="fab fa-whatsapp"></i></span><a href="tel:{{ contactInfo.urlPhone }}"> +502
+                            {{contactInfo.telefono}}</a>
                     </div>
-                    <div><span><i class="fab fa-whatsapp"></i></span><a href="tel://1234567920">+502 51430832</a></div>
+                    <!-- <div><span><i class="fab fa-whatsapp"></i></span><a href="tel://1234567920">+502 51430832</a></div> -->
                 </div>
             </div>
             <div class="info-card info-card-2">
@@ -18,29 +22,29 @@
                     <h3>Correos</h3>
                     <!-- <div class="icon"><i class="far fa-envelope"></i></div> -->
                     <div><span><i class="far fa-envelope"></i> </span> <a
-                            href="mailto:info@yoursite.com">info@yoursite.com</a></div>
-                    <div><span><i class="far fa-envelope"></i> </span> <a
-                            href="mailto:info@yoursite.com">ventas@yoursite.com</a></div>
+                            href="mailto:{{contactInfo.correo}}">{{contactInfo.correo}}</a></div>
+                    <!-- <div><span><i class="far fa-envelope"></i> </span> <a
+                            href="mailto:info@yoursite.com">ventas@yoursite.com</a></div> -->
                 </div>
             </div>
             <div class="info-card info-card-3">
                 <div class="info bg-white p-4">
                     <h3>Redes sociales</h3>
                     <div class="social-media">
-                        <span> <a href="#">
+                        <span> <a target="_blank" href="{{contactInfo.facebook}}">
                                 <i class="fab fa-facebook"></i>
                             </a>
                         </span>
                         <span>
-                            <a href="#">
+                            <a target="_blank" href="{{contactInfo.instagram}}">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </span>
-                        <span>
+                        <!-- <span>
                             <a href="#">
                                 <i class="fab fa-youtube"></i>
                             </a>
-                        </span>
+                        </span> -->
                     </div>
                 </div>
             </div>

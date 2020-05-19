@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Swiper from 'swiper';
-import { logging } from 'protractor';
 
 @Component({
   selector: 'app-banner',
@@ -9,18 +8,18 @@ import { logging } from 'protractor';
 })
 export class BannerComponent implements OnInit, AfterViewInit {
   images: string[] = [
-    'assets/images/bg_1.jpg',
+    'assets/images/bg_7.jpg',
     // 'assets/images/bg_2.jpg'
   ];
 
   banerData = [
     {
-      image: 'assets/images/bg_1.jpg',
+      image: 'assets/images/bg_7.jpg',
       title: 'Frutas y verduras a domicilio',
       subtitle: 'Precios accesibles, lo mejor para tí',
     },
     {
-      image: 'assets/images/bg_2.jpg',
+      image: 'assets/images/bg_4.jpg',
       title: 'Alimentos 100% frescos',
       subtitle: 'Precios accesible, lo mejor para tí',
     },

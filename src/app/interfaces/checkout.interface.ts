@@ -11,6 +11,7 @@ export class Checkout {
   tipoPago: string;
   condiciones: boolean;
   status: string;
+  userUid: string;
   $key?: string;
 }
 
