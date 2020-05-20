@@ -19,7 +19,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
       subtitle: 'Precios accesibles, lo mejor para tí',
     },
     {
-      image: 'assets/images/bg_4.jpg',
+      image: 'assets/images/bg_5.jpg',
       title: 'Alimentos 100% frescos',
       subtitle: 'Precios accesible, lo mejor para tí',
     },

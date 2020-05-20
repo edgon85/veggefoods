@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: 'combos', component: ProductComponent },
       { path: 'jugos', component: ProductComponent },
       { path: 'semillas', component: ProductComponent },
-      // { path: 'aceites', component: ProductComponent },
+      { path: 'regia', component: ProductComponent },
     ],
   },
 ];

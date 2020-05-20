@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,11 +7,12 @@ import { from } from 'rxjs';
 })
 export class SidebarComponent implements OnInit {
   categories = [
-    'frutas',
     'verduras',
+    'frutas',
     'semillas',
     'especias',
     'jugos',
+    'regia',
     'combos',
   ];
   constructor() {}
