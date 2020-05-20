@@ -11,8 +11,8 @@ export const environment = {
     projectId: 'de-volada-ce752',
     storageBucket: 'de-volada-ce752.appspot.com',
     messagingSenderId: '774640955269',
-    appId: '1:774640955269:web:4592a15bbbc615500e5eec'
-  }
+    appId: '1:774640955269:web:4592a15bbbc615500e5eec',
+  },
 };
 
 /*

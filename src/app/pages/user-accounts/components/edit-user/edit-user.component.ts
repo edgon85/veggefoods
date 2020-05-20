@@ -124,7 +124,6 @@ export class EditUserComponent implements OnInit {
             'Mis datos se actualizaron correctamente',
             'success'
           );
-          console.log(resp);
         })
         .catch((err) => {
           Swal.fire(
@@ -132,11 +131,7 @@ export class EditUserComponent implements OnInit {
             'no se pudo actualizar, intente mas tarde',
             'error'
           );
-
-          console.log(err);
         });
-
-      console.log(data);
     }
   }
 
@@ -168,10 +163,8 @@ export class EditUserComponent implements OnInit {
   // <=================================================================> //
   edadSelected(event: any): string {
     const data = event;
-    console.log(data);
 
     const formattedDate = data['_d'];
-    console.log(formattedDate.toString());
     this.edadInput = formattedDate.toString();
     return formattedDate;
   }

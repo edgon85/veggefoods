@@ -6,13 +6,13 @@ import {
   ViewChild,
   ElementRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 
 @Component({
   selector: 'app-incrementador',
   templateUrl: './incrementador.component.html',
-  styleUrls: ['./incrementador.component.scss']
+  styleUrls: ['./incrementador.component.scss'],
 })
 export class IncrementadorComponent implements OnInit {
   @ViewChild('txtProgress', { static: false }) txtProgress: ElementRef;
@@ -28,9 +28,7 @@ export class IncrementadorComponent implements OnInit {
     number
   > = new EventEmitter();
 
-  constructor(private cartService: CartService) {
-    //  console.log('prgreso: ', this.progreso);
-  }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {}
 
@@ -64,8 +62,5 @@ export class IncrementadorComponent implements OnInit {
     this.cambioValor.emit(this.progreso);
 
     this.cartService.updateItemCart(this.cartId, this.progreso);
-    // console.log(`valor: ${this.progreso}`);
-    // console.log(`cartId: ${this.cartId}`);
-    // this.txtProgress.nativeElement.focus();
   }
 }

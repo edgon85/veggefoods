@@ -54,7 +54,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl(this.redirectCheckoutURL);
       })
       .catch((err) => {
-        // console.log(err);
         Swal.close();
         Swal.fire({
           title: 'Error al crear cuenta',

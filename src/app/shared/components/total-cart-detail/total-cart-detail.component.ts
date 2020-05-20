@@ -36,7 +36,6 @@ export class TotalCartDetailComponent implements OnInit {
         this.discount =
           this.discount !== 0 ? result - result * this.discount : 0;
         this.total = result > 0 ? result + this.delivery - this.discount : 0;
-        // console.log(this.subtotal);
       });
   }
 

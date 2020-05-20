@@ -53,8 +53,6 @@ export class ProveedoresComponent implements OnInit {
       Swal.fire('Llene los campos requeridos');
       return;
     }
-    console.log(this.forma.valid);
-    console.log(this.forma.value);
 
     Swal.fire('¡Enviado!', 'Pronto nos comunicaremos con usted.', 'success');
     // this.forma.reset();

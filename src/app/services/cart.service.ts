@@ -27,7 +27,6 @@ export class CartService {
       (carrito) => carrito.cartItemId !== cartItemId
     );
     this.cart.next(this.itemsCarrito);
-    // console.log(this.itemsCarrito);
   }
 
   // <======================> //
@@ -49,7 +48,6 @@ export class CartService {
       return item;
     });
     this.getSubTotal();
-    // console.log(this.itemsCarrito);
   }
 
   /**
@@ -62,7 +60,6 @@ export class CartService {
       0
     );
     this.cart.next(this.itemsCarrito);
-    // console.log(subtotal);
     return subtotal;
   }
 }

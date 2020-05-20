@@ -42,20 +42,6 @@ export class PerfilComponent implements OnInit {
     this.userService.getUserById(uid).subscribe((resp) => {
       this.usuario = resp;
       this.cargando = false;
-      // console.log(this.usuario);
-      // this.forma.setValue({
-      /*       this.forma.reset({
-        correo: resp.email,
-        nombre: resp.nombre,
-        telefono: resp.telefono,
-        direccion: {
-          departamento: Departamento.Quetzaltenango,
-          municipio: Municipio.Quetzaltenango,
-          zona: Zona.Zona1,
-          ubicacion: '',
-          referencia: '',
-        },
-      }); */
     });
   }
 }

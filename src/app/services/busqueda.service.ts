@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { ProductoModel } from '../models/product.model';
 import { of } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { of } from 'rxjs';
 export class BusquedaService {
   //
 
-  private urlProduct = 'https://de-volada-ce752.firebaseio.com';
+  private urlProduct = environment.firebase.databaseURL;
 
   // https://de-volada-ce752.firebaseio.com/products.json?orderBy=%22nombre%22&startAt=%22chile%22&endAt=%22chile\uf8ff%22
   constructor(private http: HttpClient) {}

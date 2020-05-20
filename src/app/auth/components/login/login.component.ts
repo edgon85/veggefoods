@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl(this.redirectCheckoutURL);
       })
       .catch((err) => {
-        // console.log(err), Swal.close();
         Swal.fire({
           title: 'Error al autenticar',
           text: this.handleErrorAuth(err.code),

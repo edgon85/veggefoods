@@ -9,7 +9,7 @@ import { mergeAll, pluck } from 'rxjs/operators';
 @Component({
   selector: 'app-card-product',
   templateUrl: './card-product.component.html',
-  styleUrls: ['./card-product.component.scss']
+  styleUrls: ['./card-product.component.scss'],
 })
 export class CardProductComponent implements OnInit {
   @Input() producto: ProductoModel;
@@ -32,24 +32,23 @@ export class CardProductComponent implements OnInit {
       cartItemId: this.producto._id,
       quantity: 1,
       total: 1 * this.producto.precio,
-      product: this.producto
+      product: this.producto,
     };
 
-    // console.log(cart);
     this.cartService.addToCart(cart);
     Swal.fire({
       position: 'top-end',
       icon: 'success',
       title: `Se agrego ${this.producto.nombre} al carrito`,
       showConfirmButton: false,
-      timer: 2500
+      timer: 2500,
     });
   }
 
   revisarSiEstaEnCarrito() {
     this.cartService.cart$
       .pipe(mergeAll(), pluck('product', '_id'))
-      .subscribe(resp => {
+      .subscribe((resp) => {
         if (resp === this.producto._id) {
           this.estaEnCarrito = true;
         }

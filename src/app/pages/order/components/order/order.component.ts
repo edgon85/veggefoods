@@ -30,7 +30,6 @@ export class OrderComponent implements OnInit {
 
   deleteToCart(cartItemId: string) {
     this._cartService.clearCarrito(cartItemId);
-    // console.log(cartItemId);
   }
 
   checkout() {

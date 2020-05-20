@@ -29,10 +29,7 @@ export class ProductDetailComponent implements OnInit {
     private cartService: CartService
   ) {
     this.activatedRouter.params.subscribe((param) => {
-      // console.log(param['slug']);
       this.obtenerProductos(param['slug']);
-      // this.catUrl = param['cat'];
-      // this.subCatUrl = param['subcat'];
     });
   }
 
@@ -50,7 +47,7 @@ export class ProductDetailComponent implements OnInit {
   obtenerProductos(prodId: string) {
     this._productoService.getProduct(prodId).subscribe((resp: any) => {
       this.producto = resp;
-      // console.log(this.producto);
+
       this.revisarSiEstaEnCarrito();
     });
   }
@@ -82,27 +79,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe((resp) => {
         if (resp === this.producto._id) {
           this.estaEnCarrito = true;
-          console.log('esta en carrito: ', this.estaEnCarrito);
         }
       });
   }
-
-  /// prueba del plunk
-  /*   pruebaPlunck(prodId: string) {
-    const data$ = this._productoService
-      .getProduct(prodId)
-      .pipe(pluck('precio'))
-      .subscribe(console.log);
-  } */
 }
-
-/*
-        map(resp => {
-          if (resp !== []) {
-            mapTo(false);
-            // no pasa nada
-          } else {
-            return 'hay data';
-          }
-        })
-*/

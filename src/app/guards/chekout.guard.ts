@@ -21,21 +21,11 @@ export class ChekoutGuard implements CanActivate {
     this.cartService.cart$
       .pipe(map((products) => (this.totalItems = products.length)))
       .subscribe();
-    // console.log(this.totalItems);
   }
 
   canActivate(): Observable<boolean> {
     return this.auth.getStatus().pipe(
       map((status) => {
-        /*         if (status && this.totalItems > 0) {
-          // console.log('Paso por el guard');
-          return true;
-        } else {
-          this.router.navigate(['/auth/login']);
-          // console.log('bloqueado por el guard');
-          return false;
-        } */
-
         if (!status) {
           this.router.navigate(['/auth/login']);
           return false;

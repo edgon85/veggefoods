@@ -28,16 +28,7 @@ export class UserService {
     private afs: AngularFirestore,
     private cartService: CartService,
     private router: Router
-  ) {
-    /*     this.itemsCollection = afs
-      .collection<OrderInterface>('users')
-      .doc('UxYEyuY2LLbXvsfOOXrr8wWHX5P2')
-      .collection('order');
-    this.items = this.itemsCollection.valueChanges();
-
-    console.log(this.items);
-    console.log('que pedo que pedo'); */
-  }
+  ) {}
 
   // ================================================================ //
   // Obtener usuario por uid //
@@ -61,7 +52,6 @@ export class UserService {
       })
       .catch((err) => {
         Swal.fire('OOOPS!', 'ocurrio un error', 'error');
-        console.log(err);
       });
   }
 

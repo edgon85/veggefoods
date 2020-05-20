@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   loggedIn() {
     this.authService.getStatus().subscribe((auth) => {
       if (!auth) {
-        // console.log('LOGGED OUT!!');
         this.isloggedIn = false;
         return;
       }

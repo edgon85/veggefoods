@@ -123,7 +123,6 @@ export class CheckoutComponent implements OnInit {
         this.delivery = result >= 100 ? 0 : 12;
         this.discount = 0;
         this.total = result > 0 ? result + this.delivery - this.discount : 0;
-        // console.log(this.subtotal);
 
         this.totales = {
           subtotal: this.subtotal,
@@ -252,7 +251,6 @@ export class CheckoutComponent implements OnInit {
 
     // <== si la forma de checkout es valida ==> //
     if (this.forma.valid) {
-      // console.log(this.forma.value.dates);
       let dateEntrega: string = '';
       let formaPago: string = '';
 
@@ -312,7 +310,6 @@ export class CheckoutComponent implements OnInit {
           this.userService.sendOrder(this.userUid, checkoutData);
         }
       });
-      // console.log(checkoutData);
     }
   }
 
@@ -332,7 +329,6 @@ export class CheckoutComponent implements OnInit {
       (data['_i']['month'] + 1) +
       '-' +
       data['_i']['year'];
-    // console.log(formattedDate);
     this.fechaEntregaInput = formattedDate;
     return formattedDate;
   }
@@ -393,17 +389,17 @@ export class CheckoutComponent implements OnInit {
       )
       .subscribe((resp) => {
         if (this.cuponValido === false) {
-          console.log('cupon no valido');
+          // console.log('cupon no valido');
           this.loadingCupon = false;
           return;
         } else {
           if (this.cuponUsado === true) {
-            console.log('cupon ya usado');
+            // console.log('cupon ya usado');
             this.loadingCupon = false;
             return;
           } else {
-            console.log(resp.valor);
-            console.log('cupon aplicado');
+            // console.log(resp.valor);
+            // console.log('cupon aplicado');
           }
         }
 

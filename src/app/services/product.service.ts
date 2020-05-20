@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ProductoModel } from '../models/product.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  urlProduct = 'https://de-volada-ce752.firebaseio.com';
+  // urlProduct = 'https://de-volada-ce752.firebaseio.com';
+  urlProduct = environment.firebase.databaseURL;
 
   constructor(private http: HttpClient) {}
 
@@ -55,8 +57,6 @@ export class ProductService {
     const productos: ProductoModel[] = [];
     Object.keys(productosObj).forEach((key) => {
       const producto: ProductoModel = productosObj[key];
-      // producto.id = key;
-      // console.log( producto);
       productos.push(producto);
     });
 
