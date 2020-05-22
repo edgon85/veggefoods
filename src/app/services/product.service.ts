@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class ProductService {
   // urlProduct = 'https://de-volada-ce752.firebaseio.com';
-  urlProduct = environment.firebase.databaseURL;
+  private urlProduct = environment.firebase.databaseURL;
 
   constructor(private http: HttpClient) {}
 

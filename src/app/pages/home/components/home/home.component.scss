@@ -342,3 +342,25 @@ a {
     }
   }
 }
+
+.btn-ver-mas {
+  width: 200px;
+
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+  background-color: $white;
+  color: $primary;
+  transition: box-shadow 0.3s linear;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    outline: none;
+  }
+}

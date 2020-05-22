@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../interfaces/user.interface';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -42,14 +44,24 @@ export class AuthService {
   // Obtener el estado del usuario //
   // ========================================= //
   public getStatus() {
-    return this.afAuth.authState;
+    return this.afAuth.authState.pipe(
+      catchError((error) => {
+        return throwError('chido!');
+      }),
+      map((resp) => resp)
+    );
   }
 
   // ========================================= //
   // obtener el usuario logueado //
   // ========================================= //
   public getuser() {
-    return this.afAuth.user;
+    return this.afAuth.user.pipe(
+      catchError((error) => {
+        return throwError('chido!');
+      }),
+      map((resp) => resp)
+    );
   }
 
   // ========================================= //

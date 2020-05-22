@@ -29,9 +29,14 @@ export class PerfilComponent implements OnInit {
   // obtener uid de usuario y datos del productos //
   // <===============================================================> //
   initDataUser() {
-    this.authService.getuser().subscribe((resp) => {
-      this.obtenerUsuario(resp.uid);
-    });
+    this.authService.getuser().subscribe(
+      (resp) => {
+        this.obtenerUsuario(resp.uid);
+      },
+      (err) => {
+        console.log('ups');
+      }
+    );
   }
 
   // <===============================================================> //

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
-import { Observable, of, from } from 'rxjs';
 import { OrderInterface } from '../../../../interfaces/order.interface';
 import { AuthService } from '../../../../services/auth.service';
 import { map } from 'rxjs/operators';

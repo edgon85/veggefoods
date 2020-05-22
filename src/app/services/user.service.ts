@@ -9,8 +9,9 @@ import { Checkout } from '../interfaces/checkout.interface';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CartService } from './cart.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { OrderInterface } from '../interfaces/order.interface';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,15 @@ export class UserService {
   // Obtener usuario por uid //
   // ================================================================ //
   public getUserById(uid: string) {
-    return this.afs.doc<UsuarioModel>(`users/${uid}`).valueChanges();
+    return this.afs
+      .doc<UsuarioModel>(`users/${uid}`)
+      .valueChanges()
+      .pipe(
+        catchError((error) => {
+          return throwError('chido!');
+        }),
+        map((resp) => resp)
+      );
   }
 
   // ================================================================ //

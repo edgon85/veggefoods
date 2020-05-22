@@ -133,6 +133,7 @@ th {
 }
 
 .btn-pagar {
+  width: 100%;
   border: 1px solid $primary;
   display: inline-block;
   vertical-align: top;
@@ -141,11 +142,14 @@ th {
   background-color: $primary;
   color: $white;
   transition: box-shadow 0.3s linear;
-  border-radius: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
   cursor: pointer;
   &:hover {
     background: $white;
     color: $primary;
+    outline: none;
   }
 }
 

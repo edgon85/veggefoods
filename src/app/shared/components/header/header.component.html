@@ -27,13 +27,16 @@
             <img src="assets/images/logos/txt-vegetalgo.png" alt="">
         </a>
         <!-- <li class="navbar-brand"><a routerLink="/busqueda/q=" class="nav-link"><i class="fas fa-search"></i></a> -->
-        <button (click)="redirectBuscar()" class="navbar-toggler" type="button">
+        <button (click)="redirectBuscar('search')" class="navbar-toggler" type="button">
             <i class="fas fa-search"></i>
+        </button>
+        <button (click)="redirectBuscar('cart')" class="navbar-toggler" type="button">
+            <i class="fas fa-shopping-cart"></i>
         </button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i> Menu
+            <i class="fas fa-bars"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -55,23 +58,29 @@
                 </li>
                 <!-- <li class="nav-item"><a routerLink="/contacto" class="nav-link">Contacto</a></li> -->
                 <!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/login">Iniciar sesión</a>
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/register">Crear cuenta</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/pedidos"> <i
+                                class="far fa-list-alt" routerLinkActive="active"></i> Mis pedidos</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/perfil"><i
+                                class="fas fa-user-circle"></i> Mi Cuenta</a>
+                        <div *ngIf="isloggedIn" class="dropdown-divider"></div>
+                        <a *ngIf="isloggedIn" class="dropdown-item pointer" (click)="logout()"><i
+                                class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </div>
+                </li>
+
                 <li class="nav-item cta cta-colored">
                     <a routerLink="/cart" class="nav-link">
                         <span class="icon-shopping_cart">
                             <i class="fas fa-shopping-cart"></i>
                         </span>[{{ total$ | async }}]
                     </a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/login">Iniciar sesión</a>
-                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/register">Crear cuenta</a>
-                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/perfil">Mi Cuenta</a>
-                        <a *ngIf="isloggedIn" class="dropdown-item pointer" (click)="logout()">Cerrar sesión</a>
-                    </div>
                 </li>
 
                 <li class="nav-item icono-buscar"><a routerLink="/busqueda/q=" class="nav-link"><i

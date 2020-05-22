@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { HttpClient } from '@angular/common/http';
-import { debounceTime, switchMap, map } from 'rxjs/operators';
-import { ProductoModel } from '../models/product.model';
+import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +12,6 @@ export class BusquedaService {
 
   private urlProduct = environment.firebase.databaseURL;
 
-  // https://de-volada-ce752.firebaseio.com/products.json?orderBy=%22nombre%22&startAt=%22chile%22&endAt=%22chile\uf8ff%22
   constructor(private http: HttpClient) {}
 
   public getBusqueda(termino: string) {
@@ -34,19 +31,3 @@ export class BusquedaService {
     );
   }
 }
-// public getSearch(start, end) {
-//   return this.db.list('/products', (ref) =>
-//     ref.orderByChild('nombre').startAt(start).endAt(end)
-//   );
-// }
-
-// busquedaPorNombre(termino: string) {
-//   return this.db
-//     .list('products', (ref) => ref.orderByChild('nombre').equalTo(termino))
-//     .valueChanges();
-// }
-// busquedaPorLetras(start, end) {
-//   return this.db
-//     .list('products', (ref) => ref.orderByChild('').startAt(start))
-//     .valueChanges();
-// }

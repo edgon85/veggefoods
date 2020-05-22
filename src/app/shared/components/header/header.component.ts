@@ -29,11 +29,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    this.authService.logout().then(() => {
-      this.router.navigateByUrl('/auth/login');
-      localStorage.removeItem('redirectProd');
-      localStorage.removeItem('ckeckoutUrl');
-    });
+    this.authService
+      .logout()
+      .then(() => {
+        this.router.navigateByUrl('/auth/login');
+        localStorage.removeItem('redirectProd');
+        localStorage.removeItem('ckeckoutUrl');
+      })
+      .catch((err) => {
+        console.log('Sesión cerrada');
+      });
   }
 
   loggedIn() {
@@ -49,7 +54,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  redirectBuscar() {
-    this.router.navigateByUrl('/busqueda/q=');
+  redirectBuscar(param: string) {
+    if (param === 'search') {
+      this.router.navigateByUrl('/busqueda/q=');
+    } else {
+      this.router.navigateByUrl('/cart');
+    }
   }
 }
