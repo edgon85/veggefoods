@@ -14,7 +14,7 @@
                         <a href="mailto:info@vegetalgo.com"><span class="text">info@vegetalgo.com</span></a>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">Entregamos los 7 dias de la semana</span>
+                        <span class="text">por ordenes de gobieno entregamos de lunes a viernes</span>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,9 @@
             <i class="fas fa-search"></i>
         </button>
         <button (click)="redirectBuscar('cart')" class="navbar-toggler" type="button">
-            <i class="fas fa-shopping-cart"></i>
+            <span class="icon-shopping_cart">
+                <i class="fas fa-shopping-cart"></i>
+            </span>[{{ total$ | async }}]
         </button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
