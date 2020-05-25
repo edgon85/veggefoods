@@ -17,6 +17,7 @@ import { NoImagePipe } from '../pipes/no-image.pipe';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.component';
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.
     OrderTrackingComponent,
     WhatsappComponent,
     ComoFuncionaComponent,
+    FloatingButtonComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -53,6 +55,7 @@ import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.
     OrderTrackingComponent,
     WhatsappComponent,
     ComoFuncionaComponent,
+    FloatingButtonComponent,
   ],
 })
 export class SharedModule {}

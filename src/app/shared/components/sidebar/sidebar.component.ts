@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
     'frutas',
     'semillas',
     'especias',
-    'jugos',
+    // 'jugos',
     'regia',
     'combos',
   ];
