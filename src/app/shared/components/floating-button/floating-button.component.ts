@@ -14,9 +14,9 @@ export class FloatingButtonComponent implements OnInit {
     'frutas',
     'semillas',
     'especias',
-    // 'jugos',
     'regia',
     'combos',
+    'varios',
   ];
 
   ngOnInit() {

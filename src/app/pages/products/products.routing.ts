@@ -12,9 +12,9 @@ const routes: Routes = [
       { path: 'verduras', component: ProductComponent },
       { path: 'especias', component: ProductComponent },
       { path: 'combos', component: ProductComponent },
-      { path: 'jugos', component: ProductComponent },
       { path: 'semillas', component: ProductComponent },
       { path: 'regia', component: ProductComponent },
+      { path: 'varios', component: ProductComponent },
     ],
   },
 ];
