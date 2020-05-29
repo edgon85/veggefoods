@@ -364,3 +364,13 @@ a {
     outline: none;
   }
 }
+
+.fin__de-semana {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $white;
+  padding: 10px 0px;
+}
