@@ -4,7 +4,9 @@
             <img src="assets/images/cart_empty.png" alt="">
         </div>
         <p>¡OOOPS! Tu carrito de compras está vacío <br> selecciona una categoría</p>
-        <app-sidebar></app-sidebar>
+        <div class="contenido">
+            <app-sidebar></app-sidebar>
+        </div>
     </section>
     <section *ngIf="productos.length > 0" class="carrito-detail">
         <div class="cart-list">

@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'semillas', component: ProductComponent },
       { path: 'regia', component: ProductComponent },
       { path: 'varios', component: ProductComponent },
+      { path: 'orgánico', component: ProductComponent },
     ],
   },
 ];
