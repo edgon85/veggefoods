@@ -14,9 +14,10 @@ export class HomeComponent implements OnInit {
   cargando: boolean = false;
 
   // tslint:disable-next-line: variable-name
-  constructor(private _productService: ProductService, private router: Router) {
-    this.obtenerDestacados();
-  }
+  constructor(
+    private _productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cargando = true;
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   obtenerDestacados() {
     this._productService.getProductosDesacados().subscribe((resp) => {
-      this.productos = resp;
+      this.productos = resp.sort((a, b) => a.nombre.localeCompare(b.nombre));
       this.cargando = false;
     });
   }

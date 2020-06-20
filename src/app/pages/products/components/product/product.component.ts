@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
       .getAllProducts()
       .pipe(map((p) => p.filter((f) => f.categoria === categoria)))
       .subscribe((resp) => {
-        this.productos = resp;
+        this.productos = resp.sort((a, b) => a.nombre.localeCompare(b.nombre)); // ordenar alfabeticamente
         this.cargando = false;
       });
   }
