@@ -338,7 +338,7 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   fechasDeCalendario() {
     const todayDate = new Date();
-    this.minDate = new Date(todayDate.setDate(todayDate.getDate() + 2)); // <========= cambiar a 1
+    this.minDate = new Date(todayDate.setDate(todayDate.getDate() + 1)); // <========= cambiar a 2 para el fin de semana
     this.maxDate = new Date(todayDate.setDate(todayDate.getDate() + 20));
   }
 
