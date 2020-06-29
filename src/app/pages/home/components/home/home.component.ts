@@ -3,6 +3,7 @@ import { ProductService } from '../../../../services/product.service';
 import { ProductoModel } from 'src/app/models/product.model';
 import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SettingsService } from '../../../../services/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,26 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   productos: ProductoModel[] = [];
   cargando: boolean = false;
+  finDeSemana: boolean = false;
 
   // tslint:disable-next-line: variable-name
   constructor(
     private _productService: ProductService,
+    private settingsServise: SettingsService,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.getSettings();
     this.cargando = true;
     this.obtenerDestacados();
+  }
+
+  // obtener settings
+  private getSettings() {
+    this.settingsServise.getProntoPosible().subscribe((resp: any) => {
+      this.finDeSemana = resp.fin_de_semana;
+    });
   }
 
   obtenerDestacados() {

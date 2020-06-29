@@ -24,6 +24,7 @@ import {
 import * as moment from 'moment';
 import { MY_FORMATS } from '../../../../material/material.module';
 import { CuponService } from '../../../../services/cupon.service';
+import { SettingsService } from '../../../../services/settings.service';
 
 @Component({
   selector: 'app-checkout',
@@ -33,6 +34,9 @@ import { CuponService } from '../../../../services/cupon.service';
 export class CheckoutComponent implements OnInit {
   //
 
+  prontoPosible: boolean = false;
+  finDeSemana: boolean = false;
+  diasAumento: number = 1;
   // suario$: Observable<UsuarioModel>;
   userUid: string = '';
   userEmail = '';
@@ -93,18 +97,33 @@ export class CheckoutComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private cartService: CartService,
-    private cuponService: CuponService
+    private cuponService: CuponService,
+    private settings: SettingsService
   ) {
+    this.getSettings();
     this.formularioCheckout();
     this.formularioPago();
     this.initDataUser();
-    this.fechasDeCalendario();
+    // this.fechasDeCalendario();
   }
   //
 
   ngOnInit() {
     this.formDescuento = this.fb.group({
       cupon: ['', Validators.required],
+    });
+  }
+
+  // <=================================================================> //
+  //  obtener setting  //
+  // <=================================================================> //
+  private getSettings() {
+    this.settings.getProntoPosible().subscribe((resp: any) => {
+      this.prontoPosible = resp.estado;
+      this.finDeSemana = resp.fin_de_semana;
+      this.diasAumento = resp.dias_aumento;
+
+      this.fechasDeCalendario();
     });
   }
 
@@ -249,6 +268,22 @@ export class CheckoutComponent implements OnInit {
       });
     }
 
+    if (
+      this.forma.value.fechaEntreaga === 'fecha entrega' &&
+      this.fechaEntregaInput === ''
+    ) {
+      Swal.fire('ingrese una fecha');
+      return;
+    }
+
+    if (
+      this.forma.value.fechaEntreaga === 'fecha entrega' &&
+      this.forma.value.hora === null
+    ) {
+      Swal.fire('ingrese una hora');
+      return;
+    }
+
     // <== si la forma de checkout es valida ==> //
     if (this.forma.valid) {
       let dateEntrega: string = '';
@@ -256,8 +291,10 @@ export class CheckoutComponent implements OnInit {
 
       if (this.forma.value.fechaEntreaga === 'fecha entrega') {
         dateEntrega = `${this.fechaEntregaInput}, ${this.forma.value.hora}`;
+      } else if (this.finDeSemana) {
+        dateEntrega = 'Programado para entregar el día lunes';
       } else {
-        dateEntrega = 'Lo mas pronto posible (de 3 a 4 horas)';
+        dateEntrega = 'Lo más pronto posible (de 3 a 4 horas)';
       }
 
       if (this.formaPago.value.tipoPago === 'credito-debito') {
@@ -322,7 +359,6 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   cambioFecha(event: any): string {
     const data = event;
-    console.log(data);
     const formattedDate =
       data['_i']['date'] +
       '-' +
@@ -338,7 +374,9 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   fechasDeCalendario() {
     const todayDate = new Date();
-    this.minDate = new Date(todayDate.setDate(todayDate.getDate() + 1)); // <========= cambiar a 2 para el fin de semana
+    this.minDate = new Date(
+      todayDate.setDate(todayDate.getDate() + this.diasAumento)
+    );
     this.maxDate = new Date(todayDate.setDate(todayDate.getDate() + 20));
   }
 
