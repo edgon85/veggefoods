@@ -15,9 +15,9 @@
     <div class="description">
         <h3>{{ producto.nombre }}</h3>
         <p class="price">
-            <span>Q{{ producto.precio | number: '1.2': 'en'}}</span>
             <span *ngIf="producto.precio < producto.descuento"
                 class="discount">Q{{ producto.descuento | number: '1.2':'en'}}</span>
+            <span>Q{{ producto.precio | number: '1.2': 'en'}}</span>
             <samp class="masa">c/{{producto.masa}}</samp>
         </p>
         <!-- <p class="detail">{{ producto.detalle }}</p> -->
