@@ -14,7 +14,6 @@ const routes: Routes = [
       { path: 'especias', component: ProductComponent },
       { path: 'combos', component: ProductComponent },
       { path: 'semillas', component: ProductComponent },
-      { path: 'regia', component: ProductComponent },
       { path: 'varios', component: ProductComponent },
       {
         path: 'orgánico',

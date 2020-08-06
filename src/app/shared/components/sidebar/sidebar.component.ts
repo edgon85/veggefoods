@@ -13,7 +13,6 @@ export class SidebarComponent implements OnInit {
     'especias',
     'combos',
     'orgánico',
-    'regia',
     'varios',
   ];
   constructor() {}
