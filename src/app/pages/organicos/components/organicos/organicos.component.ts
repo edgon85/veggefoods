@@ -24,7 +24,7 @@ export class OrganicosComponent implements OnInit {
       .pipe(map((p) => p.filter((f) => f.categoria === 'orgánico')))
       .subscribe((resp) => {
         this.productos = resp.sort((a, b) => a.nombre.localeCompare(b.nombre)); // ordenar alfabeticamente
-        console.log(this.productos);
+        // console.log(this.productos);
         this.cargando = false;
       });
   }
