@@ -158,77 +158,112 @@ a {
 
 @mixin imagen {
   img {
+    cursor: pointer;
     width: 100%;
     height: 100%;
   }
 }
 
-.category {
+.como-funciona-productos {
   display: grid;
-  //grid-template: 1fr 1fr / 1fr 1fr 1fr;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row: repeat(2, auto);
-  // grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 10px;
+  grid-template-columns: 1 100%;
+  grid-template-rows: 2 auto;
   grid-template-areas:
-    'fruit shop_now juice'
-    'vegetables shop_now dried';
+    'como_funciona'
+    'prod_categorias';
 
-  .item-1 {
-    position: relative;
-    display: inline-block;
-    grid-area: fruit;
-    @include imagen;
-    @include texto-encima;
+  .como-funciona {
+    grid-area: como_funciona;
   }
-  .item-2 {
-    position: relative;
-    grid-area: shop_now;
-    @include imagen;
-    .container-detail {
-      position: absolute;
-      width: 100%;
-      height: 50%;
-      top: 0px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      h2 {
-        color: #82ae46;
-        font-family: $font-secondary;
-        font-style: italic;
-        font-size: 24px;
+
+  .prod-categorias {
+    grid-area: prod_categorias;
+    padding-top: 20px;
+
+    .category {
+      display: grid;
+      //grid-template: 1fr 1fr / 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      grid-row: repeat(2, auto);
+      // grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 10px;
+      grid-template-areas:
+        'vegetables organic fruit'
+        'especias varios semillas';
+
+      .item-1 {
+        position: relative;
+        display: inline-block;
+        grid-area: vegetables;
+        @include imagen;
+        @include texto-encima;
       }
-      .btn-comprar {
-        background-color: $primary;
-        border: 1px solid $primary;
-        font-family: $font-primary;
-        color: #fff;
+      .item-2 {
+        position: relative;
+        display: inline-block;
+        grid-area: organic;
+        @include imagen;
+        @include texto-encima;
       }
-      :hover {
-        background-color: #fff;
-        color: $primary;
+      /*       .item-2 {
+        position: relative;
+        grid-area: shop_now;
+        @include imagen;
+        .logo {
+          width: 150px;
+        }
+        .container-detail {
+          position: absolute;
+          width: 100%;
+          height: 50%;
+          top: 0px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          // justify-content: space-evenly;
+          h2 {
+            color: #82ae46;
+            font-family: $font-secondary;
+            font-style: italic;
+            font-size: 24px;
+          }
+          .btn-comprar {
+            background-color: $primary;
+            border: 1px solid $primary;
+            font-family: $font-primary;
+            color: #fff;
+          }
+          :hover {
+            background-color: #fff;
+            color: $primary;
+          }
+        }
+      } */
+      .item-3 {
+        position: relative;
+        grid-area: fruit;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-4 {
+        position: relative;
+        grid-area: especias;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-5 {
+        position: relative;
+        grid-area: semillas;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-6 {
+        position: relative;
+        grid-area: varios;
+        @include imagen;
+        @include texto-encima;
       }
     }
-  }
-  .item-3 {
-    position: relative;
-    grid-area: juice;
-    @include imagen;
-    @include texto-encima;
-  }
-  .item-4 {
-    position: relative;
-    grid-area: vegetables;
-    @include imagen;
-    @include texto-encima;
-  }
-  .item-5 {
-    position: relative;
-    grid-area: dried;
-    @include imagen;
-    @include texto-encima;
   }
 }
 
@@ -256,14 +291,20 @@ a {
   margin-top: 30px;
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @media screen and (max-width: 770px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 }
 // <====== responsive =======> //
 // <============= Media Queries =============> //
 
 @media only screen and (max-width: 768px) {
   .services {
-    background-color: red;
+    // background-color: red;
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: 1fr 1fr !important;
     grid-template-areas:
@@ -275,28 +316,82 @@ a {
     grid-template-columns: repeat(2, 1fr);
     grid-row: repeat(3, auto);
     grid-template-areas:
-      'shop_now fruit'
-      'shop_now juice'
-      'vegetables dried';
+      'vegetables fruit'
+      'organic especias'
+      'semillas varios';
   }
 }
 
 @media only screen and (max-width: 375px) {
   .my-padding {
     padding: 0px !important;
+    margin-bottom: 20px;
     .services {
-      display: none !important;
+      //display: none !important;
+      .contenido {
+        span {
+          font-size: 10px;
+        }
+      }
     }
   }
 
-  .category {
-    grid-template-columns: repeat(1, 1fr);
-    grid-row: repeat(5, auto);
+  .como-funciona-productos {
     grid-template-areas:
-      'shop_now'
-      'fruit'
-      'juice'
-      'vegetables'
-      'dried';
+      'prod_categorias'
+      'como_funciona';
+
+    .prod-categorias {
+      .category {
+        grid-template-columns: repeat(1, 1fr);
+        grid-row: repeat(5, auto);
+        grid-template-areas:
+          'vegetables'
+          'fruit'
+          'especias'
+          'semillas'
+          'organic'
+          'varios';
+
+        .item-2 {
+          .logo {
+            width: 150px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
   }
+}
+
+.btn-ver-mas {
+  width: 200px;
+
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+  background-color: $white;
+  color: $primary;
+  transition: box-shadow 0.3s linear;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    outline: none;
+  }
+}
+
+.fin__de-semana {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $white;
+  padding: 10px 0px;
 }

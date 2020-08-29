@@ -9,6 +9,15 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IncrementadorComponent } from './components/incrementador/incrementador.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderProductComponent } from './components/header-product/header-product.component';
+import { TotalCartDetailComponent } from './components/total-cart-detail/total-cart-detail.component';
+import { SidebarAccountComponent } from './components/sidebar-account/sidebar-account.component';
+import { ReplacePipe } from '../pipes/replace.pipe';
+import { CurrecyFormatPipe } from '../pipes/currecy-format.pipe';
+import { NoImagePipe } from '../pipes/no-image.pipe';
+import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
+import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.component';
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +27,16 @@ import { HeaderProductComponent } from './components/header-product/header-produ
     LoadingComponent,
     SidebarComponent,
     IncrementadorComponent,
-    HeaderProductComponent
+    HeaderProductComponent,
+    TotalCartDetailComponent,
+    SidebarAccountComponent,
+    ReplacePipe,
+    CurrecyFormatPipe,
+    NoImagePipe,
+    OrderTrackingComponent,
+    WhatsappComponent,
+    ComoFuncionaComponent,
+    FloatingButtonComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -28,7 +46,16 @@ import { HeaderProductComponent } from './components/header-product/header-produ
     LoadingComponent,
     SidebarComponent,
     IncrementadorComponent,
-    HeaderProductComponent
-  ]
+    HeaderProductComponent,
+    TotalCartDetailComponent,
+    SidebarAccountComponent,
+    ReplacePipe,
+    CurrecyFormatPipe,
+    NoImagePipe,
+    OrderTrackingComponent,
+    WhatsappComponent,
+    ComoFuncionaComponent,
+    FloatingButtonComponent,
+  ],
 })
 export class SharedModule {}

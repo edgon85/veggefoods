@@ -1,6 +1,7 @@
 @import '../../../../variables.scss';
 .list-group {
   .list-group-item {
+    text-transform: capitalize;
     a {
       color: $primary;
       text-decoration: none;

@@ -1,0 +1,75 @@
+@import '../../../../../variables.scss';
+.contacto {
+  // min-height: 90vh;
+  background: #f7f6f2;
+
+  .body-contact {
+    margin-top: 60px;
+    //margin-bottom: 20px;
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 2fr;
+      gap: 10px;
+      grid-template-areas: 'info_card_1 info_card_2 info_card_3';
+
+      .info-card-1 {
+        grid-area: info_card_1;
+      }
+      .info-card-2 {
+        grid-area: info_card_2;
+      }
+      .info-card-3 {
+        grid-area: info_card_3;
+      }
+
+      .info-card {
+        display: flex;
+        flex-direction: column;
+        .info {
+          text-align: center;
+          height: 100%;
+          span {
+            margin-right: 3px;
+          }
+          .social-media {
+            font-size: 34px;
+            span {
+              margin-right: 5px;
+            }
+          }
+          a {
+            text-decoration: none;
+            color: #a3a3a3;
+          }
+        }
+      }
+    }
+    .form-contact {
+      margin-top: 20px;
+      .formulario {
+        margin-bottom: 20px;
+      }
+    }
+
+    .next {
+      height: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .contacto {
+    .body-contact {
+      margin-top: 20px;
+      .contact-info {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+          'info_card_1'
+          'info_card_2'
+          'info_card_3';
+      }
+    }
+  }
+}

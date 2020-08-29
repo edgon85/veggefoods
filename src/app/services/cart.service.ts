@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
-import { ProductoModel } from '../models/product.model';
+import { BehaviorSubject, from } from 'rxjs';
 import { CartInterface } from '../interfaces/cart.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  /*   private products: ProductoModel[] = [];
-  private cart = new BehaviorSubject<ProductoModel[]>([]); */
   private itemsCarrito: CartInterface[] = [];
   private cart = new BehaviorSubject<CartInterface[]>([]);
 
@@ -17,13 +14,52 @@ export class CartService {
 
   constructor() {}
 
-  /*   addToCart(product: ProductoModel) {
-    this.products = [...this.products, product];
-    this.cart.next(this.products);
-  } */
-
   addToCart(cart: CartInterface) {
     this.itemsCarrito = [...this.itemsCarrito, cart];
     this.cart.next(this.itemsCarrito);
+  }
+
+  /**
+   * clearCarrito
+   */
+  clearCarrito(cartItemId: string) {
+    this.itemsCarrito = this.itemsCarrito.filter(
+      (carrito) => carrito.cartItemId !== cartItemId
+    );
+    this.cart.next(this.itemsCarrito);
+  }
+
+  // <======================> //
+  // Limpia todo el carrito //
+  // <======================> //
+  clearAllCart() {
+    this.cart.next([]);
+  }
+
+  updateItemCart(cartItemId: string, newquantity: number) {
+    this.itemsCarrito = [...this.itemsCarrito];
+    // const filteredDataSource = this.itemsCarrito.filter(item => {
+    this.itemsCarrito.filter((item) => {
+      if (item.cartItemId === cartItemId) {
+        item.quantity = newquantity;
+        item.total = item.product.precio * newquantity;
+      }
+
+      return item;
+    });
+    this.getSubTotal();
+  }
+
+  /**
+   * getTotal
+   */
+  getSubTotal() {
+    this.itemsCarrito = [...this.itemsCarrito];
+    const subtotal = this.itemsCarrito.reduce(
+      (total, cart: CartInterface) => total + cart.total,
+      0
+    );
+    this.cart.next(this.itemsCarrito);
+    return subtotal;
   }
 }

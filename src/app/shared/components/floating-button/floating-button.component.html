@@ -1,0 +1,19 @@
+<section class="floating">
+    <div class="fab">
+        <span><i class="fas fa-stream"></i></span>
+    </div>
+    <div class="box">
+        <ul class="list-group">
+            <ng-container *ngFor="let cat of categories">
+                <li class="list-group-item" routerLinkActive="active">
+                    <a routerLink="/productos/categoria/{{ cat }}">{{ cat }}</a>
+                </li>
+            </ng-container>
+            <!-- <li class="list-group-item"><a href="#">Frutas</a></li>
+            <li class="list-group-item"><a href="#">Semillas</a></li>
+            <li class="list-group-item"><a href="#">Especias</a></li>
+            <li class="list-group-item"><a href="#">Jugos</a>Jugos</li>
+            <li class="list-group-item"><a href="#">Combos</a></li> -->
+        </ul>
+    </div>
+</section>

@@ -9,30 +9,34 @@
 <section class="single-product container" *ngIf="producto">
     <div class="image-section">
         <div class="image">
-            <img [src]="producto.imagen" alt="">
+            <img [src]="producto.imagen | noImage" alt="">
         </div>
     </div>
     <div class="description">
         <h3>{{ producto.nombre }}</h3>
         <p class="price">
-            <span>Q{{ producto.precio | number: '1.2'}}</span>
             <span *ngIf="producto.precio < producto.descuento"
-                class="discount">Q{{ producto.descuento | number: '1.2'}}</span>
+                class="discount">Q{{ producto.descuento | number: '1.2':'en'}}</span>
+            <span>Q{{ producto.precio | number: '1.2': 'en'}}</span>
+            <samp class="masa">c/{{producto.masa}}</samp>
         </p>
-        <p class="detail">{{ producto.detalle }}</p>
+        <!-- <p class="detail">{{ producto.detalle }}</p> -->
+        <div class="prod-detail">
+            <div [innerHTML]="producto.detalle | domeseguroProductdetail"></div>
+        </div>
 
         <div *ngIf="!estaEnCarrito" class="contador">
             <app-incrementador (actualizaValor)="cantidadProductDetail = $event"
                 [progresoIncrementador]="cantidadProductDetail">
             </app-incrementador>
-            <span>{{ producto.masa }}</span>
         </div>
         <p>
-            <button *ngIf="!estaEnCarrito" (click)="addToCart()" class="btn btn-black">agregar a carrito</button>
+            <button *ngIf="!estaEnCarrito" (click)="addToCart()" class="btn btn-black">Agregar a carrito</button>
         </p>
-        <div *ngIf="estaEnCarrito" class="redirect-button">
+        <div *ngIf="estaEnCarrito" class="redirect-button mb-5">
             <a class="btn btn-seguir-comprando" [routerLink]="[seguirComprandoURl]">Seguir comprando</a>
             <a class="btn btn-ir-carrito" routerLink="/cart">Ir al carrito</a>
         </div>
     </div>
+    <app-floating-button></app-floating-button>
 </section>

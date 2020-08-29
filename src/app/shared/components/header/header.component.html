@@ -1,4 +1,4 @@
-<div class="py-1 bg-primary">
+<div class="py-1 bg-primary up-head">
     <div class="container">
         <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
             <div class="col-lg-12 d-block">
@@ -6,15 +6,16 @@
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center">
                             <span class="icon-phone2"><i class="fas fa-phone-alt"></i></span></div>
-                        <span class="text">+ 502 51430832</span>
+                        <a class="phone" href="tel:+50251367524"><span class="text">+502 5136-7524</span></a>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center">
                             <span class="icon-paper-plane"><i class="fas fa-paper-plane"></i></span></div>
-                        <span class="text">info@vegefoods.com</span>
+                        <a href="mailto:info@vegetalgo.com"><span class="text">info@vegetalgo.com</span></a>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">Entregamos los 7 dias de la semana</span>
+                        <!-- <span class="text">Entregamos de lunes a viernes por órdenes de gobierno</span> -->
+                        <span class="text">Entregamos de lunes a sábado</span>
                     </div>
                 </div>
             </div>
@@ -23,33 +24,71 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">Vegefoods</a>
+        <a class="navbar-brand" routerLink="/inicio">
+            <img src="assets/images/logos/txt-vegetalgo.png" alt="">
+        </a>
+        <!-- <li class="navbar-brand"><a routerLink="/busqueda/q=" class="nav-link"><i class="fas fa-search"></i></a> -->
+        <button (click)="redirectBuscar('search')" class="navbar-toggler" type="button">
+            <i class="fas fa-search"></i>
+        </button>
+        <button (click)="redirectBuscar('cart')" class="navbar-toggler" type="button">
+            <span class="icon-shopping_cart">
+                <i class="fas fa-shopping-cart"></i>
+            </span>[{{ total$ | async }}]
+        </button>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i> Menu
+            <i class="fas fa-bars"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a routerLink="/inicio" class="nav-link">Inicio</a></li>
+                <li class="nav-item" routerLinkActive="active"><a routerLink="/inicio" class="nav-link">Inicio</a></li>
                 <!-- <li class="nav-item"><a href="#" class="nav-link">Tienda</a></li> -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" routerLinkActive="active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Tienda</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" routerLink="/productos/categoria/frutas">Frutas</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/vegetales">Vegetales</a>
+                        <a class="dropdown-item" routerLink="/productos/categoria/verduras">Verduras</a>
                         <a class="dropdown-item" routerLink="/productos/categoria/semillas">Semillas</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/chiles">Chiles</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/aceites">Productos regia</a>
+                        <a class="dropdown-item" routerLink="/productos/categoria/especias">Especias</a>
+                        <a class="dropdown-item" routerLink="/productos/categoria/combos">Combos</a>
+                        <a class="dropdown-item" routerLink="/productos/categoria/orgánico">Orgánico</a>
+                        <a class="dropdown-item" routerLink="/productos/categoria/varios">Varios</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+                <!-- <li class="nav-item"><a routerLink="/contacto" class="nav-link">Contacto</a></li> -->
                 <!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
-                <li class="nav-item cta cta-colored"><a routerLink="/cart" class="nav-link"><span
-                            class="icon-shopping_cart"><i
-                                class="fas fa-shopping-cart"></i></span>[{{ total$ | async }}]</a></li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/login">Iniciar sesión</a>
+                        <a *ngIf="!isloggedIn" class="dropdown-item" routerLink="/auth/register">Crear cuenta</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/pedidos"> <i
+                                class="far fa-list-alt" routerLinkActive="active"></i> Mis pedidos</a>
+                        <a *ngIf="isloggedIn" class="dropdown-item" routerLink="/cuenta/perfil"><i
+                                class="fas fa-user-circle"></i> Mi Cuenta</a>
+                        <div *ngIf="isloggedIn" class="dropdown-divider"></div>
+                        <a *ngIf="isloggedIn" class="dropdown-item pointer" (click)="logout()"><i
+                                class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </div>
+                </li>
+
+                <li class="nav-item cta cta-colored">
+                    <a routerLink="/cart" class="nav-link">
+                        <span class="icon-shopping_cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </span>[{{ total$ | async }}]
+                    </a>
+                </li>
+
+                <li class="nav-item icono-buscar"><a routerLink="/busqueda/q=" class="nav-link"><i
+                            class="fas fa-search"></i></a>
+                </li>
             </ul>
         </div>
     </div>

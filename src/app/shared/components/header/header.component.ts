@@ -2,18 +2,63 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   total$: Observable<number>;
 
-  constructor(private cartService: CartService) {
-    this.total$ = this.cartService.cart$.pipe(map(products => products.length));
+  isloggedIn: boolean = false;
+
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.loggedIn();
+    this.total$ = this.cartService.cart$.pipe(
+      map((products) => products.length)
+    );
   }
 
   ngOnInit() {}
+
+  logout() {
+    this.authService
+      .logout()
+      .then(() => {
+        this.router.navigateByUrl('/auth/login');
+        localStorage.removeItem('redirectProd');
+        localStorage.removeItem('ckeckoutUrl');
+      })
+      .catch((err) => {
+        console.log('Sesión cerrada');
+      });
+  }
+
+  loggedIn() {
+    this.authService.getStatus().subscribe((auth) => {
+      if (!auth) {
+        this.isloggedIn = false;
+        return;
+      }
+
+      this.isloggedIn = true;
+
+      // do your stuff here ..
+    });
+  }
+
+  redirectBuscar(param: string) {
+    if (param === 'search') {
+      this.router.navigateByUrl('/busqueda/q=');
+    } else {
+      this.router.navigateByUrl('/cart');
+    }
+  }
 }

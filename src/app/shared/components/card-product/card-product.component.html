@@ -1,6 +1,6 @@
 <div class="product">
     <div (click)="getProduct(producto._id, producto.categoria)" class="img-prod cursor"><img class="img-fluid"
-            [src]="producto.imagen" alt="">
+            [src]="producto.imagen | noImage" alt="">
         <!-- <span class="status">30%</span> -->
         <div class="overlay"></div>
     </div>
@@ -11,8 +11,8 @@
                 <p class="price">
                     <!-- <span *ngIf="producto.descuento > 0.1" -->
                     <span *ngIf="producto.precio < producto.descuento"
-                        class="mr-2 price-dc">Q{{producto.descuento | number: '1.2'}}</span>
-                    <span class="price-sale">Q{{producto.precio | number: '1.2'}}</span></p>
+                        class="mr-2 price-dc">Q{{producto.descuento | number: '1.2':'en'}}</span>
+                    <span class="price-sale">Q{{producto.precio | number: '1.2':'en'}}</span> c/{{producto.masa}}</p>
             </div>
         </div>
         <div class="bottom-area d-flex px-3">
@@ -29,6 +29,10 @@
                     <span>
                         <i class="fas fa-check"></i>
                     </span>
+                </a>
+                <a routerLink="/producto/{{producto._id}}"
+                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                    <span><i class="far fa-eye"></i></span>
                 </a>
             </div>
         </div>
