@@ -11,8 +11,9 @@ export class SidebarComponent implements OnInit {
     'frutas',
     'semillas',
     'especias',
+    'carnes',
     'combos',
-    'orgánico',
+    'orgánicos',
     'varios',
   ];
   constructor() {}

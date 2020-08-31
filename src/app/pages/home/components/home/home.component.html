@@ -58,9 +58,9 @@
                 </div>
             </div>
             <div class="item-6">
-                <img (click)="navigateTo('varios')" src="assets/images/varios.jpg" alt="">
+                <img (click)="navigateTo('carnes')" src="assets/images/portadas/carnes.jpg" alt="">
                 <div class="texto-encima">
-                    <a routerLink="/productos/categoria/varios">Varios</a>
+                    <a routerLink="/productos/categoria/carnes">Carnes</a>
                 </div>
             </div>
         </div>
@@ -76,11 +76,11 @@
             <!-- <span class="subheading">Productos destacados</span> -->
             <h2 class="mb-4">Productos destacados</h2>
         </div>
-        <div class="featured-products">
+        <!-- <div class="featured-products">
             <ng-container *ngFor="let prod of productos">
                 <app-card-product [producto]="prod"></app-card-product>
             </ng-container>
-        </div>
+        </div> -->
         <div class="text-center mt-md-3">
             <a routerLink="/productos/categoria/verduras" class="btn-ver-mas">Ver más</a>
         </div>
