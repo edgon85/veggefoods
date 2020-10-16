@@ -18,6 +18,7 @@ import { OrderTrackingComponent } from './components/order-tracking/order-tracki
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.component';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FloatingButtonComponent } from './components/floating-button/floating-b
     WhatsappComponent,
     ComoFuncionaComponent,
     FloatingButtonComponent,
+    RemoveDashPipe,
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [

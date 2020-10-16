@@ -2,7 +2,7 @@
 
     <h4>Categorías</h4>
     <ng-container *ngFor="let cat of categories">
-        <a routerLink="/productos/categoria/{{ cat }}" class="list-group-item list-group-item-action"
-            routerLinkActive="active">{{ cat }}</a>
+        <a routerLink="/productos/categoria/{{ cat}}" class="list-group-item list-group-item-action"
+            routerLinkActive="active">{{ cat | removeDash}}</a>
     </ng-container>
 </div>

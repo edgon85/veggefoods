@@ -12,10 +12,12 @@ const routes: Routes = [
       { path: 'verduras', component: ProductComponent },
       { path: 'especias', component: ProductComponent },
       { path: 'combos', component: ProductComponent },
+      { path: 'combo-fiambre', component: ProductComponent },
       { path: 'semillas', component: ProductComponent },
-      { 
+      {
         path: 'varios',
-        loadChildren: () => import('../varios/varios.module').then((m) => m.VariosModule)
+        loadChildren: () =>
+          import('../varios/varios.module').then((m) => m.VariosModule),
       },
       {
         path: 'orgánicos',
@@ -26,8 +28,9 @@ const routes: Routes = [
       },
       {
         path: 'carnes',
-        loadChildren: () => import('../carnes/carnes.module').then((m) => m.CarnesModule)
-      }
+        loadChildren: () =>
+          import('../carnes/carnes.module').then((m) => m.CarnesModule),
+      },
     ],
   },
 ];

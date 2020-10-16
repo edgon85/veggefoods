@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetRutasService } from '../../../../rutas/get-rutas.service';
 import { ProductService } from '../../../../services/product.service';
 import { ProductoModel } from '../../../../models/product.model';
-import { map } from 'rxjs/operators';
+import { map, pluck, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -46,8 +46,19 @@ export class ProductComponent implements OnInit {
   // obtener el ultimo parametro de la url //
   // ========================================================== //
   obtenerUltimoParametro() {
-    this._getRutas.getRutas().subscribe((resp) => {
-      this.categoria = resp.path.split('-').join(' ');
-    });
+    this._getRutas
+      .getRutas()
+      .pipe(
+        take(1),
+        pluck('path'),
+        map((data) => {
+          data === 'combo-fiambre'
+            ? (this.categoria = 'combos')
+            : (this.categoria = data.split('-').join(' '));
+          // console.log();
+          return data;
+        })
+      )
+      .subscribe();
   }
 }
