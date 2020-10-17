@@ -1,12 +1,40 @@
-<app-banner></app-banner>
+<!-- <app-banner></app-banner> -->
 
-<section class="fin__de-semana" *ngIf="finDeSemana">
+
+<!-- <section class="fin__de-semana" *ngIf="finDeSemana">
     <div class="container">
         <h2>Horario fin de semana</h2>
-        <!-- <p>
+        <!- - <p>
             Debido a disposiciones de gobierno, estamos despachando pedidos de <strong>lunes a viernes</strong>
-        </p> -->
+        </p> - ->
         Estaremos recibiendo pedidos sábado por la tarde y domingo para entregar el día lunes
+    </div>
+</section> -->
+
+<section class="banner-section">
+    <div class="cover">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Some Features That Made Us Unique</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eum?
+            </p>
+        </div>
+    </div>
+    <div class="card-promos">
+        <div class="rect">
+            <h5>Favorito <br> del mes</h5>
+            <img src="https://via.placeholder.com/300/09f.png/fff" alt="">
+            <span>Ayote</span>
+        </div>
+        <div class="rect">
+            <h1>6784</h1>
+            <p>Cups Coffee</p>
+        </div>
+        <div class="rect">
+            <h1>1056</h1>
+            <p>Tickets Submitted</p>
+        </div>
     </div>
 </section>
 
@@ -77,9 +105,9 @@
             <h2 class="mb-4">Productos destacados</h2>
         </div>
         <div class="featured-products">
-            <ng-container *ngFor="let prod of productos">
+            <!-- <ng-container *ngFor="let prod of productos">
                 <app-card-product [producto]="prod"></app-card-product>
-            </ng-container>
+            </ng-container> -->
         </div>
         <div class="text-center mt-md-3">
             <a routerLink="/productos/categoria/verduras" class="btn-ver-mas">Ver más</a>
