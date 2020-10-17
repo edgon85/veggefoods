@@ -400,7 +400,12 @@ a {
   .cover {
     width: 100%;
     height: 60vh;
-    background: #82ad47;
+    background: url('../../../../../assets/images/home/fondo.png');
+    // background-position: -24rem -19rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-position: center center;
     position: relative;
 
     .overlay {
@@ -415,8 +420,99 @@ a {
     .content {
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      padding-top: 19vmin;
+      .content-grid {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1.5fr 2fr 1.5fr;
+        grid-template-rows: 1fr 3fr;
+
+        grid-template-areas:
+          'title title title'
+          'icon-left image-center icon-right'
+          'icon-left image-center icon-right';
+
+        .title {
+          // border: 1px solid red;
+          grid-area: title;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          text-align: center;
+          h2 {
+            font-family: $font-banner-1;
+            font-size: 5em;
+            color: #a0c5d5;
+            margin: 0;
+            line-height: 0.8em;
+          }
+        }
+
+        .icons-left {
+          grid-area: icon-left;
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .icon {
+            // border: 1px solid green;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 0;
+            a {
+              font-family: $font-banner-2;
+              color: #da8e6e;
+              font-size: 1em;
+              &:hover {
+                font-size: 1.1em;
+              }
+            }
+          }
+
+          .veggie {
+            padding-right: 3em;
+          }
+        }
+
+        .image-principal {
+          grid-area: image-center;
+          // border: 1px solid red;
+          width: 100%;
+          img {
+            // margin-top: 3em;
+            width: 100%;
+            vertical-align: top;
+          }
+        }
+
+        .icons-right {
+          grid-area: icon-right;
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .icon {
+            // border: 1px solid green;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            a {
+              font-family: $font-banner-2;
+              color: #da8e6e;
+              font-size: 1em;
+              &:hover {
+                font-size: 1.1em;
+              }
+            }
+          }
+          .spices {
+            padding-left: 3em;
+          }
+        }
+      }
     }
   }
 
@@ -424,18 +520,18 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: -10vh;
+    margin-top: -12vh;
     margin-bottom: 5em;
 
     .rect {
       position: relative;
       z-index: 1;
       background: white;
-      width: 17rem;
+      width: 15rem;
       height: 20rem;
       padding-top: 5px;
       margin: 1rem;
-      border-radius: 0.5em;
+      border-radius: 3px;
       // box-shadow: 1px 2px 50px 0px rgba(0, 0, 0, 0.3);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
@@ -443,23 +539,54 @@ a {
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+      text-align: center;
+      cursor: pointer;
+
+      h5 {
+        font-family: $font-banner-1;
+        font-size: 3em;
+        line-height: 0.6em;
+        color: #537368;
+
+        span {
+          font-family: $font-banner-2;
+          font-size: 0.5em;
+        }
+      }
+      h6 {
+        font-family: $font-banner-2;
+        font-size: 1.5em;
+        color: #da8e6e;
+      }
 
       img {
-        width: 70%;
+        width: 80%;
         vertical-align: top;
+      }
+
+      &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
       }
     }
 
     .rect:first-child {
-      background-color: red;
+      background-color: #ede3d9;
+      /* h6 {
+        color: #da8e6e;
+      } */
     }
 
     .rect:nth-child(2) {
-      background-color: hotpink;
+      margin-top: 3em;
+      background-color: #d4e7e5;
+      h6 {
+        color: #537368;
+      }
     }
 
     .rect:last-child {
-      background-color: green;
+      background-color: #e4e0d5;
     }
   }
 }

@@ -1,6 +1,5 @@
 <!-- <app-banner></app-banner> -->
 
-
 <!-- <section class="fin__de-semana" *ngIf="finDeSemana">
     <div class="container">
         <h2>Horario fin de semana</h2>
@@ -13,33 +12,75 @@
 
 <section class="banner-section">
     <div class="cover">
-        <div class="overlay"></div>
-        <div class="content">
-            <h1>Some Features That Made Us Unique</h1>
+        <!-- <div class="overlay"></div> -->
+        <div class="content container">
+            <div class="content-grid">
+                <div class="title">
+                    <h2>Vegetal Go <br> La mejor seleccion de productos</h2>
+                </div>
+                <!-- <div class="content-icons"> -->
+                <div class="icons-left">
+                    <div class="icon organic">
+                        <a href="#">Orgánicos <img src="assets/images/home/icono-organicos.png" alt=""></a>
+                    </div>
+                    <div class="icon veggie">
+                        <a href="#">Verduras <img src="assets/images/home/icono-verduras.png" alt=""></a>
+                    </div>
+                    <div class="icon fruits">
+                        <a href="#">Frutas <img src="assets/images/home/icono-frutas.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="image-principal">
+                    <img src="assets/images/home/caja.png" alt="" />
+                </div>
+                <div class="icons-right">
+                    <div class="icon seed">
+                        <a href="#"><img src="assets/images/home/icono-semillas.png" alt=""> Semillas</a>
+                    </div>
+                    <div class="icon spices">
+                        <a href="#"><img src="assets/images/home/icono-especias.png" alt=""> Especias</a>
+                    </div>
+                    <div class="icon meats">
+                        <a href="#"><img src="assets/images/home/icono-carnes.png" alt=""> Carnes</a>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </div>
+            <!-- <h1>Some Features That Made Us Unique</h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, eum?
-            </p>
+            </p> -->
         </div>
     </div>
     <div class="card-promos">
         <div class="rect">
-            <h5>Favorito <br> del mes</h5>
-            <img src="https://via.placeholder.com/300/09f.png/fff" alt="">
-            <span>Ayote</span>
+            <h5>
+                Favorito <br />
+                <span>del mes</span>
+            </h5>
+            <img src="assets/images/home/ayote_1.png" alt="" />
+            <h6>Ayote</h6>
         </div>
         <div class="rect">
-            <h1>6784</h1>
-            <p>Cups Coffee</p>
+            <h5>
+                Nuestra <br />
+                <span>recomendación</span>
+            </h5>
+            <img src="assets/images/home/fiambre_1.png" alt="" />
+            <h6>Fiambre</h6>
         </div>
         <div class="rect">
-            <h1>1056</h1>
-            <p>Tickets Submitted</p>
+            <h5>
+                Promoción <br />
+                <span>de la semana</span>
+            </h5>
+            <img src="assets/images/home/tomate_1.png" alt="" />
+            <h6>Tomate 2x1</h6>
         </div>
     </div>
 </section>
 
 <div class="como-funciona-productos">
-
     <section class="como-funciona mt-5 mb-5">
         <app-como-funciona></app-como-funciona>
     </section>
@@ -47,13 +88,13 @@
     <section class="container prod-categorias">
         <div class="category">
             <div class="item-1">
-                <img (click)="navigateTo('verduras')" src="assets/images/portadas/verduras.jpg" alt="">
+                <img (click)="navigateTo('verduras')" src="assets/images/portadas/verduras.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/verduras">Verduras</a>
                 </div>
             </div>
             <div class="item-2">
-                <img (click)="navigateTo('orgánicos')" src="assets/images/portadas/organicos.jpg" alt="">
+                <img (click)="navigateTo('orgánicos')" src="assets/images/portadas/organicos.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/orgánicos">Orgánicos</a>
                 </div>
@@ -68,25 +109,25 @@
                 </div>
             </div> -->
             <div class="item-3">
-                <img (click)="navigateTo('frutas')" src="assets/images/portadas/frutas.jpg" alt="">
+                <img (click)="navigateTo('frutas')" src="assets/images/portadas/frutas.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/frutas">Frutas</a>
                 </div>
             </div>
             <div class="item-4">
-                <img (click)="navigateTo('especias')" src="assets/images/portadas/especias.jpg" alt="">
+                <img (click)="navigateTo('especias')" src="assets/images/portadas/especias.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/especias">Especias</a>
                 </div>
             </div>
             <div class="item-5">
-                <img (click)="navigateTo('semillas')" src="assets/images/portadas/semillas.jpg" alt="">
+                <img (click)="navigateTo('semillas')" src="assets/images/portadas/semillas.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/semillas">Semillas</a>
                 </div>
             </div>
             <div class="item-6">
-                <img (click)="navigateTo('carnes')" src="assets/images/portadas/carnes.jpg" alt="">
+                <img (click)="navigateTo('carnes')" src="assets/images/portadas/carnes.jpg" alt="" />
                 <div class="texto-encima">
                     <a routerLink="/productos/categoria/carnes">Carnes</a>
                 </div>
@@ -113,7 +154,6 @@
             <a routerLink="/productos/categoria/verduras" class="btn-ver-mas">Ver más</a>
         </div>
     </div>
-
 </section>
 <section class="container my-padding">
     <div class="services">
@@ -122,7 +162,7 @@
                 <span class="flaticon-shipped"></span>
             </div>
 
-            <h3>Envío gratis </h3>
+            <h3>Envío gratis</h3>
             <span>En pedidos de más de Q100</span>
         </div>
         <div class="contenido">
