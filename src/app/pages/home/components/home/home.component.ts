@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { ProductoModel } from 'src/app/models/product.model';
-import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SettingsService } from '../../../../services/settings.service';
+
+
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,6 @@ export class HomeComponent implements OnInit {
   cargando: boolean = false;
   finDeSemana: boolean = false;
 
-  // tslint:disable-next-line: variable-name
   constructor(
     private _productService: ProductService,
     private settingsServise: SettingsService,
@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getSettings();
+    this.getSettings();
     this.cargando = true;
-    // this.obtenerDestacados();
+    this.obtenerDestacados();
   }
 
   // obtener settings
@@ -48,5 +48,14 @@ export class HomeComponent implements OnInit {
     } else {
       this.router.navigateByUrl(`/productos/categoria/${category}`);
     }
+  }
+
+  naviagatePromo(product: string){
+    this.router.navigateByUrl(`/producto/${product}`);
+  }
+
+
+  naviagateCombo(){
+    this.router.navigateByUrl(`/productos/categoria/combos`);
   }
 }
