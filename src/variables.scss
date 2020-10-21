@@ -3,22 +3,22 @@
 
 @font-face {
   font-family: "cream-cake";
-  src: url("/assets/fonts/cream_cake/cream-cake.ttf") format("woff2"),
-    url("/assets/fonts/cream_cake/cream-cake.ttf") format("truetype");
+  src: url(/assets/fonts/cream_cake/cream-cake.ttf) format("woff2"),
+    url(/assets/fonts/cream_cake/cream-cake.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "geoSlab-regular";
-  src: url("/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf")
+  src: url(/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
       format("woff2"),
-    url("/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf")
+    // url(assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
+    url(/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
       format("truetype");
 }
 
-$font-primary: "bebas_kai", Arial, sans-serif;
-$font-secondary: "berlin-sans-fb-regular", Georgia, serif;
-$font-banner-1: "cream-cake", Arial, sans-serif;
-$font-banner-2: "geoSlab-regular", Arial, sans-serif;
+$font-banner-1: 'Pattaya', sans-serif;;
+// $font-banner-1: 'Yellowtail', cursive;
+$font-banner-2: 'Amaranth', sans-serif;
 
 $white: #fff;
 $black: #000000;

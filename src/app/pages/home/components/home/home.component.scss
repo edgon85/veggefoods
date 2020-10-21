@@ -164,14 +164,14 @@ a {
   }
 }
 
-@mixin card-promos {
+@mixin _card-promos {
   .rect {
     position: relative;
     z-index: 1;
     background: white;
     width: 15rem;
     height: 20rem;
-    padding-top: 5px;
+    padding-top: 1em;
     margin: 1rem;
     border-radius: 3px;
     // box-shadow: 1px 2px 50px 0px rgba(0, 0, 0, 0.3);
@@ -526,6 +526,7 @@ a {
             color: #a0c5d5;
             margin: 0;
             line-height: 0.8em;
+            font-weight: 700;
 
             @media screen and (max-width: 767px) {
               margin-top: 0.5em;
@@ -709,7 +710,7 @@ a {
         @media screen and (max-width: 500px) {
           grid-template-columns: 1fr;
           // grid-template-rows: 0.2fr 0.2fr auto 0.2fr;
-          grid-template-rows: 40px 80px 80px 200px;
+          grid-template-rows: 60px 80px 80px 200px;
 
           grid-template-areas:
             'title'
@@ -746,8 +747,9 @@ a {
     justify-content: center;
     margin-top: -12vh;
     margin-bottom: 5em;
+    padding: 0.5em 0;
 
-    @include card-promos;
+    @include _card-promos;
 
     .rect:first-child {
       background-color: #ede3d9;

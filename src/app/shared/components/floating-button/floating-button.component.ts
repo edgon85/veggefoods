@@ -15,8 +15,8 @@ export class FloatingButtonComponent implements OnInit {
     'semillas',
     'especias',
     'carnes',
-    'combos',
-    'orgánico',
+    'combo-fiambre',
+    'orgánicos',
     'varios',
   ];
 
