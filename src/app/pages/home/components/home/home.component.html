@@ -1,5 +1,170 @@
-<app-banner></app-banner>
+<!-- <app-banner></app-banner> -->
 
+<!-- <section class="fin__de-semana" *ngIf="finDeSemana">
+    <div class="container">
+        <h2>Horario fin de semana</h2>
+        <!- - <p>
+            Debido a disposiciones de gobierno, estamos despachando pedidos de <strong>lunes a viernes</strong>
+        </p> - ->
+        Estaremos recibiendo pedidos sábado por la tarde y domingo para entregar el día lunes
+    </div>
+</section> -->
+
+<section class="banner-section">
+    <div class="cover">
+        <div class="content container">
+            <div class="content-grid">
+                <div class="title">
+                    <h2>La mejor selección de productos</h2>
+                </div>
+                <div class="icons-left">
+                    <div class="icon organic">
+                        <a routerLink="/productos/categoria/orgánicos">Orgánicos
+                            <img src="assets/images/home/icono-organicos.png" alt="" /></a>
+                    </div>
+                    <div class="icon veggie">
+                        <a routerLink="/productos/categoria/verduras">Verduras <img
+                                src="assets/images/home/icono-verduras.png" alt="" /></a>
+                    </div>
+                    <div class="icon fruits">
+                        <a routerLink="/productos/categoria/frutas">Frutas <img
+                                src="assets/images/home/icono-frutas.png" alt="" /></a>
+                    </div>
+                </div>
+                <div class="image-principal">
+                    <div class="image">
+                        <img src="assets/images/home/caja.png" alt="" />
+                    </div>
+
+
+                </div>
+                <div class="icons-right">
+                    <div class="icon seed">
+                        <a routerLink="/productos/categoria/semillas"><img src="assets/images/home/icono-semillas.png"
+                                alt="" />
+                            Semillas</a>
+                    </div>
+                    <div class="icon spices">
+                        <a routerLink="/productos/categoria/especias"><img src="assets/images/home/icono-especias.png"
+                                alt="" />
+                            Especias</a>
+                    </div>
+                    <div class="icon meats">
+                        <a routerLink="/productos/categoria/carnes"><img src="assets/images/home/icono-carnes.png"
+                                alt="" />
+                            Carnes</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==================================================================== -->
+    <!-- Cards de promos -->
+    <!-- ==================================================================== -->
+    <div class="card-promos">
+        <div class="rect" (click)="naviagatePromo('ayote-grande-1602274187749')">
+            <h5>
+                Favorito <br />
+                <span>del mes</span>
+            </h5>
+            <img src="assets/images/home/ayote_1.png" alt="" />
+            <h6>Ayote</h6>
+            <span>Comprar</span>
+        </div>
+        <div class="rect" (click)="naviagateCombo()">
+            <h5>
+                Nuestra <br />
+                <span>recomendación</span>
+            </h5>
+            <img src="assets/images/home/fiambre_1.png" alt="" />
+            <h6>Ingredientes para fiambre</h6>
+            <span>Comprar</span>
+        </div>
+        <div class="rect" (click)="naviagatePromo('horchata-de-soya-16-oz-1596776753454')">
+            <h5>
+                Promoción <br />
+                <span>de la semana</span>
+            </h5>
+            <img src="assets/images/home/soya.png" alt="" />
+            <h6>Soya</h6>
+            <div class="subtitle">
+                <div>Antes <strong style="text-decoration: line-through;">Q35.00</strong> Ahora <strong>Q25.00</strong>
+                </div>
+                <!-- <div>Ahora Q25.00</div> -->
+            </div>
+            <span>Comprar</span>
+        </div>
+    </div>
+</section>
+
+<div class="como-funciona-productos">
+    <section class="como-funciona mt-5 mb-5">
+        <app-como-funciona></app-como-funciona>
+    </section>
+
+    <section class="container prod-categorias">
+        <div class="category">
+            <div class="item-1">
+                <img (click)="navigateTo('verduras')" src="assets/images/portadas/verduras.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/verduras">Verduras</a>
+                </div>
+            </div>
+            <div class="item-2">
+                <img (click)="navigateTo('orgánicos')" src="assets/images/portadas/organicos.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/orgánicos">Orgánicos</a>
+                </div>
+            </div>
+            <div class="item-3">
+                <img (click)="navigateTo('frutas')" src="assets/images/portadas/frutas.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/frutas">Frutas</a>
+                </div>
+            </div>
+            <div class="item-4">
+                <img (click)="navigateTo('especias')" src="assets/images/portadas/especias.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/especias">Especias</a>
+                </div>
+            </div>
+            <div class="item-5">
+                <img (click)="navigateTo('semillas')" src="assets/images/portadas/semillas.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/semillas">Semillas</a>
+                </div>
+            </div>
+            <div class="item-6">
+                <img (click)="navigateTo('carnes')" src="assets/images/portadas/carnes.jpg" alt="" />
+                <div class="texto-encima">
+                    <a routerLink="/productos/categoria/carnes">Carnes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="container mb-5">
+    <div *ngIf="cargando" class="loading mt-5">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!cargando" class="container-products">
+        <div class="featured-products-title text-center">
+            <!-- <span class="subheading">Productos destacados</span> -->
+            <h2 class="mb-4">Productos destacados</h2>
+        </div>
+        <div class="featured-products">
+            <ng-container *ngFor="let prod of productos">
+                <app-card-product [producto]="prod"></app-card-product>
+            </ng-container>
+        </div>
+        <div class="text-center mt-md-3">
+            <a routerLink="/productos/categoria/verduras" class="btn-ver-mas">Ver más</a>
+        </div>
+    </div>
+</section>
 <section class="container my-padding">
     <div class="services">
         <div class="contenido">
@@ -7,8 +172,8 @@
                 <span class="flaticon-shipped"></span>
             </div>
 
-            <h3>Envío gratis </h3>
-            <span>EN PEDIDO MÁS DE Q100</span>
+            <h3>Envío gratis</h3>
+            <span>En pedidos de más de Q100</span>
         </div>
         <div class="contenido">
             <div class="icon-2">
@@ -33,58 +198,6 @@
         </div>
     </div>
 </section>
-
-
-<section class="container">
-    <div class="category">
-        <div class="item-1">
-            <img src="assets/images/category-1.jpg" alt="">
-            <div class="texto-encima">
-                <a href="">Frutas</a>
-            </div>
-        </div>
-        <div class="item-2">
-            <img src="assets/images/category.jpg" alt="">
-            <div class="container-detail">
-                <h2>Vegetales</h2>
-                <button class="btn btn-comprar">Comprar ahora</button>
-            </div>
-        </div>
-        <div class="item-3">
-            <img src="assets/images/category-2.jpg" alt="">
-            <div class="texto-encima">
-                <a href="#">Juices</a>
-            </div>
-        </div>
-        <div class="item-4">
-            <img src="assets/images/category-3.jpg" alt="">
-            <div class="texto-encima">
-                <a href="#">Vegetables</a>
-            </div>
-        </div>
-        <div class="item-5">
-            <img src="assets/images/category-4.jpg" alt="">
-            <div class="texto-encima">
-                <a href="#">Dried</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container">
-    <div *ngIf="cargando" class="loading mt-5">
-        <app-loading></app-loading>
-    </div>
-    <div *ngIf="!cargando" class="container-products">
-        <div class="featured-products-title">
-            <span class="subheading">Productos destacados</span>
-            <h2 class="mb-4">Nuestros productos</h2>
-        </div>
-        <div class="featured-products">
-            <ng-container *ngFor="let prod of productos">
-                <app-card-product [producto]="prod"></app-card-product>
-            </ng-container>
-        </div>
-    </div>
-
+<section class="whatsapp">
+    <app-whatsapp></app-whatsapp>
 </section>

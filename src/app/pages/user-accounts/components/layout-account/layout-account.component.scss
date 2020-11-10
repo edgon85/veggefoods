@@ -1,0 +1,14 @@
+@import '../../../../../variables.scss';
+
+.content-account {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 'a_sidebar a_account';
+  .sidebar-section {
+    grid-area: a_sidebar;
+  }
+  .content-section {
+    grid-area: a_account;
+    min-height: 100vh;
+  }
+}

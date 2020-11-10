@@ -1,0 +1,228 @@
+@import '../../../../../variables.scss';
+
+.cart-empty {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  .image {
+    max-width: 400px;
+    img {
+      width: 100%;
+    }
+  }
+  p {
+    text-align: center;
+  }
+  .contenido {
+    width: 300px;
+  }
+}
+
+.carrito-detail {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-areas: 'lista price';
+  gap: 10px;
+  padding: 10px 50px 10px 50px;
+  min-height: 70vh;
+  margin-top: 56px;
+  .cart-list {
+    grid-area: lista;
+  }
+  .cart-price-detail {
+    grid-area: price;
+    .aplicar-cupon {
+      padding: 10px 0px;
+      background: mediumpurple;
+      text-align: center;
+      .btn-tengo-cupon {
+        color: $primary;
+        cursor: pointer;
+        font-size: 16px;
+        height: 50px;
+        letter-spacing: 1px;
+        margin: 10px 0px;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
+
+.responsiveTbl table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  tbody {
+    tr {
+      border-bottom: 1px inset #f4f4f4;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+  }
+}
+
+tr {
+  background: $white;
+  &:hover {
+    .msg {
+      opacity: 1;
+      top: 0;
+    }
+  }
+}
+
+th,
+td {
+  padding: 15px 20px;
+  vertical-align: middle;
+  .image {
+    width: 100px;
+    height: 100px;
+    img {
+      width: 100%;
+    }
+  }
+  .nombre-detalle {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    strong {
+      text-transform: capitalize;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+  .contenedor-incrementador {
+    max-width: 150px;
+    margin: auto;
+  }
+
+  &:nth-child(2) {
+    text-align: left;
+  }
+}
+
+th {
+  background: $primary;
+  color: $white;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 25px 20px;
+}
+
+.price,
+.btn {
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+}
+
+.btn {
+  border: none;
+  color: $black;
+  background: $white;
+  transition: box-shadow 0.3s linear;
+  &:hover {
+    background: $primary;
+    color: $white;
+  }
+}
+
+.btn-pagar {
+  width: 100%;
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+  background-color: $primary;
+  color: $white;
+  transition: box-shadow 0.3s linear;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background: $white;
+    color: $primary;
+    outline: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .carrito-detail {
+    margin-top: 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    background-color: #f7f6f3;
+    grid-template-areas:
+      'lista'
+      'price';
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin: 0 0 15px;
+    display: block;
+  }
+
+  td {
+    position: relative;
+    display: block;
+    text-align: left;
+    padding: 10px 20px 10px 160px;
+
+    &:before {
+      content: '';
+      font-weight: 500;
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    &:nth-of-type(2) {
+      &:before {
+        content: 'Producto';
+      }
+    }
+    &:nth-of-type(3) {
+      &:before {
+        content: 'Precio';
+      }
+    }
+    &:nth-of-type(4) {
+      &:before {
+        content: 'Cantidad';
+      }
+    }
+    &:nth-of-type(5) {
+      &:before {
+        content: 'Total';
+      }
+    }
+    &:nth-of-type(6) {
+      &:before {
+        content: '';
+      }
+    }
+  }
+
+  .price,
+  .btn {
+    border: none;
+    background: $primary;
+    color: $white;
+  }
+}

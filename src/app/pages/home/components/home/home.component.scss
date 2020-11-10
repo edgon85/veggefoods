@@ -158,77 +158,190 @@ a {
 
 @mixin imagen {
   img {
+    cursor: pointer;
     width: 100%;
     height: 100%;
   }
 }
 
-.category {
-  display: grid;
-  //grid-template: 1fr 1fr / 1fr 1fr 1fr;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row: repeat(2, auto);
-  // grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 10px;
-  grid-template-areas:
-    'fruit shop_now juice'
-    'vegetables shop_now dried';
+@mixin _card-promos {
+  .rect {
+    position: relative;
+    z-index: 1;
+    background: white;
+    width: 17rem;
+    height: 24rem;
+    padding-top: 1em;
+    margin: 1rem;
+    border-radius: 3px;
+    // box-shadow: 1px 2px 50px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-  .item-1 {
-    position: relative;
-    display: inline-block;
-    grid-area: fruit;
-    @include imagen;
-    @include texto-encima;
-  }
-  .item-2 {
-    position: relative;
-    grid-area: shop_now;
-    @include imagen;
-    .container-detail {
-      position: absolute;
-      width: 100%;
-      height: 50%;
-      top: 0px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      h2 {
-        color: #82ae46;
-        font-family: $font-secondary;
-        font-style: italic;
-        font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+
+    h5 {
+      font-family: $font-banner-1;
+      font-size: 3em;
+      line-height: 0.6em;
+      color: #537368;
+
+      span {
+        font-family: $font-banner-2;
+        font-size: 0.5em;
       }
-      .btn-comprar {
-        background-color: $primary;
-        border: 1px solid $primary;
-        font-family: $font-primary;
-        color: #fff;
+    }
+    h6 {
+      font-family: $font-banner-2;
+      font-size: 1.5em;
+      color: #da8e6e;
+    }
+
+    span {
+      font-size: 0.8em;
+      font-family: $font-banner-2;
+    }
+
+    img {
+      width: 80%;
+      vertical-align: top;
+    }
+
+    @media screen and (min-width: 767px) {
+      &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
       }
-      :hover {
-        background-color: #fff;
-        color: $primary;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 10rem;
+      height: 15rem;
+
+      h5 {
+        font-size: 2em;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 8rem;
+      height: 11rem;
+      margin: 0.5rem;
+
+      h5 {
+        font-size: 1em;
+      }
+      h6 {
+        font-size: 1em;
       }
     }
   }
-  .item-3 {
-    position: relative;
-    grid-area: juice;
-    @include imagen;
-    @include texto-encima;
+}
+
+.como-funciona-productos {
+  display: grid;
+  grid-template-columns: 1 100%;
+  grid-template-rows: 2 auto;
+  grid-template-areas:
+    'como_funciona'
+    'prod_categorias';
+
+  .como-funciona {
+    grid-area: como_funciona;
   }
-  .item-4 {
-    position: relative;
-    grid-area: vegetables;
-    @include imagen;
-    @include texto-encima;
-  }
-  .item-5 {
-    position: relative;
-    grid-area: dried;
-    @include imagen;
-    @include texto-encima;
+
+  .prod-categorias {
+    grid-area: prod_categorias;
+    padding-top: 20px;
+
+    .category {
+      display: grid;
+      //grid-template: 1fr 1fr / 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      grid-row: repeat(2, auto);
+      // grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 5px;
+      grid-template-areas:
+        'vegetables organic fruit'
+        'especias varios semillas';
+
+      .item-1 {
+        position: relative;
+        display: inline-block;
+        grid-area: vegetables;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-2 {
+        position: relative;
+        display: inline-block;
+        grid-area: organic;
+        @include imagen;
+        @include texto-encima;
+      }
+      /*       .item-2 {
+        position: relative;
+        grid-area: shop_now;
+        @include imagen;
+        .logo {
+          width: 150px;
+        }
+        .container-detail {
+          position: absolute;
+          width: 100%;
+          height: 50%;
+          top: 0px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          // justify-content: space-evenly;
+          h2 {
+            color: #82ae46;
+            font-family: $font-secondary;
+            font-style: italic;
+            font-size: 24px;
+          }
+          .btn-comprar {
+            background-color: $primary;
+            border: 1px solid $primary;
+            font-family: $font-primary;
+            color: #fff;
+          }
+          :hover {
+            background-color: #fff;
+            color: $primary;
+          }
+        }
+      } */
+      .item-3 {
+        position: relative;
+        grid-area: fruit;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-4 {
+        position: relative;
+        grid-area: especias;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-5 {
+        position: relative;
+        grid-area: semillas;
+        @include imagen;
+        @include texto-encima;
+      }
+      .item-6 {
+        position: relative;
+        grid-area: varios;
+        @include imagen;
+        @include texto-encima;
+      }
+    }
   }
 }
 
@@ -256,14 +369,20 @@ a {
   margin-top: 30px;
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @media screen and (max-width: 770px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 }
 // <====== responsive =======> //
 // <============= Media Queries =============> //
 
 @media only screen and (max-width: 768px) {
   .services {
-    background-color: red;
+    // background-color: red;
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: 1fr 1fr !important;
     grid-template-areas:
@@ -275,28 +394,394 @@ a {
     grid-template-columns: repeat(2, 1fr);
     grid-row: repeat(3, auto);
     grid-template-areas:
-      'shop_now fruit'
-      'shop_now juice'
-      'vegetables dried';
+      'vegetables fruit'
+      'organic especias'
+      'semillas varios';
   }
 }
 
 @media only screen and (max-width: 375px) {
   .my-padding {
     padding: 0px !important;
+    margin-bottom: 20px;
     .services {
-      display: none !important;
+      //display: none !important;
+      .contenido {
+        span {
+          font-size: 10px;
+        }
+      }
     }
   }
 
-  .category {
-    grid-template-columns: repeat(1, 1fr);
-    grid-row: repeat(5, auto);
+  .como-funciona-productos {
     grid-template-areas:
-      'shop_now'
-      'fruit'
-      'juice'
-      'vegetables'
-      'dried';
+      'prod_categorias'
+      'como_funciona';
+
+    .prod-categorias {
+      .category {
+        grid-template-columns: repeat(1, 1fr);
+        grid-row: repeat(5, auto);
+        grid-template-areas:
+          'vegetables'
+          'fruit'
+          'especias'
+          'semillas'
+          'organic'
+          'varios';
+
+        .item-2 {
+          .logo {
+            width: 150px;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-ver-mas {
+  width: 200px;
+
+  border: 1px solid $primary;
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px;
+  text-align: center;
+  background-color: $white;
+  color: $primary;
+  transition: box-shadow 0.3s linear;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    outline: none;
+  }
+}
+
+.fin__de-semana {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $white;
+  padding: 10px 0px;
+}
+
+/* ============================================================= */
+/* Baner principal */
+/* ============================================================= */
+.banner-section {
+  .cover {
+    width: 100%;
+    height: 60vh;
+    background: url('../../../../../assets/images/home/fondo.png');
+    // background-position: -24rem -19rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-position: center center;
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      .content-grid {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1.5fr 2fr 1.5fr;
+        grid-template-rows: 1fr 3fr;
+
+        grid-template-areas:
+          'title title title'
+          'icon-left image-center icon-right'
+          'icon-left image-center icon-right';
+
+        .title {
+          // border: 1px solid red;
+          grid-area: title;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          text-align: center;
+          h2 {
+            font-family: $font-banner-1;
+            font-size: 5em;
+            color: #a0c5d5;
+            margin: 0;
+            line-height: 0.8em;
+            font-weight: 700;
+
+            @media screen and (max-width: 767px) {
+              margin-top: 0.5em;
+              font-size: 4em;
+            }
+
+            @media screen and (max-width: 500px) {
+              margin-top: 0.4em;
+              font-size: 2em;
+            }
+          }
+        }
+
+        .icons-left {
+          grid-area: icon-left;
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .icon {
+            // border: 1px solid green;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 0;
+            a {
+              font-family: $font-banner-2;
+              color: #da8e6e;
+              font-size: 1em;
+
+              @media screen and (min-width: 900px) {
+                &:hover {
+                  font-size: 1.1em;
+                }
+              }
+            }
+          }
+
+          .veggie {
+            padding-right: 3em;
+
+            @media screen and (max-width: 500px) {
+              padding: 0;
+            }
+          }
+
+          .organic {
+            @media screen and (max-width: 500px) {
+              //  padding-top: 5em;
+            }
+          }
+          .fruits {
+            @media screen and (max-width: 500px) {
+              //  padding-top: 5em;
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            justify-content: flex-start;
+            margin-top: 1em;
+            .icon {
+              a {
+                font-size: 0.9em;
+                width: max-content;
+              }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            .icon {
+              a {
+                font-size: 0.9em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: max-content;
+              }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
+
+        .image-principal {
+          grid-area: image-center;
+          // border: 1px solid red;
+          width: 100%;
+
+          .image {
+            img {
+              width: 100%;
+              vertical-align: top;
+
+              @media screen and (max-width: 500px) {
+                width: 80%;
+                text-align: center;
+              }
+            }
+          }
+
+          @media screen and (max-width: 991px) {
+            margin: auto 0;
+          }
+
+          @media screen and (max-width: 500px) {
+            margin: auto;
+            text-align: center;
+          }
+        }
+
+        .icons-right {
+          grid-area: icon-right;
+          // border: 1px solid red;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .icon {
+            // border: 1px solid green;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 0;
+            a {
+              font-family: $font-banner-2;
+              color: #da8e6e;
+              font-size: 1em;
+              @media screen and (min-width: 900px) {
+                &:hover {
+                  font-size: 1.1em;
+                }
+              }
+
+              @media screen and (max-width: 500px) {
+                font-size: 0.9em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: max-content;
+              }
+            }
+          }
+          .spices {
+            padding-left: 3em;
+            @media screen and (max-width: 500px) {
+              padding: 0;
+            }
+          }
+          .seed {
+            @media screen and (max-width: 500px) {
+              // padding-bottom: 5em;
+            }
+          }
+          .meats {
+            @media screen and (max-width: 500px) {
+              // padding-bottom: 5em;
+            }
+          }
+
+          @media screen and (max-width: 767px) {
+            justify-content: flex-start;
+            margin-top: 1em;
+            .icon {
+              a {
+                font-size: 0.9em;
+                width: max-content;
+              }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          grid-template-columns: 1fr;
+          // grid-template-rows: 0.2fr 0.2fr auto 0.2fr;
+          grid-template-rows: 60px 80px 80px 200px;
+
+          grid-template-areas:
+            'title'
+            'icon-left'
+            'icon-right'
+            'image-center';
+        }
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      height: 60vh;
+    }
+
+    @media screen and (max-width: 991px) {
+      height: 50vh;
+    }
+
+    @media screen and (max-width: 767px) {
+      height: 45vh;
+    }
+
+    @media screen and (max-width: 500px) {
+      height: 80vh;
+    }
+  }
+
+  /* ============================================================= */
+  /* Tarjetas promocionales */
+  /* ============================================================= */
+  .card-promos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -12vh;
+    margin-bottom: 5em;
+    padding: 0.5em 0;
+
+    @include _card-promos;
+
+    .rect:first-child {
+      background-color: #ede3d9;
+    }
+
+    .rect:nth-child(2) {
+      margin-top: 3em;
+      background-color: #d4e7e5;
+      h6 {
+        color: #537368;
+        @media screen and (max-width: 500px) {
+          font-size: 0.6em;
+        }
+      }
+    }
+
+    .rect:last-child {
+      background-color: #e4e0d5;
+    }
+
+    @media screen and (max-width: 991px) {
+      margin-top: -10vh;
+    }
+
+    @media screen and (max-width: 500px) {
+      margin-top: -20vh;
+    }
+  }
+}
+
+.subtitle {
+  font-size: 0.8em;
+  @media screen and (max-width: 500px) {
+    font-size: 0.5em;
   }
 }

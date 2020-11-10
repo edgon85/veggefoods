@@ -8,6 +8,7 @@
 }
 
 .single-product {
+  min-height: 70vh;
   display: grid;
   grid-template-columns: repeat(2, 50%);
   margin-top: 10px;
@@ -39,18 +40,32 @@
     }
     .price {
       margin-bottom: 1rem;
+      border-bottom: 1px solid lighten($black, 90%);
       .discount {
         text-decoration: line-through;
         color: lighten($black, 70%);
-        margin-left: 20px;
+        margin-right: 20px;
+      }
+      .masa {
+        font-size: 20px;
+        // text-transform: capitalize;
+        margin-left: 10px;
       }
       span {
         font-size: 30px;
         color: $black;
       }
     }
-    .detail {
-      margin-bottom: 30px;
+    .prod-detail {
+      min-height: 200px;
+      ul::slotted {
+        list-style-type: none !important;
+        li {
+          list-style-type: none;
+          font-size: 8px;
+          color: lighten($black, 70%);
+        }
+      }
     }
 
     .contador {
@@ -70,7 +85,7 @@
       border-radius: 30px;
       box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.2);
       padding: 1rem;
-      text-transform: capitalize;
+      // text-transform: capitalize;
     }
 
     .redirect-button {
@@ -98,5 +113,13 @@
     grid-template-columns: 100%;
     grid-template-areas: 'imagen' 'descripcion';
     row-gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .description {
+    .prod-detail {
+      min-height: 100px !important;
+    }
   }
 }

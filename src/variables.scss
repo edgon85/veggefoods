@@ -1,6 +1,25 @@
 @import 'assets/bootstrap/bootstrap';
 @import 'assets/bootstrap/variables';
 
+@font-face {
+  font-family: "cream-cake";
+  src: url(/assets/fonts/cream_cake/cream-cake.ttf) format("woff2"),
+    url(/assets/fonts/cream_cake/cream-cake.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "geoSlab-regular";
+  src: url(/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
+      format("woff2"),
+    // url(assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
+    url(/assets/fonts/typo_geoslab/typo-geo-slab-regular.otf)
+      format("truetype");
+}
+
+$font-banner-1: 'Pattaya', sans-serif;;
+// $font-banner-1: 'Yellowtail', cursive;
+$font-banner-2: 'Amaranth', sans-serif;
+
 $white: #fff;
 $black: #000000;
 // $darken: #3a4348;

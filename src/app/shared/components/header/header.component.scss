@@ -1,6 +1,314 @@
-// @import '../../../../variables.scss';
+@import '../../../../variables.scss';
 
-// .bg-primary {
-//   // background: #82ae46 !important;
-//   background: $primary !important;
-// }
+.bg-primary {
+  // background: #82ae46 !important;
+  background: $primary !important;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.up-head {
+  a {
+    text-decoration: none;
+  }
+}
+
+.navbar {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  .container {
+    .navbar-brand {
+      img {
+        height: 55px;
+      }
+    }
+    .collapse {
+      .search-input {
+        display: flex;
+        input {
+          border-top-left-radius: 50px;
+          border-bottom-left-radius: 50px;
+          border-left: 1px solid #000;
+          border-top: 1px solid #000;
+          border-bottom: 1px solid #000;
+          border-right: 0px;
+          outline: none;
+          padding: 0px 10px;
+          background: transparent;
+        }
+
+        .icon-search {
+          background: transparent;
+          border-left: 0px;
+          border-top: 1px solid #000;
+          border-bottom: 1px solid #000;
+          border-right: 1px solid #000;
+          padding-right: 5px;
+          border-top-right-radius: 50px;
+          border-bottom-right-radius: 50px;
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .up-head {
+    display: none;
+  }
+  .icono-buscar {
+    display: none;
+  }
+
+  .search-input {
+    margin-left: 5px;
+    background: #fff;
+    input {
+      width: 100%;
+      margin-left: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+  .icon-search {
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background: #fff;
+  }
+}
+
+.ftco-navbar-light {
+  background: transparent !important;
+  // position: absolute;
+  // top: 20px;
+  // left: 0;
+  // right: 0;
+  z-index: 3;
+  padding: 0;
+  @include media-breakpoint-down(md) {
+    background: $black !important;
+    position: relative;
+    top: 0;
+    padding: 10px 15px;
+  }
+  &.ftco-navbar-light-2 {
+    position: relative;
+    top: 0;
+  }
+
+  .navbar-brand {
+    color: $primary;
+    &:hover,
+    &:focus {
+      color: $black;
+    }
+    @include media-breakpoint-down(md) {
+      color: $white;
+    }
+  }
+
+  .navbar-nav {
+    @include media-breakpoint-down(md) {
+      padding-bottom: 10px;
+    }
+    > .nav-item {
+      > .nav-link {
+        font-size: 11px;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-weight: 400;
+        color: $black;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        &:hover {
+          color: $black;
+        }
+        opacity: 1 !important;
+        @include media-breakpoint-down(md) {
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 0.9rem;
+          padding-bottom: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+
+      .dropdown-menu {
+        border: none;
+        background: $white;
+        -webkit-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
+        -moz-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
+        box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
+        @include border-radius(0);
+        .dropdown-item {
+          font-size: 14px;
+          &:hover,
+          &:focus {
+            background: transparent;
+            color: $black;
+          }
+        }
+      }
+
+      &.ftco-seperator {
+        position: relative;
+        margin-left: 20px;
+        padding-left: 20px;
+        @include media-breakpoint-down(md) {
+          padding-left: 0;
+          margin-left: 0;
+        }
+        &:before {
+          position: absolute;
+          content: '';
+          top: 10px;
+          bottom: 10px;
+          left: 0;
+          width: 2px;
+          background: rgba($white, 0.05);
+          @include media-breakpoint-down(md) {
+            display: none;
+          }
+        }
+      }
+      &.cta {
+        > a {
+          color: $black;
+          @include media-breakpoint-down(sm) {
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+          @include media-breakpoint-down(md) {
+            color: $white;
+            background: $primary;
+          }
+        }
+      }
+      &.active {
+        > a {
+          color: $black;
+          @include media-breakpoint-down(md) {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    color: rgba(255, 255, 255, 0.5) !important;
+    cursor: pointer;
+    padding-right: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+  &.scrolled {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin-top: -130px;
+    background: $white !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    .nav-item {
+      &.active {
+        > a {
+          color: $primary !important;
+        }
+      }
+      &.cta {
+        > a {
+          color: $white !important;
+          background: $primary;
+          border: none !important;
+
+          span {
+            display: inline-block;
+            color: $white !important;
+          }
+        }
+        &.cta-colored {
+          span {
+            border-color: $primary;
+          }
+        }
+      }
+    }
+
+    .navbar-nav {
+      @include media-breakpoint-down(md) {
+        background: none;
+        border-radius: 0px;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+      }
+    }
+
+    .navbar-nav {
+      @include media-breakpoint-down(sm) {
+        background: none;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+
+    .navbar-toggler {
+      border: none;
+      color: rgba(0, 0, 0, 0.5) !important;
+      border-color: rgba(0, 0, 0, 0.5) !important;
+      cursor: pointer;
+      padding-right: 0;
+      text-transform: uppercase;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+    }
+    .nav-link {
+      padding-top: 0.9rem !important;
+      padding-bottom: 0.9rem !important;
+      color: $black !important;
+      &.active {
+        color: $primary !important;
+      }
+    }
+    &.awake {
+      margin-top: 0px;
+      transition: 0.3s all ease-out;
+    }
+    &.sleep {
+      transition: 0.3s all ease-out;
+    }
+
+    .navbar-brand {
+      color: $black;
+
+      img {
+        height: 30px !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .navbar {
+    .container {
+      .navbar-brand {
+        img {
+          height: 40px;
+        }
+      }
+    }
+  }
+}
