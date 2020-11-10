@@ -64,7 +64,22 @@
     <!-- Cards de promos -->
     <!-- ==================================================================== -->
     <div class="card-promos">
-        <div class="rect" (click)="naviagatePromo('ayote-grande-1602274187749')">
+        <ng-container *ngFor="let item of dataCards">
+            <div class="rect" (click)="naviagatePromo(item.url)">
+                <h5>
+                    {{item.titleCard}} <br />
+                    <span>{{ item.subtitleCard }}</span>
+                </h5>
+                <img [src]="item.image" alt="" />
+                <h6>{{ item.name}}</h6>
+                <div class="subtitle" *ngIf="item.precio !== 0">
+                    <div>Antes <strong style="text-decoration: line-through;">Q{{ item.descuento | number: '1.2':'en'}}</strong> Ahora <strong>Q{{ item.precio | number: '1.2':'en' }}</strong>
+                    </div>
+                </div>
+                <span>Comprar</span>
+            </div>
+        </ng-container>
+        <!-- <div class="rect" (click)="naviagatePromo('ayote-grande-1602274187749')">
             <h5>
                 Favorito <br />
                 <span>del mes</span>
@@ -92,10 +107,9 @@
             <div class="subtitle">
                 <div>Antes <strong style="text-decoration: line-through;">Q35.00</strong> Ahora <strong>Q25.00</strong>
                 </div>
-                <!-- <div>Ahora Q25.00</div> -->
             </div>
             <span>Comprar</span>
-        </div>
+        </div> -->
     </div>
 </section>
 

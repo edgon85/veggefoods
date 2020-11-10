@@ -12,6 +12,38 @@ import { SettingsService } from '../../../../services/settings.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+
+  dataCards: any = [
+    {
+      titleCard: 'Favorito',
+      subtitleCard: 'del Mes',
+      name: 'Choclate',
+      image: 'assets/images/home/chocolate.png',
+      url: 'cuadril-y-pierna-1602277221456',
+      precio: 0.0,
+      descuento: 0.0
+    },
+    {
+      titleCard: 'Nuestra',
+      subtitleCard: 'recomendación',
+      name: 'Pollo',
+      image: 'assets/images/home/pollo.png',
+      url: 'chocolate-para-beber-sabor-natural-1595047522764',
+      precio: 0.0,
+      descuento: 0.0
+    },
+    {
+      titleCard: 'Promoción',
+      subtitleCard: 'de la semana',
+      name: 'Horchata de Soya',
+      image: 'assets/images/home/soya.png',
+      url: 'horchata-de-soya-16-oz-1596776753454',
+      precio: 25,
+      descuento: 35
+    }
+  ];
+
+
   productos: ProductoModel[] = [];
   cargando: boolean = false;
   finDeSemana: boolean = false;
