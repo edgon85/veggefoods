@@ -1,12 +1,22 @@
+
+<section class="pestanias">
+    <button #eyelashBeef (click)="selectEyelashBeef()" class="link">Res</button>
+    <button #eyelashChicken (click)="selectEyelashChicken()" class="link">Pollo</button>
+    <!-- <button #eyelash3 (click)="selectEyelash3()" class="link premesclado">mortero premesclado</button>
+    <button #eyelash4 (click)="selectEyelash4()" class="link general">concreto uso general</button>
+    <button #eyelash5 (click)="selectEyelash5()" class="link vivienda">concretos para vivienda</button> -->
+</section>
+
+
 <section class="organicos">
     <div class="container">
 
         <!-- ============================================ -->
         <!-- res -->
         <!-- ============================================ -->
-        <section class="organicos__item">
+        <section class="organicos__item" *ngIf="btnBeef">
             <div class="organicos__item-title">
-                <h3>Res</h3>
+                <h3>Carne de res</h3>
             </div>
             <div class="organicos__item-body">
                 <div *ngIf="cargando" class="loading mt-5">
@@ -30,9 +40,9 @@
         <!-- ============================================ -->
         <!-- Pollo -->
         <!-- ============================================ -->
-        <section class="organicos__item mt-3">
+        <section class="organicos__item" *ngIf="btnChicken">
             <div class="organicos__item-title">
-                <h3>Pollo</h3>
+                <h3>Carne de pollo</h3>
             </div>
             <div class="organicos__item-body">
                 <div *ngIf="cargando" class="loading mt-5">
