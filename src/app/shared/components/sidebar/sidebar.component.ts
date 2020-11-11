@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
     'semillas',
     'especias',
     'carnes',
-    'combo-fiambre',
+    // 'combo-fiambre',
     'orgánicos',
     'varios',
   ];
