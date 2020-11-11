@@ -45,9 +45,9 @@
     flex-direction: row;
     justify-content: center;
     .link {
-      width: 12em;
+      width: 15em;
       height: 4em;
-      font-size: 6px;
+      font-size: .6em;
       margin-left: 2px;
       border: none;
       border-top-left-radius: 5px;
@@ -55,15 +55,15 @@
       background-color: $color-2;
       color: gray;
       line-height: 10px;
-      padding: 3px;
+      // padding: 3px;
       text-transform: uppercase;
       outline: none;
       cursor: pointer;
   
       @media screen and (min-width: 700px) {
         width: 15em;
-        font-size: 10px;
-        padding: 5px;
+        font-size: 0.8em;
+        // padding: 5px;
       }
     }
   }
