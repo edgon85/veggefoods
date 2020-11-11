@@ -54,7 +54,7 @@
     <div class="card-promos">
         <ng-container *ngIf="promos$ | async as promos">
             <ng-container *ngFor="let item of promos">
-                <div class="rect" (click)="naviagatePromo(item.url)">
+                <div class="rect animated fadeInDown" (click)="naviagatePromo(item.url)">
                     <h5>
                         {{item.titleCard}} <br />
                         <span>{{ item.subtitleCard }}</span>
