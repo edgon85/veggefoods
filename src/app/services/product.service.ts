@@ -39,6 +39,22 @@ export class ProductService {
       })
     );
   }
+  
+  // ==================================================== //
+  // Obtiene todos los productos destacados
+  // ==================================================== //
+  public getlistaOrganicos() {
+    const url =
+      this.urlProduct + '/lista-organicos.json';
+
+    return this.http.get(url).pipe(
+      map((data) => {
+        const datos = Object.keys(data).map((k) => data[k]);
+        // return datos.filter((f) => f.disponible === true);
+        return datos;
+      })
+    );
+  }
 
   // ====================================================
   // Obtiene un producto

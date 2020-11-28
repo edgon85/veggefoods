@@ -19,6 +19,7 @@ import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.component';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
+import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
     ComoFuncionaComponent,
     FloatingButtonComponent,
     RemoveDashPipe,
+    CapitalizadoPipe
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -58,6 +60,7 @@ import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
     WhatsappComponent,
     ComoFuncionaComponent,
     FloatingButtonComponent,
+    CapitalizadoPipe
   ],
 })
 export class SharedModule {}

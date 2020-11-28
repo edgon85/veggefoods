@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { map } from 'rxjs/operators';
 import { ProductoModel } from '../../../../models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organicos',
@@ -9,23 +10,33 @@ import { ProductoModel } from '../../../../models/product.model';
   styleUrls: ['./organicos.component.scss'],
 })
 export class OrganicosComponent implements OnInit {
-  productos: ProductoModel[] = [];
+
+
+  organicos: any[] = [];
   cargando: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
-    this.obtenerProductos();
+    this.cargando = true;
+    this.obtenerlistaDeOrganicos();
   }
 
-  obtenerProductos() {
+  obtenerlistaDeOrganicos() {
     this.productService
-      .getAllProducts()
-      .pipe(map((p) => p.filter((f) => f.categoria === 'orgánico')))
-      .subscribe((resp) => {
-        this.productos = resp.sort((a, b) => a.nombre.localeCompare(b.nombre)); // ordenar alfabeticamente
-        // console.log(this.productos);
-        this.cargando = false;
-      });
+      .getlistaOrganicos()
+      .pipe(
+        map((p) => {
+          let filtrar = p.filter((f) => f['disponible'] === true);
+          this.organicos = filtrar;
+          this.cargando = false;
+        })
+      )
+      .subscribe();
+  }
+
+  selectItem(organicId: string) {
+    // this.router.navigate([`/productos/categoria/orgánicos/${organicId}`, { 'organicId': organicId }])
+    this.router.navigate(['/productos/categoria/orgánicos', organicId]);
   }
 }

@@ -1,0 +1,33 @@
+<section class="organicos">
+    <div class="container">
+
+
+
+        <!-- ============================================ -->
+        <!--  -->
+        <!-- ============================================ -->
+        <section class="organicos__item">
+            <div class="organicos__item-title">
+                <h3>{{ title }}</h3> <a routerLink="/productos/categoria/orgánicos" class="btn btn-back"><i class="fas fa-step-backward"></i> regresar</a>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['categoria'] === 'orgánico'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!--  -->
+        <!-- ============================================ -->
+
+    </div>
+</section>

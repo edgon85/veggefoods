@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-varios',
   templateUrl: './varios.component.html',
-  styleUrls: ['../../../organicos/components/organicos/organicos.component.scss']
+  styleUrls: ['../../../organicos/components/organic-detail/organic-detail.component.scss']
 })
 export class VariosComponent implements OnInit {
 
