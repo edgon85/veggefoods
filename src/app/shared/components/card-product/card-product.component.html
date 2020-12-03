@@ -1,7 +1,7 @@
 <div class="product">
     <div (click)="getProduct(producto._id, producto.categoria)" class="img-prod cursor">
         <img class="img-fluid" [src]="producto.imagen | noImage" alt="" />
-        <span class="status">de temporada</span>
+        <span class="status" *ngIf="producto['isTemporada']">De temporada</span>
         <!-- <div class="overlay"></div> -->
     </div>
     <div class="text-prod cursor">
@@ -19,3 +19,8 @@
         <button class="btn">Agregar</button>
     </div>
 </div>
+
+
+<!-- 
+    (click)="getProduct(producto._id, producto.categoria)"
+ -->
