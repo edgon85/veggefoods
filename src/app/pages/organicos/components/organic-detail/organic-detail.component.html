@@ -17,7 +17,7 @@
                 <div *ngIf="!cargando" class="container-products">
                     <div class="featured-products">
                         <ng-container *ngFor="let prod of productos">
-                            <ng-container *ngIf="prod['categoria'] === 'orgánico'">
+                            <ng-container *ngIf="prod['categoria'] === 'orgánicos'">
                                 <app-card-product [producto]="prod"></app-card-product>
                             </ng-container>
                         </ng-container>
