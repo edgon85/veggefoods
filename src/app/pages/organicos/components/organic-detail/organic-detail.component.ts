@@ -58,6 +58,9 @@ export class OrganicDetailComponent implements OnInit {
       case 'cafe':
         this.title = 'Café';
         break;
+      case 'q-chips':
+        this.title = 'q chips';
+        break;
       default:
         this.title = name;
         break;

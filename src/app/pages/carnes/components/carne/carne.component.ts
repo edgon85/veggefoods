@@ -12,9 +12,11 @@ export class CarneComponent implements OnInit {
 
   @ViewChild('eyelashBeef', { static: true }) eyelashBeef: ElementRef;
   @ViewChild('eyelashChicken', { static: true }) eyelashChiken: ElementRef;
+  @ViewChild('eyelashSeaFood', { static: true }) eyelashSeaFood: ElementRef;
 
   btnBeef: boolean = false;
   btnChicken: boolean = false;
+  btnSeaFood: boolean = false;
 
 
   productos: ProductoModel[] = [];
@@ -45,15 +47,27 @@ export class CarneComponent implements OnInit {
   selectEyelashBeef(){
     this.btnBeef = true;
     this.btnChicken = false;
+    this.btnSeaFood = false;
     this.eyelashBeef.nativeElement.classList.add('btnSelected');
     this.eyelashChiken.nativeElement.classList.remove('btnSelected');
+    this.eyelashSeaFood.nativeElement.classList.remove('btnSelected');
   }
 
   selectEyelashChicken(){
     this.btnBeef = false;
     this.btnChicken = true;
+    this.btnSeaFood = false;
     this.eyelashBeef.nativeElement.classList.remove('btnSelected');
     this.eyelashChiken.nativeElement.classList.add('btnSelected');
+    this.eyelashSeaFood.nativeElement.classList.remove('btnSelected');
+  }
+  selectEyelashSeaFood(){
+    this.btnBeef = false;
+    this.btnChicken = false;
+    this.btnSeaFood = true;
+    this.eyelashBeef.nativeElement.classList.remove('btnSelected');
+    this.eyelashChiken.nativeElement.classList.remove('btnSelected');
+    this.eyelashSeaFood.nativeElement.classList.add('btnSelected');
   }
 
 
