@@ -1,61 +1,5 @@
 @import '../../../../../variables.scss';
 
-.header-product {
-  padding: 5em 0;
-  display: flex;
-  justify-content: center;
-  background-image: url('../../../../../assets/images/bg-1.jpg');
-  background-color: #4b4a4a;
-  background-blend-mode: soft-light;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-
-  h2 {
-    font-weight: 800;
-    color: $white;
-    font-size: 30px;
-    font-family: $font-primary;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-}
-
-.product-container {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-areas: 'a_sidebar a_products';
-  .sidebar {
-    grid-area: a_sidebar;
-  }
-  .section-productos {
-    grid-area: a_products;
-    min-height: 100vh;
-    //padding: 25px;
-    //display: grid;
-    //grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .header-product {
-    padding: 3em 0;
-    h2 {
-      font-weight: 600;
-      font-size: 22px;
-    }
-  }
-
-  .product-container {
-    grid-template-columns: 1fr;
-    grid-template-areas: 'a_products' 'a_sidebar';
-  }
-}
-
-@media only screen and (max-width: 375px) {
-}
-
-/* Modal */
 .myModal {
   .overlay {
     background: rgba($color: #000000, $alpha: 0.3);
@@ -81,14 +25,27 @@
       max-width: 1000px;
 
       .btn-close-popup {
-        font-size: 20px;
-        line-height: 16px;
-        display: block;
-        text-align: right;
-        color: #bbbbbb;
-        transition: 0.3s ease all;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #332927;
+        box-shadow: 0 6px 10px 0 rgba(128, 98, 96, 0.16);
+        cursor: pointer;
+        z-index: 2;
+        font-size: 10px;
+
+        color: #fff;
+        border: 2px solid #e5edef;
+        outline: none;
+
         &:hover {
-          color: #000000;
+          color: #e5edef;
         }
       }
 
@@ -195,7 +152,8 @@
     }
   }
 
-  .overlay.active{
-    visibility: hidden;
+  .overlay.active {
+    // visibility: hidden;
+    display: none;
   }
 }
