@@ -22,29 +22,29 @@
                         <app-incrementador></app-incrementador>
                     </div>
                     <div class="options">
-                        <form>
+                        <form [formGroup]="forma">
                             <div class="form-group">
                               <label>Seleccione la madurez</label>
-                              <select class="form-control">
+                              <select class="form-control" formControlName="madurez">
                                 <option>Verde (7 días)</option>
                                 <option>Normal (3 a 5 días)</option>
                                 <option>Madura (Para hoy)</option>
                               </select>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" value="" id="checkComentario" (change)="changeTexboxValue($event)">
+                                <label class="form-check-label" for="checkComentario">
                                     Agregar comentario
                                 </label>
                               </div>
-                            <div class="form-group">
+                            <div class="form-group" *ngIf="isComentario">
                               <!-- <label >Agregar comentario</label> -->
-                              <textarea class="form-control"></textarea>
+                              <textarea formControlName="especificacion"  class="form-control"></textarea>
                             </div>
                           </form>
                     </div>
                     <div class="button-add">
-                        <button>Agregar al carrito</button>
+                        <button (click)="addToCart(modalProducService.product)">Agregar al carrito</button>
                     </div>
                 </div>
             </div>

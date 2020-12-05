@@ -157,3 +157,16 @@
     display: none;
   }
 }
+
+.showComentario{
+  display: none;
+}
+
+.comentario{
+  border: 1px solid red;
+  &:checked {
+    & ~ .showComentario{
+      display: block;
+    }
+  }
+}
