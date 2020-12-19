@@ -3,9 +3,7 @@
     <button #eyelashBeef (click)="selectEyelashBeef()" class="link">Res</button>
     <button #eyelashChicken (click)="selectEyelashChicken()" class="link">Pollo</button>
     <button #eyelashSeaFood (click)="selectEyelashSeaFood()" class="link">Mariscos</button>
-    <!-- <button #eyelash3 (click)="selectEyelash3()" class="link premesclado">mortero premesclado</button>
-    <button #eyelash4 (click)="selectEyelash4()" class="link general">concreto uso general</button>
-    <button #eyelash5 (click)="selectEyelash5()" class="link vivienda">concretos para vivienda</button> -->
+    <button #eyelashSausages (click)="selectEyelashSausages()" class="link">Embutidos</button>
 </section>
 
 
@@ -87,7 +85,33 @@
             </div>
         </section>
         <!-- ============================================ -->
-        <!-- Pollo res -->
+        <!-- Fin Mariscos -->
+        <!-- ============================================ -->
+
+        <!-- ============================================ -->
+        <!-- Embutidos -->
+        <!-- ============================================ -->
+        <section class="organicos__item" *ngIf="btnSausages">
+            <div class="organicos__item-title">
+                <h3>Embutidos</h3>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['subcategoria'] === 'embutidos'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!-- fin embutidos -->
         <!-- ============================================ -->
 
         <div class="mb-5"></div>

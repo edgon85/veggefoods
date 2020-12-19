@@ -11,12 +11,14 @@ import { map } from 'rxjs/operators';
 export class CarneComponent implements OnInit {
 
   @ViewChild('eyelashBeef', { static: true }) eyelashBeef: ElementRef;
-  @ViewChild('eyelashChicken', { static: true }) eyelashChiken: ElementRef;
+  @ViewChild('eyelashChicken', { static: true }) eyelashChicken: ElementRef;
   @ViewChild('eyelashSeaFood', { static: true }) eyelashSeaFood: ElementRef;
+  @ViewChild('eyelashSausages', { static: true }) eyelashSausages: ElementRef;
 
   btnBeef: boolean = false;
   btnChicken: boolean = false;
   btnSeaFood: boolean = false;
+  btnSausages: boolean = false;
 
 
   productos: ProductoModel[] = [];
@@ -48,27 +50,44 @@ export class CarneComponent implements OnInit {
     this.btnBeef = true;
     this.btnChicken = false;
     this.btnSeaFood = false;
+    this.btnSausages = false
     this.eyelashBeef.nativeElement.classList.add('btnSelected');
-    this.eyelashChiken.nativeElement.classList.remove('btnSelected');
+    this.eyelashChicken.nativeElement.classList.remove('btnSelected');
     this.eyelashSeaFood.nativeElement.classList.remove('btnSelected');
+    this.eyelashSausages.nativeElement.classList.remove('btnSelected');
   }
 
   selectEyelashChicken(){
     this.btnBeef = false;
     this.btnChicken = true;
     this.btnSeaFood = false;
+    this.btnSausages = false
     this.eyelashBeef.nativeElement.classList.remove('btnSelected');
-    this.eyelashChiken.nativeElement.classList.add('btnSelected');
+    this.eyelashChicken.nativeElement.classList.add('btnSelected');
     this.eyelashSeaFood.nativeElement.classList.remove('btnSelected');
+    this.eyelashSausages.nativeElement.classList.remove('btnSelected');
   }
   selectEyelashSeaFood(){
     this.btnBeef = false;
     this.btnChicken = false;
     this.btnSeaFood = true;
+    this.btnSausages = false
     this.eyelashBeef.nativeElement.classList.remove('btnSelected');
-    this.eyelashChiken.nativeElement.classList.remove('btnSelected');
+    this.eyelashChicken.nativeElement.classList.remove('btnSelected');
     this.eyelashSeaFood.nativeElement.classList.add('btnSelected');
+    this.eyelashSausages.nativeElement.classList.remove('btnSelected');
   }
 
+
+  selectEyelashSausages(){
+    this.btnBeef = false;
+    this.btnChicken = false;
+    this.btnSeaFood = false;
+    this.btnSausages = true
+    this.eyelashBeef.nativeElement.classList.remove('btnSelected');
+    this.eyelashChicken.nativeElement.classList.remove('btnSelected');
+    this.eyelashSeaFood.nativeElement.classList.remove('btnSelected');
+    this.eyelashSausages.nativeElement.classList.add('btnSelected');
+  }
 
 }
