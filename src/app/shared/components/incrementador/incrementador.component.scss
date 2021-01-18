@@ -11,6 +11,16 @@ input[type='number'] {
 }
 
 input {
-  outline: none;
+  outline: none !important;
   text-align: center;
+ &:focus{
+   outline: none !important;
+ }
+}
+
+
+@media screen and (max-width: 500px){
+  input{
+    height: 30px !important;
+  }
 }

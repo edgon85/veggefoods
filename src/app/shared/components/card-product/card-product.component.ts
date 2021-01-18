@@ -5,6 +5,7 @@ import { CartInterface } from '../../../interfaces/cart.interface';
 import { CartService } from '../../../services/cart.service';
 import Swal from 'sweetalert2';
 import { mergeAll, pluck } from 'rxjs/operators';
+import { ProductModalService } from 'src/app/services/product-modal.service';
 
 @Component({
   selector: 'app-card-product',
@@ -16,7 +17,11 @@ export class CardProductComponent implements OnInit {
 
   estaEnCarrito: boolean = false;
 
-  constructor(private router: Router, private cartService: CartService) {}
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private producModalService: ProductModalService
+  ) {}
 
   ngOnInit() {
     this.revisarSiEstaEnCarrito();
@@ -27,6 +32,17 @@ export class CardProductComponent implements OnInit {
     this.router.navigate(['/producto', productId]);
   }
 
+  /* ========================= */
+  /* Abrir el modal */
+  /* ========================= */
+  abrirModal(){
+    // console.log(producto);
+    // console.log(`Esta en carrito ${this.estaEnCarrito}`)
+    this.producModalService.abrirModal(this.producto, this.estaEnCarrito);
+  }
+
+  /* ========================= */
+  
   addToCart() {
     const cart: CartInterface = {
       cartItemId: this.producto._id,

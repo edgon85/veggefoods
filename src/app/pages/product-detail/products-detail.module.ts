@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductsDetailRoutingModule } from './products-detail.routing';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { DomeseguroProductdetailPipe } from '../../pipes/domeseguro-productdetail.pipe';
+// import { DomeseguroProductdetailPipe } from '../../pipes/domeseguro-productdetail.pipe';
 
 @NgModule({
-  declarations: [ProductDetailComponent, DomeseguroProductdetailPipe],
+  declarations: [ProductDetailComponent, 
+    // DomeseguroProductdetailPipe
+  ],
   imports: [
     CommonModule,
     SharedModule,
