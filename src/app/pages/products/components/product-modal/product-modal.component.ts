@@ -34,7 +34,6 @@ export class ProductModalComponent implements OnInit {
     private router: Router   
   ) {
     this.formularioEspecificacionesProducto();
-    console.log(modalProducService.product);
   }
 
   ngOnInit() {
@@ -105,7 +104,6 @@ export class ProductModalComponent implements OnInit {
       showConfirmButton: false,
       timer: 2500,
     });
-    console.log(cartItem);
 
     this.closeModal();
   }

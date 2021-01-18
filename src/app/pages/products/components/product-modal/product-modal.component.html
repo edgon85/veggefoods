@@ -14,11 +14,11 @@
                             <span class="price">Q{{modalProducService.product.precio | number: '1.2':'en'}}</span>
                             <small class="mass">c/{{modalProducService.product.masa}}</small>
                         </p>
-                        <!-- <div class="detail-text">{{ modalProducService.product.detalle }}</div> -->
+
                         <div class="detail-text">
                             <div [innerHTML]="modalProducService.product.detalle | domeseguroProductdetail"></div>
                         </div>
-                        <!-- [innerHTML]="producto.detalle | domeseguroProductdetail" -->
+
                     </div>
                     <div class="incrementador" *ngIf="!modalProducService.isInCart">
                         <app-incrementador (actualizaValor)="cantidadProductDetail = $event" [progresoIncrementador]="cantidadProductDetail"></app-incrementador>
@@ -31,7 +31,7 @@
                               <select class="form-control" formControlName="madurez">
                                 <option>Verde (7 días)</option>
                                 <option>Normal (3 a 5 días)</option>
-                                <option>Madura (Para hoy)</option>
+                                <option>Maduro (Para hoy)</option>
                               </select>
                             </div>
 
@@ -41,7 +41,7 @@
                               </div>
 
                             <div class="form-group" *ngIf="isComentario">
-                              <!-- <label >Agregar comentario</label> -->
+
                               <textarea formControlName="especificacion"  class="form-control" placeholder="Comenta cómo quiere recibir este producto"></textarea>
                             </div>
                           </form>
