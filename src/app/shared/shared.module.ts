@@ -20,6 +20,7 @@ import { ComoFuncionaComponent } from './components/como-funciona/como-funciona.
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
 import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.pipe';
+import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.p
     ComoFuncionaComponent,
     FloatingButtonComponent,
     RemoveDashPipe,
-    DomeseguroProductdetailPipe
+    DomeseguroProductdetailPipe,
+    CapitalizadoPipe
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   exports: [
@@ -60,7 +62,8 @@ import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.p
     WhatsappComponent,
     ComoFuncionaComponent,
     FloatingButtonComponent,
-    DomeseguroProductdetailPipe
+    DomeseguroProductdetailPipe,
+    CapitalizadoPipe
   ],
 })
 export class SharedModule {}

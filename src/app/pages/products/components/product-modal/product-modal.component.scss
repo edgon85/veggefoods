@@ -24,6 +24,7 @@
       text-align: center;
       // width: 600px;
       max-width: 1000px;
+      overflow-y: scroll;
 
       @media screen and (max-width: 900px){
         max-width: 90%;

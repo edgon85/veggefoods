@@ -1,6 +1,6 @@
 <div class="product">
     <div (click)="abrirModal()" class="img-prod cursor">
-        <img class="img-fluid" [src]="producto.imagen | noImage" alt="" />
+        <img class="img-fluid" [src]="producto.imagen | noImage" alt="Vegetal Go" title="Vegetal Go"/>
         <span class="status" *ngIf="producto['deTemporada']">De temporada</span>
     </div>
     <div class="text-prod cursor">

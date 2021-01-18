@@ -55,9 +55,9 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getSettings();
+    // this.getSettings();
     this.cargando = true;
-    this.obtenerDestacados();
+    // this.obtenerDestacados();
   }
 
   // obtener settings
