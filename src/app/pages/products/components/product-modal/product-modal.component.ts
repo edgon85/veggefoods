@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+// import { mergeAll, pluck } from 'rxjs/operators';
+import { CartInterface } from 'src/app/interfaces/cart.interface';
+import { ProductoModel } from 'src/app/models/product.model';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductModalService } from 'src/app/services/product-modal.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-modal',
@@ -9,6 +15,9 @@ import { ProductModalService } from 'src/app/services/product-modal.service';
 })
 export class ProductModalComponent implements OnInit {
 
+  cantidadProductDetail: number = 1;
+
+  /* ---------------- */
   nivelMadurez = [
     {medio: ''},
     {}
@@ -20,9 +29,12 @@ export class ProductModalComponent implements OnInit {
 
   constructor(
     public modalProducService: ProductModalService,
-    private fb: FormBuilder   
+    private cartService: CartService,
+    private fb: FormBuilder,
+    private router: Router   
   ) {
     this.formularioEspecificacionesProducto();
+    console.log(modalProducService.product);
   }
 
   ngOnInit() {
@@ -39,7 +51,8 @@ export class ProductModalComponent implements OnInit {
     formularioEspecificacionesProducto(){
       this.forma = this.fb.group({
         madurez: [''],
-        especificacion: ['']
+        especificacion: [''],
+        isComentarioChecked: [false]
       });
     }
 
@@ -48,19 +61,62 @@ export class ProductModalComponent implements OnInit {
   closeModal(){
     this.forma.reset({
       madurez: 'Normal (3 a 5 días)',
-      especificacion: ''
+      especificacion: '',
+      isComentarioChecked: false
     })
+    this.isComentario = false;
+    this.cantidadProductDetail = 1;
     this.modalProducService.closeModal();
   }
 
-  addToCart(producto: any){
-    console.log(producto);
-    console.log(this.forma.value.madurez);
-    console.log(this.forma.value.especificacion);
-    console.log(this.forma.value.checkComentario);
+  addToCart(producto: ProductoModel) {
+
+    let myadurez: string  = '';
+    (producto.opciones.madurez) ? myadurez =  this.forma.value.madurez : myadurez;
+
+    const product: ProductoModel = {
+      _id: producto._id,
+      categoria: producto.categoria,
+      descuento: producto.descuento,
+      destacado: producto.destacado,
+      detalle: producto.detalle,
+      imagen: producto.imagen,
+      masa: producto.masa,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      comentaio: this.forma.value.especificacion,
+      madurez: myadurez
+    }
+
+    const cartItem: CartInterface = {
+      cartItemId: product._id,
+      quantity: this.cantidadProductDetail,
+      total: this.cantidadProductDetail * product.precio,
+      product: product,
+    }
+      
+
+
+    this.cartService.addToCart(cartItem);
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `Se agregó ${producto.nombre} al carrito`,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+    console.log(cartItem);
+
+    this.closeModal();
   }
 
   changeTexboxValue(f:any){
     this.isComentario = f.currentTarget.checked;
+  }
+
+
+  verCarrito(){
+    this.router.navigateByUrl('/cart');
+    this.closeModal();
   }
 }

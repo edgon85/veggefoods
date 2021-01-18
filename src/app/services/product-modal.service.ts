@@ -7,6 +7,7 @@ import { ProductoModel } from '../models/product.model';
 export class ProductModalService {
 
   public product: ProductoModel;
+  public isInCart: boolean;
 
   private _ocultarModal: boolean = true;
 
@@ -15,7 +16,8 @@ export class ProductModalService {
   };
 
 
-  abrirModal(producto: ProductoModel){
+  abrirModal(producto: ProductoModel, isInCart?: boolean){
+    this.isInCart = isInCart;
     this.product = producto
     // console.log(this.product);
     this._ocultarModal = false;

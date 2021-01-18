@@ -35,9 +35,10 @@ export class CardProductComponent implements OnInit {
   /* ========================= */
   /* Abrir el modal */
   /* ========================= */
-  abrirModal(producto: ProductoModel){
+  abrirModal(){
     // console.log(producto);
-    this.producModalService.abrirModal(this.producto);
+    // console.log(`Esta en carrito ${this.estaEnCarrito}`)
+    this.producModalService.abrirModal(this.producto, this.estaEnCarrito);
   }
 
   /* ========================= */

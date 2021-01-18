@@ -8,14 +8,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProductsRoutingModule } from './products.routing';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
-import { DomeseguroProductdetailPipe } from 'src/app/pipes/domeseguro-productdetail.pipe';
+// import { DomeseguroProductdetailPipe } from 'src/app/pipes/domeseguro-productdetail.pipe';
 
 @NgModule({
   declarations: [
     ProductComponent,
     ProductPageComponent,
     ProductModalComponent,
-    DomeseguroProductdetailPipe,
+    // DomeseguroProductdetailPipe,
   ],
   imports: [
     CommonModule,

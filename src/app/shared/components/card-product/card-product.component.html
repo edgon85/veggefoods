@@ -1,11 +1,10 @@
 <div class="product">
-    <div (click)="abrirModal(producto)" class="img-prod cursor">
+    <div (click)="abrirModal()" class="img-prod cursor">
         <img class="img-fluid" [src]="producto.imagen | noImage" alt="" />
-        <span class="status" *ngIf="producto['isTemporada']">De temporada</span>
-        <!-- <div class="overlay"></div> -->
+        <span class="status" *ngIf="producto['deTemporada']">De temporada</span>
     </div>
     <div class="text-prod cursor">
-        <h3 (click)="abrirModal(producto)">
+        <h3 (click)="abrirModal()">
             {{ producto.nombre }}
         </h3>
         <div class="pricing">
@@ -16,7 +15,7 @@
         </div>
     </div>
     <div class="button-add">
-        <button class="btn" (click)="abrirModal(producto)">Agregar</button>
+        <button class="btn" (click)="abrirModal()">Agregar</button>
     </div>
 </div>
 

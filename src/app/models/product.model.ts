@@ -8,6 +8,12 @@ export class ProductoModel {
     public destacado: boolean,
     public imagen: string,
     public precio: number,
-    public masa: string
+    public masa: string,
+    public comentaio?: string,
+    public madurez?: string,
+    public opciones?: {
+      comentario: false,
+      madurez: false
+    }
   ) {}
 }
