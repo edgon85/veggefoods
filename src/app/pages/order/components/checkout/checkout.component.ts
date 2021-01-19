@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -8,8 +8,6 @@ import {
 
 import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
-import { UsuarioModel } from '../../../../interfaces/user.interface';
-import { Observable } from 'rxjs';
 import { Checkout } from '../../../../interfaces/checkout.interface';
 import { CartInterface } from '../../../../interfaces/cart.interface';
 import { CartService } from '../../../../services/cart.service';
@@ -22,7 +20,6 @@ import {
 } from '../../../../interfaces/checkout.interface';
 
 import * as moment from 'moment';
-import { MY_FORMATS } from '../../../../material/material.module';
 import { CuponService } from '../../../../services/cupon.service';
 import { SettingsService } from '../../../../services/settings.service';
 
@@ -37,6 +34,7 @@ export class CheckoutComponent implements OnInit {
   prontoPosible: boolean = false;
   finDeSemana: boolean = false;
   diasAumento: number = 1;
+  horasAumento: string = '10:00 am'
   // suario$: Observable<UsuarioModel>;
   userUid: string = '';
   userEmail = '';
@@ -55,6 +53,9 @@ export class CheckoutComponent implements OnInit {
     label: key,
     key: Zona[key],
   }));
+
+  municipioInit: string;
+  zonaInit: string;
 
   // para los productos
   products: CartInterface[];
@@ -119,9 +120,18 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   private getSettings() {
     this.settings.getProntoPosible().subscribe((resp: any) => {
+
+      let horas: string = '';
+      if(resp.dias_aumento >= 2){
+        horas = '10:00 am';
+      }else {
+        horas = resp.horas_no_disponibles;
+      }
+
       this.prontoPosible = resp.estado;
       this.finDeSemana = resp.fin_de_semana;
       this.diasAumento = resp.dias_aumento;
+      this.horasAumento = horas;
 
       this.fechasDeCalendario();
     });
@@ -174,14 +184,14 @@ export class CheckoutComponent implements OnInit {
       // this.forma.setValue({
       this.forma.reset({
         correo: resp.email,
-        nombre: resp.nombre,
+        nombre: (resp['nombreRecibe'] != null) ? resp['nombreRecibe'] : resp.nombre,
         telefono: resp.telefono,
         direccion: {
           departamento: Departamento.Quetzaltenango,
-          municipio: Municipio.Quetzaltenango,
-          zona: Zona.Zona1,
-          ubicacion: '',
-          referencia: '',
+          municipio: (resp['municipio'] != null) ? resp['municipio'] : Municipio.Quetzaltenango,
+          zona: (resp['zona'] != null) ? resp['zona'] : Zona.Zona1,
+          ubicacion: (resp['direccion'] != null) ? resp['direccion'] : '',
+          referencia: (resp['referencia'] != null) ? resp['referencia'] : '',
         },
       });
     });
@@ -344,7 +354,8 @@ export class CheckoutComponent implements OnInit {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.value) {
-          this.userService.sendOrder(this.userUid, checkoutData);
+           this.userService.sendOrder(this.userUid, checkoutData);
+          this.safeUserData();
         }
       });
     }
@@ -445,4 +456,25 @@ export class CheckoutComponent implements OnInit {
         // console.log(`cuponUsado => ${this.cuponUsado}`);
       });
   }
+
+  /* <========================================================> */
+  /* <================ Guardar datos del Usuario =============> */
+  /* <========================================================> */
+  safeUserData() {
+    const dataUser: object = {
+      nombreRecibe: this.forma.value.nombre,
+      telefono: this.forma.value.telefono,
+      ciudad: this.forma.value.direccion.departamento,
+      municipio: this.forma.value.direccion.municipio,
+      zona: this.forma.value.direccion.zona,
+      direccion: this.forma.value.direccion.ubicacion,
+      referencia: this.forma.value.direccion.referencia,
+      uid: this.userUid,
+    };
+
+    this.userService
+      .updateUser(this.userUid, dataUser)
+      .then((resp) => console.log('datos guardados'));
+  }
+  /* <========================================================> */
 }

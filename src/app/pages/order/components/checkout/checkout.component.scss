@@ -40,7 +40,14 @@
       'lista'
       'price';
   }
-  .chekout-data {
-    // padding: 0px 10px !important;
+
+}
+
+
+.disclaimer{
+  font-size: 12px;
+  color: red;
+  @media screen and (max-width: 500px){
+    font-size: 9px;
   }
 }
