@@ -12,7 +12,7 @@ declare var gtag;
 export class AppComponent {
   title = 'greenfood';
   constructor(private router: Router) {
-    const navEndEvents$ = this.router.events.pipe(
+/*     const navEndEvents$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
     );
 
@@ -20,6 +20,6 @@ export class AppComponent {
       gtag('config', 'UA-167164453-1', {
         page_path: event.urlAfterRedirects,
       });
-    });
+    }); */
   }
 }

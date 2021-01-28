@@ -1,0 +1,11 @@
+<div class="cupon">
+    <button *ngIf="!inputCupon" class="button-cupon" (click)="showInputCupon()">Aplicar cupón</button>
+    <ng-container *ngIf="inputCupon">
+        <form [formGroup]="formDescuento" class="form-cupon">
+            <input  formControlName="cupon" class="input-cupon" type="text" placeholder="Introducir cupón">
+            <button (click)="readCupon()" class="button-apply-cupon">Aplicar</button>
+        </form>
+        <small *ngIf="validarCampo('cupon')" class="text-alert">El código de cupón introducido no es válido.</small>
+    </ng-container>
+
+</div>  

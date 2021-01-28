@@ -474,7 +474,7 @@ export class CheckoutComponent implements OnInit {
 
     this.userService
       .updateUser(this.userUid, dataUser)
-      .then((resp) => console.log('datos guardados'));
+      .then((resp) => {});
   }
   /* <========================================================> */
 }

@@ -7,7 +7,7 @@ import { CardProductComponent } from './components/card-product/card-product.com
 import { LoadingComponent } from './components/loading/loading.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { IncrementadorComponent } from './components/incrementador/incrementador.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderProductComponent } from './components/header-product/header-product.component';
 import { TotalCartDetailComponent } from './components/total-cart-detail/total-cart-detail.component';
 import { SidebarAccountComponent } from './components/sidebar-account/sidebar-account.component';
@@ -21,6 +21,7 @@ import { FloatingButtonComponent } from './components/floating-button/floating-b
 import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
 import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.pipe';
 import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
+import { CuponComponent } from '../pages/order/cupon/cupon.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,10 @@ import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
     FloatingButtonComponent,
     RemoveDashPipe,
     DomeseguroProductdetailPipe,
-    CapitalizadoPipe
+    CapitalizadoPipe,
+    CuponComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     FooterComponent,
     HeaderComponent,
