@@ -110,4 +110,15 @@ export class UserService {
       .doc<OrderInterface>(`users/${userUid}/order/${orderId}`)
       .valueChanges();
   }
+
+  // ================================================================ //
+  // Crear orden en usuario //
+  // ================================================================ //
+  public createCuponInUser(userUid: string, data: object) {
+    const cuponRef: AngularFirestoreDocument = this.afs.doc(
+      `users/${userUid}/cupones/${data['id']}`
+    );
+
+    return cuponRef.set(data).then(() => {});
+  }
 }

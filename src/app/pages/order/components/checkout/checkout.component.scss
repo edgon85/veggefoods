@@ -40,14 +40,12 @@
       'lista'
       'price';
   }
-
 }
 
-
-.disclaimer{
-  font-size: 12px;
+.disclaimer {
+  font-size: 10px;
   color: red;
-  @media screen and (max-width: 500px){
-    font-size: 9px;
+  @media screen and (max-width: 500px) {
+    font-size: 8px;
   }
 }

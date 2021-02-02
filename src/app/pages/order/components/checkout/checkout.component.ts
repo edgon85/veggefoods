@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -11,7 +11,6 @@ import { UserService } from '../../../../services/user.service';
 import { Checkout } from '../../../../interfaces/checkout.interface';
 import { CartInterface } from '../../../../interfaces/cart.interface';
 import { CartService } from '../../../../services/cart.service';
-import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {
   Departamento,
@@ -36,8 +35,7 @@ export class CheckoutComponent implements OnInit {
   prontoPosible: boolean = false;
   finDeSemana: boolean = false;
   diasAumento: number = 1;
-  horasAumento: string = '10:00 am'
-  // suario$: Observable<UsuarioModel>;
+  horasAumento: string = '10:00 am';
   userUid: string = '';
   userEmail = '';
 
@@ -64,10 +62,6 @@ export class CheckoutComponent implements OnInit {
 
   // variable de totales
   totales: Totals;
-  /* subtotal: number = 0;
-  delivery: number = 0;
-  discount: number = 0;
-  total: number = 0; */
 
   // variable para el formulario
   forma: FormGroup;
@@ -86,21 +80,12 @@ export class CheckoutComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
-  tengoUnCupon: boolean = false;
-  loadingCupon: boolean = false;
-
-  formDescuento: FormGroup;
-  cuponValido: boolean = false;
-  cuponUsado: boolean = false;
-  valorCupon: number = 0.0;
-
   //
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
     private cartService: CartService,
-    private cuponService: CuponService,
     private settings: SettingsService,
     private totalService: TotalService
   ) {
@@ -108,26 +93,20 @@ export class CheckoutComponent implements OnInit {
     this.formularioCheckout();
     this.formularioPago();
     this.initDataUser();
-    // this.fechasDeCalendario();
   }
   //
 
-  ngOnInit() {
-    this.formDescuento = this.fb.group({
-      cupon: ['', Validators.required],
-    });
-  }
+  ngOnInit() {}
 
   // <=================================================================> //
   //  obtener setting  //
   // <=================================================================> //
   private getSettings() {
     this.settings.getProntoPosible().subscribe((resp: any) => {
-
       let horas: string = '';
-      if(resp.dias_aumento >= 2){
+      if (resp.dias_aumento >= 2) {
         horas = '10:00 am';
-      }else {
+      } else {
         horas = resp.horas_no_disponibles;
       }
 
@@ -139,32 +118,6 @@ export class CheckoutComponent implements OnInit {
       this.fechasDeCalendario();
     });
   }
-
-  // <=================================================================> //
-  //  obtener los resultados para subtotal, descuento y total //
-  // <=================================================================> //
- /*  obtenerResultados() {
-    this.cartService.cart$
-      .pipe(
-        map((data) =>
-          data.reduce((total, cart: CartInterface) => total + cart.total, 0)
-        )
-      )
-      .subscribe((result) => {
-        this.subtotal = result;
-        this.delivery = result >= 100 ? 0 : 12;
-        this.discount = 0;
-        this.total = result > 0 ? result + this.delivery - this.discount : 0;
-
-        this.totales = {
-          subtotal: this.subtotal,
-          delivery: this.delivery,
-          discount: this.discount,
-          total: this.total,
-        };
-      });
-  } */
-  // <===============================================================> //
 
   // <===============================================================> //
   // obtener uid de usuario y datos del productos //
@@ -187,14 +140,18 @@ export class CheckoutComponent implements OnInit {
       // this.forma.setValue({
       this.forma.reset({
         correo: resp.email,
-        nombre: (resp['nombreRecibe'] != null) ? resp['nombreRecibe'] : resp.nombre,
+        nombre:
+          resp['nombreRecibe'] != null ? resp['nombreRecibe'] : resp.nombre,
         telefono: resp.telefono,
         direccion: {
           departamento: Departamento.Quetzaltenango,
-          municipio: (resp['municipio'] != null) ? resp['municipio'] : Municipio.Quetzaltenango,
-          zona: (resp['zona'] != null) ? resp['zona'] : Zona.Zona1,
-          ubicacion: (resp['direccion'] != null) ? resp['direccion'] : '',
-          referencia: (resp['referencia'] != null) ? resp['referencia'] : '',
+          municipio:
+            resp['municipio'] != null
+              ? resp['municipio']
+              : Municipio.Quetzaltenango,
+          zona: resp['zona'] != null ? resp['zona'] : Zona.Zona1,
+          ubicacion: resp['direccion'] != null ? resp['direccion'] : '',
+          referencia: resp['referencia'] != null ? resp['referencia'] : '',
         },
       });
     });
@@ -318,10 +275,10 @@ export class CheckoutComponent implements OnInit {
       }
 
       const fechaCheacion = new Date();
+
       // this.obtenerResultados();
       this.totalService.totals$.subscribe((resp) => {
-        console.log(resp)
-        this.totales = resp
+        this.totales = resp;
       });
 
       const checkoutData: Checkout = {
@@ -338,10 +295,8 @@ export class CheckoutComponent implements OnInit {
         condiciones: this.formaPago.value.condiciones,
         status: 'processed',
         userUid: this.userUid,
-        codeDiscount: this.totales.cuponCode
+        codeDiscount: this.totales.cuponCode,
       };
-
-      console.log(checkoutData);
 
       Swal.fire({
         title: 'Realizar pedido a:',
@@ -364,8 +319,15 @@ export class CheckoutComponent implements OnInit {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.value) {
-           this.userService.sendOrder(this.userUid, checkoutData);
-          this.safeUserData();
+          this.userService.sendOrder(this.userUid, checkoutData); // <=== Envia orden de usuario
+          this.safeUserData(); // <=== actualiza datos de usuario
+          /* si hay cupon */
+          if (checkoutData.codeDiscount !== '') {
+            this.safeCuponInuser({
+              aplicado: true,
+              id: this.totales.cuponCode,
+            });
+          }
         }
       });
     }
@@ -401,72 +363,6 @@ export class CheckoutComponent implements OnInit {
     this.maxDate = new Date(todayDate.setDate(todayDate.getDate() + 20));
   }
 
-  tengoCupon() {
-    this.tengoUnCupon = true;
-  }
-
-  aplicandoCupon() {
-    // si la forma de checkout es valida
-    if (this.formDescuento.invalid) {
-      return Swal.fire('Ingresa el codigo');
-    }
-
-    const codigoForm = this.formDescuento.value.cupon;
-    const codigo: string = codigoForm.toLowerCase();
-
-    this.loadingCupon = true;
-
-    this.validarccupon(codigo);
-  }
-
-  validarccupon(cuponId: string) {
-    this.cuponService
-      .getCupon(cuponId)
-      .pipe(
-        map((data: any) => {
-          if (data !== undefined) {
-            this.cuponValido = true;
-            // console.log(`cuponValido ${this.cuponValido}`);
-            const email = data['aplicados'].filter(
-              (mail) => mail === this.userEmail
-            );
-            // console.log(email);
-            if (email.length !== 1) {
-              this.cuponUsado = false;
-              // console.log(`cuponUsado ${this.cuponUsado}`);
-            } else {
-              this.cuponUsado = true;
-              // console.log(`cuponUsado ${this.cuponUsado}`);
-            }
-          } else {
-            this.cuponValido = false;
-            // console.log(`cuponValido ${this.cuponValido}`);
-          }
-
-          return data;
-        })
-      )
-      .subscribe((resp) => {
-        if (this.cuponValido === false) {
-          // console.log('cupon no valido');
-          this.loadingCupon = false;
-          return;
-        } else {
-          if (this.cuponUsado === true) {
-            // console.log('cupon ya usado');
-            this.loadingCupon = false;
-            return;
-          } else {
-            // console.log(resp.valor);
-            // console.log('cupon aplicado');
-          }
-        }
-
-        // console.log(`cuponValido => ${this.cuponValido}`);
-        // console.log(`cuponUsado => ${this.cuponUsado}`);
-      });
-  }
-
   /* <========================================================> */
   /* <================ Guardar datos del Usuario =============> */
   /* <========================================================> */
@@ -482,9 +378,15 @@ export class CheckoutComponent implements OnInit {
       uid: this.userUid,
     };
 
-    this.userService
-      .updateUser(this.userUid, dataUser)
-      .then((resp) => {});
+    this.userService.updateUser(this.userUid, dataUser).then((resp) => {});
+  }
+  /* <========================================================> */
+
+  /* <========================================================> */
+  /* <================ Guardar cupon en usuario =============> */
+  /* <========================================================> */
+  safeCuponInuser(data: object) {
+    this.userService.createCuponInUser(this.userUid, data);
   }
   /* <========================================================> */
 }
