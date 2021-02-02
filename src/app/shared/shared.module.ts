@@ -44,7 +44,7 @@ import { CuponComponent } from '../pages/order/cupon/cupon.component';
     RemoveDashPipe,
     DomeseguroProductdetailPipe,
     CapitalizadoPipe,
-    CuponComponent,
+    // CuponComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [

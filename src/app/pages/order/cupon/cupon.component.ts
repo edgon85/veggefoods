@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { pipe } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { CartInterface } from 'src/app/interfaces/cart.interface';
+import { Totals } from 'src/app/interfaces/totals.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CuponService } from 'src/app/services/cupon.service';
+import { TotalService } from 'src/app/services/total.service';
 
 @Component({
   selector: 'app-cupon',
@@ -20,19 +22,23 @@ export class CuponComponent implements OnInit {
   cuponValido: boolean = false;
   cuponUsado: boolean = false;
   valorCupon: number = 0.0;
+  cuponErroText: string = '';
+  codeCupon: string = '';
 
   // variable de totales
-  totales: any = {};
-  subtotal: number = 0;
-  delivery: number = 0;
-  discount: number = 0;
-  total: number = 0;
+  totales: Totals;
+
+  //
+  @ViewChild('myCupon', { static: true }) myCupon: ElementRef;
+
+  input$: Observable<KeyboardEvent>;
 
   constructor(
     private fb: FormBuilder,
     private cuponService: CuponService,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private totalService: TotalService
   ) {
     this.formDescuento = this.fb.group({
       cupon: ['', Validators.required],
@@ -41,6 +47,7 @@ export class CuponComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getuser().subscribe((resp) => (this.userUid = resp.uid));
+    this.inicializarResultados();
   }
 
   /* <=================================================> */
@@ -55,18 +62,27 @@ export class CuponComponent implements OnInit {
   /* <======== Aplica el cupon ==========> */
   /* <===================================> */
   readCupon() {
-    /* if (this.formDescuento.invalid) {
+    if (this.formDescuento.invalid) {
+      this.cuponErroText = 'Introduzca código de descuento';
+      setTimeout(() => {
+        this.cuponErroText = '';
+      }, 3000);
       return;
     }
 
     // console.log(this.userUid);
     const codigo = this.formDescuento.value.cupon.toLowerCase();
     // console.log(`Cupon: ${codigo}`)
-    this.validateCupon(codigo); */
-    this.obtenerResultados();
+    this.codeCupon = codigo;
+    this.validateCupon(codigo);
+
+    // this.obtenerResultados();
   }
   /* <===================================> */
 
+  /* <=================================================================> */
+  /* <==== Validar cupon  ====> */
+  /* <=================================================================> */
   validateCupon(cuponCode: string) {
     this.cuponService
       .getCupon(cuponCode)
@@ -75,8 +91,9 @@ export class CuponComponent implements OnInit {
         map((data: string) => {
           if (data !== undefined) {
             this.cuponValido = true;
-            // console.log('Cupon valido');
+            this.valorCupon = parseFloat(data['valor']);
           } else {
+            this.valorCupon = 0;
             this.cuponValido = false;
             // console.log('Cupon no valido');
           }
@@ -85,15 +102,23 @@ export class CuponComponent implements OnInit {
         })
       )
       .subscribe((resp) => {
-        console.log(`Cupon valido ${resp}`);
         if (resp) {
           this.validateUserCupon(cuponCode);
         } else {
+          this.cuponErroText = 'Cupón no valido';
+
+          setTimeout(() => {
+            this.cuponErroText = '';
+          }, 3000);
           return;
         }
       });
   }
+  /* <=================================================================> */
 
+  /* <=================================================================> */
+  /* <==== Validar cupon en el usuario ====> */
+  /* <=================================================================> */
   validateUserCupon(cuponCode: string) {
     this.cuponService
       .getCuponUser(this.userUid, cuponCode)
@@ -105,21 +130,30 @@ export class CuponComponent implements OnInit {
           } else {
             this.cuponUsado = false;
           }
-
           return this.cuponUsado;
         })
       )
-      .subscribe((resp) => console.log(`cupon usado ${resp}`));
+      .subscribe((resp) => {
+        if (!resp) {
+          this.obtenerResultados(this.valorCupon, this.codeCupon);
+        } else {
+          this.cuponErroText = 'Cupón ya fue usado';
+          setTimeout(() => {
+            this.cuponErroText = '';
+          }, 3000);
+          return;
+        }
+      });
   }
+  /* <=================================================================> */
 
   /* <=================================================================> */
-  /* <==== obtener los resultados para subtotal, descuento y total ====> */
+  /* <==== Incializar resultados ====> */
   /* <=================================================================> */
-  obtenerResultados() {
+  inicializarResultados() {
     this.cartService.cart$
       .pipe(
         map((data) => {
-          console.log(data);
           return data.reduce(
             (total, cart: CartInterface) => total + cart.total,
             0
@@ -127,19 +161,50 @@ export class CuponComponent implements OnInit {
         })
       )
       .subscribe((result) => {
+        let subtotal = result;
+        let discount = 0;
+        this.totalService.updateTotals(subtotal, discount, '');
+        this.totalService.totals$.subscribe((resp) => (this.totales = resp));
+      });
+  }
+  /* <=================================================================> */
 
-        console.log(result);
-        this.subtotal = result;
-        this.delivery = result >= 100 ? 0 : 12;
-        this.discount = 0;
-        this.total = result > 0 ? result + this.delivery - this.discount : 0;
+  /* <=================================================================> */
+  /* <==== obtener los resultados para subtotal, descuento y total ====> */
+  /* <=================================================================> */
+  obtenerResultados(discountValue: number, codeCupon: string) {
+    this.cartService.cart$
+      .pipe(
+        map((data) => {
+          return data.reduce(
+            (total, cart: CartInterface) => total + cart.total,
+            0
+          );
+        })
+      )
+      .subscribe((result) => {
+        let subtotal = result;
+        let discount = discountValue;
 
-        this.totales = {
-          subtotal: this.subtotal,
-          delivery: this.delivery,
-          discount: this.discount,
-          total: this.total,
-        };
+        if (subtotal <= 100) {
+          this.cuponErroText =
+            'Para validar el cupón su compra debe ser mayor a Q100';
+          setTimeout(() => {
+            this.cuponErroText = '';
+          }, 5000);
+        } else if (subtotal <= discountValue) {
+          this.cuponErroText =
+            'El total tiene que ser mayor al valor del cupón';
+          setTimeout(() => {
+            this.cuponErroText = '';
+          }, 5000);
+        } else {
+          this.totalService.updateTotals(subtotal, discount, codeCupon);
+          this.totalService.totals$.subscribe((resp) => {
+            this.cuponErroText = '';
+            this.totales = resp;
+          });
+        }
       });
   }
   // <===============================================================> //

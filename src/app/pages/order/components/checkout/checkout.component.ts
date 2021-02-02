@@ -22,6 +22,8 @@ import {
 import * as moment from 'moment';
 import { CuponService } from '../../../../services/cupon.service';
 import { SettingsService } from '../../../../services/settings.service';
+import { TotalService } from 'src/app/services/total.service';
+import { Totals } from 'src/app/interfaces/totals.interface';
 
 @Component({
   selector: 'app-checkout',
@@ -61,11 +63,11 @@ export class CheckoutComponent implements OnInit {
   products: CartInterface[];
 
   // variable de totales
-  totales: any = {};
-  subtotal: number = 0;
+  totales: Totals;
+  /* subtotal: number = 0;
   delivery: number = 0;
   discount: number = 0;
-  total: number = 0;
+  total: number = 0; */
 
   // variable para el formulario
   forma: FormGroup;
@@ -99,7 +101,8 @@ export class CheckoutComponent implements OnInit {
     private userService: UserService,
     private cartService: CartService,
     private cuponService: CuponService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private totalService: TotalService
   ) {
     this.getSettings();
     this.formularioCheckout();
@@ -140,7 +143,7 @@ export class CheckoutComponent implements OnInit {
   // <=================================================================> //
   //  obtener los resultados para subtotal, descuento y total //
   // <=================================================================> //
-  obtenerResultados() {
+ /*  obtenerResultados() {
     this.cartService.cart$
       .pipe(
         map((data) =>
@@ -160,7 +163,7 @@ export class CheckoutComponent implements OnInit {
           total: this.total,
         };
       });
-  }
+  } */
   // <===============================================================> //
 
   // <===============================================================> //
@@ -315,7 +318,11 @@ export class CheckoutComponent implements OnInit {
       }
 
       const fechaCheacion = new Date();
-      this.obtenerResultados();
+      // this.obtenerResultados();
+      this.totalService.totals$.subscribe((resp) => {
+        console.log(resp)
+        this.totales = resp
+      });
 
       const checkoutData: Checkout = {
         $key: Date.now().toString(),
@@ -331,7 +338,10 @@ export class CheckoutComponent implements OnInit {
         condiciones: this.formaPago.value.condiciones,
         status: 'processed',
         userUid: this.userUid,
+        codeDiscount: this.totales.cuponCode
       };
+
+      console.log(checkoutData);
 
       Swal.fire({
         title: 'Realizar pedido a:',

@@ -1,11 +1,45 @@
 <div class="cupon">
-    <button *ngIf="!inputCupon" class="button-cupon" (click)="showInputCupon()">Aplicar cupón</button>
-    <ng-container *ngIf="inputCupon">
-        <form [formGroup]="formDescuento" class="form-cupon">
-            <input  formControlName="cupon" class="input-cupon" type="text" placeholder="Introducir cupón">
-            <button (click)="readCupon()" class="button-apply-cupon">Aplicar</button>
-        </form>
-        <small *ngIf="validarCampo('cupon')" class="text-alert">El código de cupón introducido no es válido.</small>
-    </ng-container>
+  <div class="totals-content">
+    <h3>Total de compras</h3>
+    <div class="item">
+      <span>Subtotal</span
+      ><span>Q{{ totales.subtotal | number: '1.2':'en' }}</span>
+    </div>
+    <div class="item">
+      <span>Envío</span
+      ><span>Q{{ totales.delivery | number: '1.2':'en' }}</span>
+    </div>
+    <div class="item" *ngIf="totales.discount > 0">
+      <span>Descuento</span
+      ><span>Q{{ totales.discount | number: '1.2':'en' }}</span>
+    </div>
+    <hr />
+    <div class="item">
+      <span class="total">Total</span
+      ><span class="total">Q{{ totales.total | number: '1.2':'en' }}</span>
+    </div>
+  </div>
 
-</div>  
+  <button *ngIf="!inputCupon" class="button-cupon" (click)="showInputCupon()">
+    Aplicar cupón
+  </button>
+  <ng-container *ngIf="inputCupon">
+    <div class="formulario">
+      <form [formGroup]="formDescuento" class="form-cupon">
+        <input
+          formControlName="cupon"
+          class="input-cupon"
+          type="text"
+          placeholder="Introducir cupón"
+        />
+        <button (click)="readCupon()" class="button-apply-cupon">
+          Aplicar
+        </button>
+      </form>
+      <small class="text-alert">{{ cuponErroText }}</small>
+    </div>
+  </ng-container>
+</div>
+<!-- <pre>
+    {{ formDescuento.value | json }}
+</pre> -->

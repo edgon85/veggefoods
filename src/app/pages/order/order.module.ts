@@ -10,6 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MaterialModule } from '../../material/material.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { CuponComponent } from './cupon/cupon.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     DeleteRepeatPipe,
     RepeatNumberPipe,
     CheckoutComponent,
+    CuponComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     ReactiveFormsModule,
     MaterialModule,
     NgxMaterialTimepickerModule,
-  ],
+  ]
 })
 export class OrderModule {}

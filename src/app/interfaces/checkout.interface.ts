@@ -13,6 +13,7 @@ export class Checkout {
   status: string;
   userUid: string;
   $key?: string;
+  codeDiscount?: string;
 }
 
 interface Direccion {

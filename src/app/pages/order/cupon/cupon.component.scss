@@ -5,6 +5,43 @@
   flex-direction: column;
   width: 100%;
 
+  .totals-content{
+    border: 1px solid #f2f2f2;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1em;
+    
+    h3{
+      color: #808080;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .item{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      span{
+        font-size: 1rem;
+        font-family: 'Roboto', sans-serif;
+        color: #808080;
+      }
+      .total{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000000;
+      }
+    }
+
+    hr{
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+  }
+
   .button-cupon {
     position: relative;
     padding: 1rem;
@@ -26,13 +63,14 @@
     width: 100%;
     //   border: 1px solid purple;
     .input-cupon {
+      width: 100%;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
       font-family: 'Roboto', sans-serif;
       border: 1px solid #989586;
       border-right: 0;
 
-      padding: 0 1.6rem;
+      padding: 0 .5rem;
       &:focus {
         outline: none !important;
       }

@@ -1,4 +1,5 @@
 import { ProductoModel } from '../models/product.model';
+import { Totals } from './totals.interface';
 
 export interface OrderInterface {
   $key: string;
@@ -12,7 +13,7 @@ export interface OrderInterface {
   status: string;
   telefono: string;
   tipoPago: string;
-  totales: Totales;
+  totales: Totals;
 }
 
 export interface Direccion {
@@ -23,9 +24,10 @@ export interface Direccion {
   zona: string;
 }
 
-export interface Totales {
+/* export interface Totales {
   delivery: number;
   discount: number;
   subtotal: number;
   total: number;
-}
+  codeDiscount?: string;
+} */
