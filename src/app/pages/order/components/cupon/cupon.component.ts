@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CuponService } from 'src/app/services/cupon.service';
 import { TotalService } from 'src/app/services/total.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cupon',
@@ -70,13 +71,9 @@ export class CuponComponent implements OnInit {
       return;
     }
 
-    // console.log(this.userUid);
     const codigo = this.formDescuento.value.cupon.toLowerCase();
-    // console.log(`Cupon: ${codigo}`)
     this.codeCupon = codigo;
     this.validateCupon(codigo);
-
-    // this.obtenerResultados();
   }
   /* <===================================> */
 
@@ -135,6 +132,7 @@ export class CuponComponent implements OnInit {
       )
       .subscribe((resp) => {
         if (!resp) {
+          Swal;
           this.obtenerResultados(this.valorCupon, this.codeCupon);
         } else {
           this.cuponErroText = 'Cupón ya fue usado';
@@ -201,8 +199,11 @@ export class CuponComponent implements OnInit {
         } else {
           this.totalService.updateTotals(subtotal, discount, codeCupon);
           this.totalService.totals$.subscribe((resp) => {
-            this.cuponErroText = '';
+            this.cuponErroText = 'Se aplico el cupón al total';
             this.totales = resp;
+            setTimeout(() => {
+              this.cuponErroText = '';
+            }, 5000);
           });
         }
       });

@@ -21,7 +21,7 @@ import { FloatingButtonComponent } from './components/floating-button/floating-b
 import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
 import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.pipe';
 import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
-import { CuponComponent } from '../pages/order/cupon/cupon.component';
+import { CuponComponent } from '../pages/order/components/cupon/cupon.component';
 
 @NgModule({
   declarations: [

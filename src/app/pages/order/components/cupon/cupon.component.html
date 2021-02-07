@@ -36,7 +36,8 @@
           Aplicar
         </button>
       </form>
-      <small class="text-alert">{{ cuponErroText }}</small>
+      <small *ngIf="cuponErroText !== 'Se aplico el cupón al total'" class="text-alert">{{ cuponErroText }}</small>
+      <small *ngIf="cuponErroText == 'Se aplico el cupón al total'" style="color: green; ">{{ cuponErroText }}</small>
     </div>
   </ng-container>
 </div>

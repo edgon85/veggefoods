@@ -10,7 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MaterialModule } from '../../material/material.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { CuponComponent } from './cupon/cupon.component';
+import { CuponComponent } from './components/cupon/cupon.component';
 
 @NgModule({
   declarations: [
