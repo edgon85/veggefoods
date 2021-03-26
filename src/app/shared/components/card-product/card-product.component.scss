@@ -8,11 +8,14 @@
   align-items: center;
   width: 100%;
   border: 1px solid lighten($black, 94%);
+  border-radius: 5px;
   // position: relative;
   .img-prod {
     // border: 1px solid red;
     position: relative;
     overflow: hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     span.status {
       position: absolute;
       top: 0;
@@ -22,6 +25,7 @@
       font-weight: 300;
       background: $color-1;
       font-size: 12px;
+      border-top-left-radius: 5px;
     }
   }
 
@@ -46,6 +50,7 @@
     .pricing {
       color: $primary;
       font-weight: 400;
+      text-align: center;
       span.price-discount {
         text-decoration: line-through;
         color: lighten($black, 70%);
