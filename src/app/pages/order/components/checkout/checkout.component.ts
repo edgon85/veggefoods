@@ -202,6 +202,7 @@ export class CheckoutComponent implements OnInit {
     this.formaPago = this.fb.group({
       tipoPago: ['', Validators.required],
       condiciones: [false, [Validators.required, Validators.pattern('true')]],
+      banco: ['Banrural', Validators.required],
     });
   }
   // <=================================================================> //
@@ -270,6 +271,9 @@ export class CheckoutComponent implements OnInit {
       if (this.formaPago.value.tipoPago === 'credito-debito') {
         formaPago =
           'Tarjeta (Nuestro repartidor le cobrara en la entrega con un POS)';
+      } else if (this.formaPago.value.tipoPago === 'transferencia') {
+        formaPago =
+        `Transferencia bancaria - ${this.formaPago.value.banco}`;
       } else {
         formaPago = 'Efectivo';
       }

@@ -235,7 +235,7 @@
             <span class="material-icons"><i class="far fa-clock"></i></span>
             <br />
             <span class="disclaimer"
-              >Si el horario que quieres elegir no está disponible es porque ya
+              >*Si el horario que quieres elegir no está disponible es porque ya
               hay un pedido para entregar</span
             >
           </p>
@@ -251,15 +251,6 @@
       <div class="cart-detail p-3 p-md-4">
         <h3 class="billing-heading mb-4">Método de pago</h3>
         <form [formGroup]="formaPago">
-          <!--                     <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="radio">
-                                <label><input formControlName="tipoPago" type="radio" value="transferencia"
-                                        name="tipoPago" class="mr-2"> Transferencia bancaria
-                                    directa</label>
-                            </div>
-                        </div>
-                    </div> -->
           <div class="form-group">
             <div class="col-md-12">
               <div class="radio">
@@ -281,6 +272,48 @@
               <div class="radio">
                 <label
                   ><input
+                    formControlName="tipoPago"
+                    type="radio"
+                    value="transferencia"
+                    name="tipoPago"
+                    class="mr-2"
+                  />
+                  Transferencia bancaria</label>
+                  
+              </div>
+              <div class="bancos" *ngIf="formaPago.get('tipoPago').value === 'transferencia'">
+                <div class="item radio">
+                  <label
+                  ><input
+                  formControlName="banco"
+                    type="radio"
+                    value="Banrural"
+                    name="banco"
+                    class="mr-2"
+                  />
+                  Banrural</label>
+                </div>
+                <div class="item">
+                  <label
+                  ><input
+                  formControlName="banco"
+                    type="radio"
+                    value="Banco industrial"
+                    name="banco"
+                    class="mr-2"
+                  />
+                  Banco indistrial</label>
+                </div>
+                <div class="item">Nuestro equipo se contactara con usted para proveerle el numero de cuenta bancaria</div>
+              </div>
+            </div>
+
+          </div>
+          <!--           <div class="form-group">
+            <div class="col-md-12">
+              <div class="radio">
+                <label
+                  ><input
                     type="radio"
                     value="credito-debito"
                     name=""
@@ -293,7 +326,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- <div class="form-group">
                         <div class="col-md-12">
                             <div class="radio">
@@ -346,7 +379,7 @@
           >
         </form>
         <p>
-          <button (click)="hacerPedido()" class="btn btn-primary py-3 px-4">
+          <button (click)="hacerPedido()" class="btn-hacer-pedido">
             Realizar pedido
           </button>
         </p>
