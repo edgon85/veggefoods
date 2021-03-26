@@ -98,6 +98,7 @@
   align-content: center;
   p {
     font-size: 12px;
+    margin: 0;
   }
 
   @media only screen and (max-width: 500px) {
@@ -126,26 +127,4 @@
     grid-template-areas: 'a_nosotros';
   }
 }
-/* 
-  @media only screen and (max-width: 500px) {
-    .footer {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr 1fr;
-      row-gap: 10px;
-      grid-template-areas:
-      'a_nosotros' 'a_menu'
-      'a_help' 'a_contacto';;
-    }
-  }
-
-  @media only screen and (max-width: 375px) {
-    .footer {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(4, 1fr);
-      row-gap: 20px;
-      grid-template-areas:
-        'a_nosotros' 'a_menu'
-        'a_help' 'a_contacto';
-    }
-  } */
 

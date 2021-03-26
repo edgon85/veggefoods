@@ -22,6 +22,7 @@ import { RemoveDashPipe } from '../pipes/remove-dash.pipe';
 import { DomeseguroProductdetailPipe } from '../pipes/domeseguro-productdetail.pipe';
 import { CapitalizadoPipe } from '../pipes/capitalizado.pipe';
 import { CuponComponent } from '../pages/order/components/cupon/cupon.component';
+import { ScheduleInfoComponent } from './components/schedule-info/schedule-info.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CuponComponent } from '../pages/order/components/cupon/cupon.component'
     RemoveDashPipe,
     DomeseguroProductdetailPipe,
     CapitalizadoPipe,
+    ScheduleInfoComponent,
     // CuponComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
@@ -65,7 +67,8 @@ import { CuponComponent } from '../pages/order/components/cupon/cupon.component'
     ComoFuncionaComponent,
     FloatingButtonComponent,
     DomeseguroProductdetailPipe,
-    CapitalizadoPipe
+    CapitalizadoPipe,
+    ScheduleInfoComponent,
   ],
 })
 export class SharedModule {}
