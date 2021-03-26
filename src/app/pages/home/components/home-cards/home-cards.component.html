@@ -8,20 +8,20 @@
                 <div class="icons-left">
                     <div class="icon organic">
                         <a routerLink="/productos/categoria/orgánicos">Orgánicos
-                            <img src="assets/images/home/icono-organicos.png" alt="" /></a>
+                            <img src="assets/images/home/icono-organicos.png" alt="Vegetal Go tu mercado en linea a precio de mercado" /></a>
                     </div>
                     <div class="icon veggie">
                         <a routerLink="/productos/categoria/verduras">Verduras <img
-                                src="assets/images/home/icono-verduras.png" alt="" /></a>
+                                src="assets/images/home/icono-verduras.png" alt="Vegetal Go tu mercado en linea a precio de mercado" /></a>
                     </div>
                     <div class="icon fruits">
                         <a routerLink="/productos/categoria/frutas">Frutas <img
-                                src="assets/images/home/icono-frutas.png" alt="" /></a>
+                                src="assets/images/home/icono-frutas.png" alt="Vegetal Go tu mercado en linea a precio de mercado" /></a>
                     </div>
                 </div>
                 <div class="image-principal">
                     <div class="image">
-                        <img src="assets/images/home/caja.png" alt="" />
+                        <img src="assets/images/home/caja.png" alt="Vegetal Go tu mercado en linea a precio de mercado" />
                     </div>
 
 
@@ -29,17 +29,17 @@
                 <div class="icons-right">
                     <div class="icon seed">
                         <a routerLink="/productos/categoria/semillas"><img src="assets/images/home/icono-semillas.png"
-                                alt="" />
+                                alt="Vegetal Go tu mercado en linea a precio de mercado" />
                             Semillas</a>
                     </div>
                     <div class="icon spices">
                         <a routerLink="/productos/categoria/especias"><img src="assets/images/home/icono-especias.png"
-                                alt="" />
+                                alt="Vegetal Go tu mercado en linea a precio de mercado" />
                             Especias</a>
                     </div>
                     <div class="icon meats">
                         <a routerLink="/productos/categoria/carnes"><img src="assets/images/home/icono-carnes.png"
-                                alt="" />
+                                alt="Vegetal Go tu mercado en linea a precio de mercado" />
                             Carnes</a>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         {{item.titleCard}} <br />
                         <span>{{ item.subtitleCard }}</span>
                     </h5>
-                    <img [src]="item.image" alt="" />
+                    <img [src]="item.image" alt="Vegetal Go tu mercado en linea a precio de mercado" />
                     <h6>{{ item.name}}</h6>
                     <div class="subtitle" *ngIf="item.precio !== 0">
                         <div>Antes <strong style="text-decoration: line-through;">Q{{ item.descuento | number: '1.2':'en'}}</strong> Ahora <strong>Q{{ item.precio | number: '1.2':'en' }}</strong>
@@ -69,20 +69,5 @@
                 </div>
             </ng-container>
         </ng-container>
-<!--         <ng-container *ngFor="let item of dataCards">
-            <div class="rect" (click)="naviagatePromo(item.url)">
-                <h5>
-                    {{item.titleCard}} <br />
-                    <span>{{ item.subtitleCard }}</span>
-                </h5>
-                <img [src]="item.image" alt="" />
-                <h6>{{ item.name}}</h6>
-                <div class="subtitle" *ngIf="item.precio !== 0">
-                    <div>Antes <strong style="text-decoration: line-through;">Q{{ item.descuento | number: '1.2':'en'}}</strong> Ahora <strong>Q{{ item.precio | number: '1.2':'en' }}</strong>
-                    </div>
-                </div>
-                <span>Comprar</span>
-            </div>
-        </ng-container> -->
     </div>
 </section>
