@@ -295,7 +295,7 @@ export class CheckoutComponent implements OnInit {
         productos: this.products,
         fechaCreacion: fechaCheacion.toString(),
         fechaEntrega: dateEntrega,
-        tipoPago: this.formaPago.value.tipoPago,
+        tipoPago: formaPago,
         condiciones: this.formaPago.value.condiciones,
         status: 'processed',
         userUid: this.userUid,
