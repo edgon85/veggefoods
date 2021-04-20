@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, from } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CartInterface } from '../interfaces/cart.interface';
 
 @Injectable({
@@ -12,11 +12,14 @@ export class CartService {
 
   cart$ = this.cart.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.loadCartInLocalStorage();
+  }
 
   addToCart(cart: CartInterface) {
     this.itemsCarrito = [...this.itemsCarrito, cart];
     this.cart.next(this.itemsCarrito);
+    this.saveCartInLocalStorage();
   }
 
   /**
@@ -27,13 +30,16 @@ export class CartService {
       (carrito) => carrito.cartItemId !== cartItemId
     );
     this.cart.next(this.itemsCarrito);
+    this.saveCartInLocalStorage();
   }
 
   // <======================> //
   // Limpia todo el carrito //
   // <======================> //
   clearAllCart() {
+    this.itemsCarrito = [];
     this.cart.next([]);
+    localStorage.removeItem('myCart');
   }
 
   updateItemCart(cartItemId: string, newquantity: number) {
@@ -60,6 +66,28 @@ export class CartService {
       0
     );
     this.cart.next(this.itemsCarrito);
+    this.saveCartInLocalStorage();
     return subtotal;
   }
+
+  /* <=============================================================> */
+  /* <============== Guardar carrito en el local storage ==========> */
+  /* <=============================================================> */
+  saveCartInLocalStorage() {
+    localStorage.setItem('myCart', JSON.stringify(this.itemsCarrito));
+  }
+  /* <=============================================================> */
+
+  /* <=============================================================> */
+  /* <============== Cargar carrito del local storage ==========> */
+  /* <=============================================================> */
+  loadCartInLocalStorage() {
+    if (localStorage.getItem('myCart')) {
+      this.itemsCarrito = JSON.parse(localStorage.getItem('myCart'));
+      this.cart.next(this.itemsCarrito);
+    } else {
+      this.itemsCarrito = [];
+    }
+  }
+  /* <=============================================================> */
 }
