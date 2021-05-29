@@ -14,7 +14,7 @@ import {
   styleUrls: ['./incrementador.component.scss']
 })
 export class IncrementadorComponent implements OnInit {
-  @ViewChild('txtProgress', { static: false }) txtProgress: ElementRef;
+  @ViewChild('txtProgress') txtProgress: ElementRef;
 
   // tslint:disable-next-line: no-input-rename
   @Input('progresoIncrementador') progreso: number = 1;
