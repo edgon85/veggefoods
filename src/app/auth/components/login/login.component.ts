@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { FirebaseError } from 'firebase';
 
 @Component({
   selector: 'app-login',

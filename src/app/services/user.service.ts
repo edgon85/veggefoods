@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-} from 'angularfire2/firestore';
+
 import { UsuarioModel } from '../interfaces/user.interface';
 import { Checkout } from '../interfaces/checkout.interface';
 import Swal from 'sweetalert2';
@@ -12,6 +8,11 @@ import { CartService } from './cart.service';
 import { Observable, throwError } from 'rxjs';
 import { OrderInterface } from '../interfaces/order.interface';
 import { catchError, map } from 'rxjs/operators';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',

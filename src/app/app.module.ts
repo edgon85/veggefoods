@@ -13,10 +13,13 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 
 // angular fire2
-import { AngularFireModule } from 'angularfire2';
+/* import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database'; */
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,8 +41,8 @@ registerLocaleData(es);
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
+    /*     AngularFireAuthModule,
+    AngularFireDatabaseModule, */
     BrowserAnimationsModule, // imports firebase/auth, only needed for auth features,
     NgxMaterialTimepickerModule,
   ],

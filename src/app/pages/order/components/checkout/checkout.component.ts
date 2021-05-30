@@ -18,11 +18,12 @@ import {
   Zona,
 } from '../../../../interfaces/checkout.interface';
 
-import * as moment from 'moment';
 import { CuponService } from '../../../../services/cupon.service';
 import { SettingsService } from '../../../../services/settings.service';
 import { TotalService } from 'src/app/services/total.service';
 import { Totals } from 'src/app/interfaces/totals.interface';
+import { __importDefault } from 'tslib';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-checkout',

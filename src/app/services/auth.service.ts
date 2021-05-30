@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../interfaces/user.interface';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class AuthService {
   // ccrear cuenta //
   // ========================================= //
   public createAcount(usuario: UsuarioModel) {
-    return this.afAuth.auth
+    return this.afAuth
       .createUserWithEmailAndPassword(usuario.email, usuario.password)
       .then((resp) => {
         this.createUserData(resp.user.uid, usuario);
@@ -34,7 +35,7 @@ export class AuthService {
   // Login con email y password //
   // ========================================= //
   public loginWithEmailAndPassword(usuario: UsuarioModel) {
-    return this.afAuth.auth.signInWithEmailAndPassword(
+    return this.afAuth.signInWithEmailAndPassword(
       usuario.email,
       usuario.password
     );
@@ -68,7 +69,7 @@ export class AuthService {
   // cerrar sesión //
   // ========================================= //
   public logout() {
-    return this.afAuth.auth.signOut();
+    return this.afAuth.signOut();
   }
 
   // ========================================= //
@@ -95,6 +96,6 @@ export class AuthService {
   // ========================================= //
 
   public resetPassword(email: string) {
-    return this.afAuth.auth.sendPasswordResetEmail(email);
+    return this.afAuth.sendPasswordResetEmail(email);
   }
 }

@@ -15,11 +15,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import {
+// TODO: fix this
+/* import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
   MAT_MOMENT_DATE_FORMATS,
-} from '@angular/material-moment-adapter';
+} from '@angular/material-moment-adapter'; */  // <===== Arreglar esto
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
@@ -77,12 +78,12 @@ export const MY_FORMATS = {
     //   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     // },
     // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-    {
+     /*  {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }, */ // <===== Arreglar esto
   ],
 })
 export class MaterialModule {}
