@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -80,6 +80,9 @@ export class CheckoutComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
+
+  totalUserOrders: number = 0; 
+  // @Input('totalUserOrders') totalUserOrders: number = 0;
   //
   constructor(
     private fb: FormBuilder,
@@ -137,7 +140,7 @@ export class CheckoutComponent implements OnInit {
   // <===============================================================> //
   obtenerUsuario(uid: string) {
     this.userService.getUserById(uid).subscribe((resp) => {
-      // this.forma.setValue({
+      this.totalUserOrders = resp['orders'];
       this.forma.reset({
         correo: resp.email,
         nombre:
@@ -337,9 +340,9 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  logout() {
+  /* logout() {
     this.authService.logout();
-  }
+  } */
 
   // <=================================================================> //
   // obtener el cambio de fecha en datepicker
@@ -371,7 +374,9 @@ export class CheckoutComponent implements OnInit {
   /* <================ Guardar datos del Usuario =============> */
   /* <========================================================> */
   safeUserData() {
+    const numberOrders = this.totalUserOrders + 1;
     const dataUser: object = {
+      orders: numberOrders,
       nombreRecibe: this.forma.value.nombre,
       telefono: this.forma.value.telefono,
       ciudad: this.forma.value.direccion.departamento,
