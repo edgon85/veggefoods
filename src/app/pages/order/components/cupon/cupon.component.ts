@@ -72,7 +72,7 @@ export class CuponComponent implements OnInit {
       return;
     }
 
-    const codigo = this.formDescuento.value.cupon.toLowerCase();
+    const codigo = this.formDescuento.value.cupon.toLowerCase().trim();
     this.codeCupon = codigo;
     this.validateCupon(codigo);
   }
