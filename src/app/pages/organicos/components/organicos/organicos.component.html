@@ -1,0 +1,21 @@
+
+
+<section class="organicoss">
+    <div class="mt-5" *ngIf="cargando">
+        <app-loading></app-loading>
+    </div>
+    <div class="content">
+        <ng-container *ngIf="!cargando">
+            <ng-container *ngFor="let organico of organicos">
+                <div class="organic__item" (click)="selectItem(organico['id'])" >
+                    <div class="organic__item-card">
+                        <img [src]=" organico['image'] | noImage" alt="">
+                        <h3>{{ organico.nombre | capitalizado }}</h3>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        </div>
+</section>
+
+<app-floating-button></app-floating-button>

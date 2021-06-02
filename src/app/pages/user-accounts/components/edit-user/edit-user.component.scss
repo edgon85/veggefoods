@@ -1,0 +1,32 @@
+@import '../../../../../variables.scss';
+
+.header-edit-account {
+  margin-top: 16px;
+  .title {
+    font-size: 35px;
+    color: $primary;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-family: $font-primary;
+    border-bottom: 4px solid $primary;
+    margin-bottom: 15px;
+    margin-right: 5%;
+  }
+}
+.content-edit-account {
+  margin-top: 20px;
+  .form-data {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    .full-width {
+      width: 100%;
+    }
+  }
+}
+
+.btn-edit {
+  background-color: $primary;
+  color: $white;
+}

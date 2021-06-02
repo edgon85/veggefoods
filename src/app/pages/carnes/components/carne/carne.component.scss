@@ -1,0 +1,70 @@
+@import '../../../../../variables.scss';
+.organicos {
+  padding-top: 1em;
+  .organicos__item {
+    &-title {
+      h3 {
+        position: relative;
+        text-transform: uppercase;
+        // border-bottom: 3px solid $primary;
+      }
+    }
+    &-body {
+      .featured-products {
+        margin-top: 30px;
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        @media screen and (max-width: 770px) {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        @media screen and (max-width: 500px) {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        }
+      }
+    }
+  }
+}
+
+// pestañas
+
+
+.textBlack {
+    color: #000000 !important;
+  }
+  
+  .btnSelected {
+    background: $primary !important;
+    color: $white !important;
+  }
+  
+  .pestanias {
+    border-bottom: 3px solid $primary;
+    padding-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .link {
+      width: 16em;
+      height: 4em;
+      font-size: .8em;
+      margin-left: 2px;
+      border: none;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: $color-2;
+      color: gray;
+      line-height: 10px;
+      // padding: 3px;
+      text-transform: uppercase;
+      outline: none;
+      cursor: pointer;
+  
+      @media screen and (max-width: 700px) {
+        width: 8em;
+        height: 3.5em;
+        font-size: 0.6em;
+        // padding: 5px;
+      }
+    }
+  }

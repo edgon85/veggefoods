@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
   //
@@ -28,11 +28,8 @@ export class ProductDetailComponent implements OnInit {
     private _productoService: ProductService,
     private cartService: CartService
   ) {
-    this.activatedRouter.params.subscribe(param => {
-      // console.log(param['slug']);
+    this.activatedRouter.params.subscribe((param) => {
       this.obtenerProductos(param['slug']);
-      // this.catUrl = param['cat'];
-      // this.subCatUrl = param['subcat'];
     });
   }
 
@@ -50,7 +47,7 @@ export class ProductDetailComponent implements OnInit {
   obtenerProductos(prodId: string) {
     this._productoService.getProduct(prodId).subscribe((resp: any) => {
       this.producto = resp;
-      // console.log(this.producto);
+
       this.revisarSiEstaEnCarrito();
     });
   }
@@ -62,46 +59,27 @@ export class ProductDetailComponent implements OnInit {
     const cart: CartInterface = {
       cartItemId: this.producto._id,
       quantity: this.cantidadProductDetail,
-      product: this.producto
+      total: this.cantidadProductDetail * this.producto.precio,
+      product: this.producto,
     };
 
     this.cartService.addToCart(cart);
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: `Se agrego ${this.producto.nombre} al carrito`,
+      title: `Se agregó ${this.producto.nombre} al carrito`,
       showConfirmButton: false,
-      timer: 2500
+      timer: 2500,
     });
   }
 
   revisarSiEstaEnCarrito() {
     this.cartService.cart$
       .pipe(mergeAll(), pluck('product', '_id'))
-      .subscribe(resp => {
+      .subscribe((resp) => {
         if (resp === this.producto._id) {
           this.estaEnCarrito = true;
-          console.log('esta en carrito: ', this.estaEnCarrito);
         }
       });
   }
-
-  /// prueba del plunk
-  /*   pruebaPlunck(prodId: string) {
-    const data$ = this._productoService
-      .getProduct(prodId)
-      .pipe(pluck('precio'))
-      .subscribe(console.log);
-  } */
 }
-
-/*
-        map(resp => {
-          if (resp !== []) {
-            mapTo(false);
-            // no pasa nada
-          } else {
-            return 'hay data';
-          }
-        })
-*/

@@ -1,0 +1,35 @@
+@import '../../../../../variables.scss';
+
+
+.organicoss{
+  margin: 2rem 1em;
+  // border: 1px solid red;
+  padding: 2em;
+
+  .content{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    .organic__item{
+      &-card{
+        max-width: 300px;
+        border: 1px solid #f0f0f0;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        img{
+          width: 100%;
+          vertical-align: top;
+        }
+      }
+    }
+
+    @media screen and (max-width: 770px) {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    @media screen and (max-width: 500px) {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+  }
+}

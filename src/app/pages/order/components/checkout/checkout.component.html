@@ -1,0 +1,389 @@
+<div class="container mt-md-5 mb-md-5">
+  <section class="checkout-detail">
+    <div class="chekout-data">
+      <h2>Datos de cuenta</h2>
+      <hr class="mb-3" />
+      <form [formGroup]="forma">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Correo</label>
+            <input
+              formControlName="correo"
+              type="email"
+              class="form-control"
+              [attr.disabled]="true"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label>Teléfono</label>
+            <div class="input-group-prepend">
+              <div class="input-group-text">+502</div>
+              <input
+                formControlName="telefono"
+                name="telefono"
+                class="form-control"
+              />
+            </div>
+            <small *ngIf="validarCampo('telefono')" class="text-danger"
+              >* Teléfono es requerido <br />
+              8 dígitos por favor</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input
+            formControlName="nombre"
+            name="nombre"
+            type="text"
+            class="form-control"
+          />
+          <small *ngIf="validarCampo('nombre')" class="text-danger"
+            >* Nombre es requerido</small
+          >
+        </div>
+
+        <div class="txt-shiping mt-5">
+          <h2>Dirección de entrega</h2>
+          <hr />
+        </div>
+
+        <div class="form-row" formGroupName="direccion">
+          <div class="form-group col-md-4">
+            <label>Departamento</label>
+            <select
+              formControlName="departamento"
+              name="departamento"
+              class="form-control"
+            >
+              <option *ngFor="let depto of departamento" [value]="depto.key">
+                {{ depto.label }}
+              </option>
+            </select>
+            <small
+              *ngIf="validarCampo('direccion.departamento')"
+              class="text-danger"
+              >Departamento es requerido</small
+            >
+          </div>
+          <div class="form-group col-md-4">
+            <label>Municipio</label>
+            <select
+              formControlName="municipio"
+              name="municipio"
+              class="form-control"
+            >
+              <option *ngFor="let muni of municipio" [value]="muni.key">
+                {{ muni.key }}
+              </option>
+            </select>
+            <small
+              *ngIf="validarCampo('direccion.municipio')"
+              class="text-danger"
+              >Municipio es requerido</small
+            >
+          </div>
+          <div class="form-group col-md-4">
+            <label>Zona</label>
+            <select formControlName="zona" class="form-control">
+              <option *ngFor="let zo of zona" [value]="zo.key">
+                {{ zo.key }}
+              </option>
+            </select>
+            <small *ngIf="validarCampo('direccion.zona')" class="text-danger"
+              >Zona es requerido</small
+            >
+          </div>
+          <div class="form-group col-12">
+            <label>Dirección</label>
+            <input
+              formControlName="ubicacion"
+              name="direccion"
+              type="text"
+              class="form-control"
+              placeholder="Ej. Diagonal 10 2-88, Condominio las Flores, Casa 25"
+            />
+            <small
+              *ngIf="validarCampo('direccion.ubicacion')"
+              class="text-danger"
+              >Direccion es requerido</small
+            >
+          </div>
+
+          <div class="form-group col-12">
+            <label>Referencia</label>
+            <input
+              formControlName="referencia"
+              name="referencia"
+              type="text"
+              class="form-control"
+              placeholder="Ej. Casa de porton blanco, frente a la tienda 'Marisol'"
+            />
+          </div>
+        </div>
+
+        <!-- <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div> -->
+        <div class="txt-shiping mt-3">
+          <h2>Entregar</h2>
+          <hr />
+        </div>
+        <div class="form-group">
+          <ng-container *ngIf="!finDeSemana">
+            <div class="form-check" *ngIf="prontoPosible">
+              <input
+                formControlName="fechaEntreaga"
+                class="form-check-input"
+                type="radio"
+                id="exampleRadios1"
+                value="Lo más pronto posible"
+                checked
+              />
+              <label class="form-check-label" for="exampleRadios1">
+                Lo mas pronto posible (de 3 a 4 horas)
+              </label>
+            </div>
+          </ng-container>
+
+          <!-- <==========================================================================================> -->
+          <!-- Para el fin de semana -->
+          <!-- <==========================================================================================> -->
+
+          <div class="form-check" *ngIf="finDeSemana">
+            <input
+              formControlName="fechaEntreaga"
+              class="form-check-input"
+              type="radio"
+              id="exampleRadios1"
+              value="Lo mas pronto posible"
+              checked
+            />
+            <label class="form-check-label" for="exampleRadios1">
+              <span class="badge badge-pill badge-danger"
+                >Programado para entregar el día lunes</span
+              >
+            </label>
+          </div>
+          <!-- <==========================================================================================> -->
+
+          <div class="form-check">
+            <input
+              formControlName="fechaEntreaga"
+              class="form-check-input"
+              type="radio"
+              id="exampleRadios2"
+              value="fecha entrega"
+            />
+            <label class="form-check-label" for="exampleRadios2">
+              Elegir fecha (programe fecha y hora de entrega)
+            </label>
+          </div>
+          <small *ngIf="validarCampo('fechaEntreaga')" class="text-danger"
+            >Fecha y hora es requerido</small
+          >
+        </div>
+        <div
+          class="form-group"
+          *ngIf="forma.get('fechaEntreaga').value === 'fecha entrega'"
+        >
+          <p>
+            <mat-form-field>
+              <mat-label>Fecha</mat-label>
+              <input
+                (dateChange)="cambioFecha($event.value)"
+                matInput
+                [matDatepicker]="dp3"
+                disabled
+                [min]="minDate"
+                [max]="maxDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="dp3"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </p>
+
+          <!-- <br> -->
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Hora</mat-label>
+              <input
+                formControlName="hora"
+                matInput
+                matNativeControl
+                [ngxTimepicker]="picker"
+                [format]="24"
+                [ngxTimepicker]="range"
+                [min]="horasAumento"
+                max="05:00 pm"
+              />
+              <!-- <input formControlName="hora" matInput matNativeControl [ngxTimepicker]="picker"
+                                [ngxTimepicker]="range" min="09:00 am" max="05:00 pm"> -->
+
+              <ngx-material-timepicker #picker></ngx-material-timepicker>
+            </mat-form-field>
+            <!-- <span class="material-icons">schedule</span> -->
+            <span class="material-icons"><i class="far fa-clock"></i></span>
+            <br />
+            <span class="disclaimer"
+              >*Si el horario que quieres elegir no está disponible es porque ya
+              hay un pedido para entregar</span
+            >
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="cart-price-detail">
+      <!-- <app-total-cart-detail></app-total-cart-detail> -->
+      <div class="cupon">
+        <app-cupon></app-cupon>
+      </div>
+
+      <div class="cart-detail p-3 p-md-4">
+        <h3 class="billing-heading mb-4">Método de pago</h3>
+        <form [formGroup]="formaPago">
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="radio">
+                <label
+                  ><input
+                    formControlName="tipoPago"
+                    type="radio"
+                    value="efectivo"
+                    name="tipoPago"
+                    class="mr-2"
+                  />
+                  Efectivo</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="radio">
+                <label
+                  ><input
+                    formControlName="tipoPago"
+                    type="radio"
+                    value="transferencia"
+                    name="tipoPago"
+                    class="mr-2"
+                  />
+                  Transferencia bancaria</label>
+                  
+              </div>
+              <div class="bancos" *ngIf="formaPago.get('tipoPago').value === 'transferencia'">
+                <div class="item radio">
+                  <label
+                  ><input
+                  formControlName="banco"
+                    type="radio"
+                    value="Banrural"
+                    name="banco"
+                    class="mr-2"
+                  />
+                  Banrural</label>
+                </div>
+                <div class="item">
+                  <label
+                  ><input
+                  formControlName="banco"
+                    type="radio"
+                    value="Banco industrial"
+                    name="banco"
+                    class="mr-2"
+                  />
+                  Banco industrial</label>
+                </div>
+                <div class="item">Nuestro equipo se contactara con usted para proveerle el numero de cuenta bancaria</div>
+              </div>
+            </div>
+
+          </div>
+          <!--           <div class="form-group">
+            <div class="col-md-12">
+              <div class="radio">
+                <label
+                  ><input
+                    type="radio"
+                    value="credito-debito"
+                    name=""
+                    class="mr-2"
+                    disabled
+                  />
+                  Tarjeta de crédito / débito
+                  <br />
+                  <small style="font-size: 10px">Disponible pronto</small>
+                </label>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <label><input formControlName="tipoPago" type="radio" value="credito-debito"
+                                        name="tipoPago" class="mr-2"> Tarjeta de crédito /
+                                    débito</label>
+                            </div>
+                        </div>
+                    </div> -->
+          <!-- <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="radio">
+                            <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
+                        </div>
+                    </div>
+                </div> -->
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="checkbox">
+                <label>
+                  <input
+                    formControlName="condiciones"
+                    type="checkbox"
+                    value="aceptadas"
+                    class="mr-2"
+                  />
+                  He leído y acepto los
+                  <a routerLink="/emp/terminos-y-condiciones"
+                    >términos y condiciones</a
+                  >
+                </label>
+              </div>
+            </div>
+          </div>
+          <small
+            *ngIf="
+              formaPago.get('tipoPago').invalid &&
+              this.formaPago.get('tipoPago').touched
+            "
+            class="text-danger"
+            >Seleccione un meotodo de pago</small
+          >
+          <br />
+          <small
+            *ngIf="
+              formaPago.invalid && this.formaPago.get('condiciones').touched
+            "
+            class="text-danger"
+            >Acepte los terminos y condiciones</small
+          >
+        </form>
+        <p>
+          <button (click)="hacerPedido()" class="btn-hacer-pedido">
+            Realizar pedido
+          </button>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

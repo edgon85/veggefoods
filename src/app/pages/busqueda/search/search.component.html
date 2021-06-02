@@ -1,0 +1,53 @@
+<div class="search-content container">
+    <section class="product-container">
+        <div class="sidebar container">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="section-productos">
+            <div class="container" style="text-align:center">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1>Buscar productos</h1>
+                        <input type="text" #searchInput class="form-control"
+                            placeholder="Escribe nombre del producto" />
+
+                    </div>
+                </div>
+                <div class="row" *ngIf="isSearching">
+                    <div class="col-12 text-center">
+
+                        <h4>Buscando... </h4>
+
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <ng-container *ngIf="busquedas.length !== 0; else elseTemplate">
+
+                        <div class="col-12">
+                            <ng-container *ngFor="let prod of busquedas">
+                                <div (click)="pordDetail(prod._id)" class="search-container">
+                                    <img [src]="prod.imagen | noImage" alt="">
+                                    <h5 class="title">{{ prod.nombre }}</h5>
+                                    <div class="precios">
+                                        <span *ngIf="prod.precio < prod.descuento"
+                                            class="mr-2 price-dc">Q{{prod.descuento | number: '1.2':'en'}}</span>
+                                        <span class="price-sale">Q{{prod.precio | number: '1.2':'en'}}</span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <div class="col-12 text-center">
+                            <div class="featured-products">
+
+                                <p>{{ txtProductoEncontrado }}</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

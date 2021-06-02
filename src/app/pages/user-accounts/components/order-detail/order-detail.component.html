@@ -1,0 +1,190 @@
+<section class="mt-5" *ngIf="cargando">
+    <app-loading></app-loading>
+</section>
+
+<!-- ===================================================================== -->
+<!-- Detalle de orden -->
+<!-- ===================================================================== -->
+<ng-container *ngIf="order">
+
+    <section *ngIf="!cargando">
+        <!-- ===================================================================== -->
+        <!-- Numero de orden  y boton de regreso -->
+        <!-- ===================================================================== -->
+        <div class="header-list-order" *ngIf="pedidoDetalle">
+            <h2 class="title">Pedido #{{ order.$key }}</h2>
+            <button (click)="regresar()" class="btn btn-info back">Regresar <i class="fas fa-reply"></i></button>
+        </div>
+        <!-- ===================================================================== -->
+
+        <!-- ===================================================================== -->
+        <!-- Fecha y estado de pedido -->
+        <!-- ===================================================================== -->
+        <div class="pedidos-header" *ngIf="pedidoDetalle">
+
+            <app-order-tracking [my-order-date]=order.fechaCreacion [order-processed]=orderProcessed
+                [order-shipped]=orderShipped [order-inRoute]=orderInRoute [order-arrived]=orderArrived>
+            </app-order-tracking>
+
+        </div>
+        <!-- ===================================================================== -->
+
+        <!-- ===================================================================== -->
+        <!-- Card de detalle de productos -->
+        <!-- ===================================================================== -->
+        <div class="content-detail-order" *ngIf="pedidoDetalle">
+            <div class="card-container">
+                <!-- ===================== Card ============================== -->
+                <mat-card class="example-card card-1">
+                    <mat-card-header>
+                        <mat-card-title>1. Datos personales</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="card-content">
+                            <strong>Nombre: </strong>
+                            <span>{{ order.nombre }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Correo: </strong>
+                            <span>{{ order.correo }}</span>
+                        </div>
+                        <!-- <div class="card-content">
+                            <strong>Teléfono</strong>
+                            <span>+502 {{ usuario.telefono}}</span>
+                        </div> -->
+                    </mat-card-content>
+                </mat-card>
+
+                <!-- ===================== Card ============================== -->
+                <mat-card class="example-card card-2">
+                    <mat-card-header>
+                        <mat-card-title>2. Dirección de envío</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="card-content">
+                            <strong>Nombre: </strong>
+                            <span>{{ order.nombre }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Dirección: </strong>
+                            <span>{{ order.direccion.ubicacion }}, {{ order.direccion.municipio }},
+                                {{ order.direccion.departamento }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Teléfono: </strong>
+                            <span>+502 {{ order.telefono }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Referencia: </strong>
+                            <span>{{ order.direccion.referencia }}</span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <!-- ===================== Card ============================== -->
+                <mat-card class="example-card card-3">
+                    <mat-card-header>
+                        <mat-card-title>3. Método de pago</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="card-content">
+                            <strong>{{ order.tipoPago }}</strong>
+                        </div>
+                        <div class="card-content">
+                            <strong>Dirección: </strong>
+                            <span>{{ order.direccion.ubicacion }}, {{ order.direccion.municipio }},
+                                {{ order.direccion.departamento }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Teléfono: </strong>
+                            <span>+502 {{ order.telefono }}</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>Referencia: </strong>
+                            <span>{{ order.direccion.referencia }}</span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <!-- ===================== Card ============================== -->
+                <!-- <mat-card class="example-card card-4">
+                    <mat-card-header>
+                        <mat-card-title>Shiba Inu</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                            originally
+                            bred for hunting.
+                        </p>
+                    </mat-card-content>
+                </mat-card> -->
+            </div>
+
+        </div>
+
+        <!-- ===================================================================== -->
+        <!-- Titulo de tabla mis pedidos -->
+        <!-- ===================================================================== -->
+        <div class="header-list-order mt-5" *ngIf="pedidoDetalle">
+            <h2 class="title">Mi pedido</h2>
+        </div>
+        <!-- ===================================================================== -->
+
+        <!-- ===================================================================== -->
+        <!-- Tabla de productos  -->
+        <!-- ===================================================================== -->
+        <div class="responsiveTbl2 " *ngIf="pedidoDetalle">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of order.productos">
+                        <td>
+                            <strong>{{ producto['product']['nombre']}}</strong>
+                        </td>
+                        <td><strong>Q{{ producto['product']['precio'] | number: '1.2':'en'}}</strong></td>
+                        <td>
+                            <strong>{{ producto['quantity']}}</strong>
+                        </td>
+                        <td><strong>Q{{ producto['total'] | number: '1.2':'en'}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- ===================================================================== -->
+
+        <!-- ===================================================================== -->
+        <!-- Detalle de totales  -->
+        <!-- ===================================================================== -->
+        <div class="totales" *ngIf="pedidoDetalle">
+            <div class="card-content">
+                <strong>Subtotal: </strong>
+                <span> Q{{ order.totales.subtotal | number: '1.2':'en'}}</span>
+            </div>
+            <div class="card-content">
+                <strong>Costo de envío: </strong>
+                <span>Q {{ order.totales.delivery | number: '1.2':'en'}}</span>
+            </div>
+            <div class="card-content">
+                <strong>Descuento: </strong>
+                <span>Q {{ order.totales.discount | number: '1.2':'en'}}</span>
+            </div>
+            <div class="card-content">
+                <strong>Suma total: </strong>
+                <span>Q {{ order.totales.total | number: '1.2':'en'}}</span>
+            </div>
+        </div>
+        <!-- ===================================================================== -->
+
+    </section>
+
+</ng-container>

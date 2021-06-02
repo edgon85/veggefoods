@@ -1,0 +1,37 @@
+<div class="container">
+    <section class="mt-5" *ngIf="cargando">
+        <app-loading></app-loading>
+    </section>
+    <section class="title " *ngIf="!cargando">
+        <ng-container class="animated fadeInRight" *ngIf="usuario">
+
+
+            <h2>¡Hola {{ usuario.nombre | firstWord}}!</h2>
+            <p>Bienvenido a tu cuenta en vegefoods.com, actualiza tu información, mira tus pedidos y mucho más</p>
+
+            <mat-card class="card-account">
+
+                <h3 class="title-card">Mi Cuenta</h3>
+
+                <mat-card-content>
+                    <div class="card-content">
+                        <strong>Nombre completo</strong>
+                        <span>{{ usuario.nombre}}</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Correo</strong>
+                        <span>{{ usuario.email}}</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Teléfono</strong>
+                        <span>+502 {{ usuario.telefono}}</span>
+                    </div>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button routerLink="/cuenta/editar" class="btn btn-edit">Editar</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
+    </section>
+</div>

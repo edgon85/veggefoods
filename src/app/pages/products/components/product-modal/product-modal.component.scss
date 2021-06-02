@@ -1,0 +1,263 @@
+@import '../../../../../variables.scss';
+
+.myModal {
+  .overlay {
+    background: rgba($color: #000000, $alpha: 0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    // visibility: hidden;
+    .popup {
+      background: $white;
+      // border: 2px solid green;
+      box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.3);
+      border-radius: 3px;
+      font-family: $font-primary;
+      padding: 20px;
+      text-align: center;
+      // width: 600px;
+      max-width: 1000px;
+      overflow-y: scroll;
+
+      @media screen and (max-width: 900px){
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .btn-close-popup {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #332927;
+        box-shadow: 0 6px 10px 0 rgba(128, 98, 96, 0.16);
+        cursor: pointer;
+        z-index: 2;
+        font-size: 10px;
+
+        color: #fff;
+        border: 2px solid #e5edef;
+        outline: none;
+
+        &:hover {
+          color: #e5edef;
+        }
+      }
+
+      .popup-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+
+        grid-template-areas: 'image detail';
+
+        @media screen and (max-width: 500px){
+          // border: 2px solid red;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          grid-template-areas: 'image' 'detail';
+
+        }
+
+        .image {
+          grid-area: image;
+
+          img {
+            width: 90%;
+            vertical-align: text-top;
+            @media screen and (max-width: 500px){
+              width: 60%;
+            }
+          }
+        }
+
+        .detail {
+          grid-area: detail;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: start;
+
+
+          .title-detail-price {
+
+            .detail-title {
+              color: #332927;
+              font-size: 28px;
+              margin-bottom: 10px;
+              text-transform: capitalize;
+
+              @media screen and (max-width: 500px){
+                font-size: 18px;
+                margin-bottom: 5px;
+              }
+            }
+
+            .detail-text {
+              color: #7d7d7d;
+              font-weight: 300;
+              font-size: 16px;
+              @media screen and (max-width: 500px){
+                font-size: 12px;
+              }
+            }
+
+            .detail-price {
+              color: #332927;
+              font-size: 24px;
+              margin: 5px 0;
+              .discount {
+                text-decoration: line-through;
+                color: #b3b3b3;
+                margin-right: 20px;
+              }
+              .mass {
+                font-size: 20px;
+                margin-left: 10px;
+                color: #b3b3b3;
+                @media screen and (max-width: 500px){
+                  font-size: 16px;
+                }
+              }
+
+              @media screen and (max-width: 500px){
+                font-size: 16px;
+              }
+            }
+          }
+
+          .button-add {
+            margin-top: 16px;
+            padding: 0.5em 1em;
+            // border: 1px solid red;
+
+            @media screen and (max-width: 500px){
+              margin-top: 5px;
+            }
+
+            button {
+              height: 32px;
+              // width: 100%;
+              display: flex;
+              align-items: center;
+              flex-direction: row;
+              background-color: $primary;
+              border-radius: 8px;
+              color: #fff;
+              padding: 8.5px 1em;
+              text-align: center;
+              border-color: transparent;
+              overflow: hidden;
+              outline: none;
+              cursor: pointer;
+              transition: 0.3s ease all;
+              &:hover {
+                background: rgba($color: $primary, $alpha: 0.8);
+              }
+
+              @media screen and (max-width: 500px){
+                font-size: 12px;
+              }
+            }
+          }
+
+          .isInCart{
+            // background-color: red;
+            p{
+              color: $primary;
+            }
+            .buttons{
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+            }
+          }
+
+          .incrementador {
+            width: 150px;
+          }
+          .options {
+            margin-top: 2em;
+            width: 90%;
+
+            @media screen and (max-width: 500px){
+              margin-top: 5px;
+              
+            }
+
+            label {
+              font-size: 16px;
+              color: #332927;
+              margin: 0;
+              @media screen and (max-width: 500px){
+                font-size: 11px;
+              }
+            }
+
+            select {
+              @media screen and (max-width: 500px){
+                height: 27px !important;
+                font-size: 10px;
+                
+              }
+            }
+
+            textarea {
+              min-height: 100px !important;
+              @media screen and (max-width: 500px){
+                min-height: 50px !important;
+                font-size: 10px !important;
+              }
+            }
+
+
+            .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+              background-color: $primary !important;
+            }
+            
+            .custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+              box-shadow: none !important;
+            }
+            .custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+              box-shadow: none !important;
+            }
+            /* .custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+              background-color: ; 
+            } */
+          }
+        }
+      }
+    }
+  }
+
+  .overlay.active {
+    // visibility: hidden;
+    display: none;
+  }
+}
+
+.showComentario{
+  display: none;
+}
+
+.comentario{
+  // border: 1px solid red;
+  &:checked {
+    & ~ .showComentario{
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<section class="proveedor-container">
+    <div class="container">
+        <div class="contenido">
+            <p>Si deseas vender tus productos en Vegetal Go, porfavor llena el siguiente formulario:</p>
+            <form [formGroup]="forma" class="example-form">
+                <div class="mb-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Nombre y apellido</mat-label>
+                        <input formControlName="nombre" matInput placeholder="Nombre">
+                        <mat-error *ngIf="forma.get('nombre').invalid">
+                            Nombre y apellido es<strong>obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Correo</mat-label>
+                        <input formControlName="email" matInput placeholder="Nombre">
+                        <mat-error *ngIf="forma.get('email').invalid">
+                            Introduzca un correo <strong>valido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Teléfono</mat-label>
+                        <input formControlName="telefono" matInput placeholder="teléfono">
+                        <mat-error *ngIf="forma.get('telefono').invalid">
+                            teléfono es<strong>obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mb-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Tipo de producto</mat-label>
+                        <textarea formControlName="tipo_producto" matInput placeholder="Detalle de su producto"
+                            rows="10"></textarea>
+                        <mat-error *ngIf="forma.get('tipo_producto').invalid">
+                            campo <strong>obligatorio</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button (click)="sendInfo()" mat-raised-button color="primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</section>
