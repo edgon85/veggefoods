@@ -1,36 +1,42 @@
 <section class="footer">
 
     <div class="nosotros">
-        <h2>Vegefood</h2>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+        <!-- <h2>Vegefood</h2> -->
+        <div class="logo">
+            <img src="assets/images/logos/logo-vegetal-go.png" alt="Vegetal Go tu mercado en linea a precio de mercado">
+        </div>
+        <p>Tus compras en línea a precio de mercado</p>
         <div class="social">
 
         </div>
     </div>
     <div class="menu">
-        <h2>Menu</h2>
+        <h2>Menú</h2>
         <div class="enlaces">
-            <a href="#">Productos</a>
-            <a href="#">Nosotros</a>
-            <a href="#">Contacto</a>
-            <a href="#">Carrito</a>
+            <a routerLink="/productos/categoria/verduras">Productos</a>
+            <!-- <a href="#">Nosotros</a> -->
+            <a routerLink="/contacto">Contacto</a>
+            <a routerLink="/cart">Carrito</a>
         </div>
     </div>
     <div class="help">
         <h2>Ayuda</h2>
         <div class="enlaces">
-            <a href="#">Información de envío</a>
+            <a routerLink="/contacto">Contáctanos</a>
             <!-- <a href="#">Devoluciones y cambio</a> -->
-            <a href="#">Términos y condiciones</a>
-            <a href="#">Política de privacidad</a>
+            <a routerLink="/emp/terminos-y-condiciones">Términos y condiciones</a>
+            <a routerLink="/emp/politicas-de-privacidad">Política de privacidad</a>
+            <a routerLink="/emp/proveedores">¿Deseas ser proveedor?</a>
         </div>
     </div>
     <div class="contacto">
-        <h2>¿Tiene alguna pregunta?</h2>
+        <h2>¿Tienes alguna pregunta?</h2>
         <div class="enlaces">
-            <a href="#"><i class="fas fa-at"></i> info@vegifood.com</a>
-            <a href="#"><i class="fab fa-whatsapp"></i> +502 51420832</a>
-            <a href="#"><i class="fas fa-mobile-alt"></i> +502 51420832</a>
+            <a href="mailto:info@vegetalgo.com"><i class="fas fa-at"></i> info@vegetalgo.com</a>
+            <a href="tel:+50251367524"><i class="fab fa-whatsapp"></i> +502 5136-7524</a>
+            <a target="_blank" href="https://www.facebook.com/vegetalgo/"><i class="fab fa-facebook"></i> Facebook</a>
+            <a target="_blank" href="https://www.instagram.com/vegetalgo/"><i class="fab fa-instagram"></i>
+                Instagram</a>
         </div>
     </div>
 
@@ -39,10 +45,11 @@
     <p>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         Copyright &copy;
-        {{ year }} Todos los derechos reservados | desarollado por <a href="https://wedevgt.com"
-            target="_blank">WeDev</a> |
+        {{ year }} Todos los derechos reservados | desarollado por <a href="https://edgon85.github.io/wedev-page/"
+            target="_blank">WeDev</a> 
+            <!-- |
         This template
-        is made with <i class="fas fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        is made with <i class="fas fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
     </p>
 </section>

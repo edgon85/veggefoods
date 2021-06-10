@@ -1,0 +1,77 @@
+<div class="contenedor">
+    <section class="mt-5" *ngIf="cargando">
+        <app-loading></app-loading>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- Lista de ordenes -->
+    <!-- ===================================================================== -->
+    <ng-container *ngIf="(orders$ | async) as orders">
+
+        <!-- ============================================================= -->
+        <!-- Si no hay ordenes -->
+        <!-- ============================================================= -->
+        <div class="no-orders" *ngIf="orders.length === 0 && !pedidoDetalle">
+            <h2>Aun no tienes pedidos</h2>
+        </div>
+        <!-- ============================================================= -->
+
+        <!-- ===================================================================== -->
+        <!-- Titulo de encabezado -->
+        <!-- ===================================================================== -->
+        <section *ngIf="!cargando">
+            <div class="header-list-order" *ngIf="orders.length !== 0 && !pedidoDetalle">
+                <h2 class="title">Mis pedidos</h2>
+            </div>
+        </section>
+        <!-- ===================================================================== -->
+
+
+        <!-- ===================================================================== -->
+        <!-- Tabla listado de oredenes -->
+        <!-- ===================================================================== -->
+        <section class="order">
+            <div class="order-list" *ngIf="orders.length !== 0 && !pedidoDetalle">
+                <div class="responsiveTbl">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No. pedido</th>
+                                <th>Fecha</th>
+                                <th>Destinatario</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orders">
+                                <td>
+                                    <strong>{{ order.$key }}</strong>
+                                </td>
+                                <td>
+                                    <strong>{{order.fechaCreacion | date}}</strong>
+                                </td>
+                                <td>
+                                    <strong>{{order.nombre}}</strong>
+                                </td>
+
+                                <td><strong>Q{{order.totales.total | number: '1.2':'en'}}</strong></td>
+                                <td>
+                                    <strong *ngIf="order.status === 'processed'" class="entregado">Recibido</strong>
+                                    <strong *ngIf="order.status === 'shipped'" class="entregado">Despachando</strong>
+                                    <strong *ngIf="order.status === 'inroute'" class="entregado">En camino</strong>
+                                    <strong *ngIf="order.status === 'arrived'" class="entregado">Entregado</strong>
+                                </td>
+                                <td><a (click)="verDetalle(order.$key)" style="cursor: pointer;">Ver
+                                        detalle ></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <!-- ===================================================================== -->
+    </ng-container>
+</div>

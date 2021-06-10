@@ -9,4 +9,9 @@ export class ProductPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+
+  cerrarModal(){
+    console.log('Cerrar modal');
+  }
 }

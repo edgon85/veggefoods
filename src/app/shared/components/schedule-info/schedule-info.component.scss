@@ -1,0 +1,75 @@
+@import '../../../../variables.scss';
+
+.top-head{
+    background: $primary;
+    .top-head-wrapper{
+      max-width: 1250px;
+      margin: auto;
+      padding-block: 4px;
+      .top-head-content{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        'delivery'
+          'phone'
+          'email';
+        /* flex-direction: column;
+        justify-content: center; */
+  
+        .item{
+          color: $white;
+          font-size: 12px;
+          text-align: center;
+          font-family: $font-primary;
+          a{
+            color: $white;
+            font-family: $font-primary;
+            margin-left: 5px;
+            text-decoration: none;
+          }
+          &:first-child{
+            grid-area: phone;
+            // margin-block: auto;
+            
+          }
+  
+          &:nth-child(2){
+            grid-area: delivery;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+          &:last-child{
+            grid-area: email;
+            // margin-block: auto;
+          }
+        }
+  
+      }
+    }
+  }
+
+  
+  @media screen and (min-width: 768px) {
+    .top-head{
+      .top-head-wrapper{
+        padding-block: 4px;
+        .top-head-content{
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-areas: 'phone delivery email';
+          .item{
+            
+            &:first-child{
+              margin-block: auto;
+            }
+    
+            &:last-child{
+    
+              margin-block: auto;
+            }
+          }
+        }
+      }
+    }
+  }

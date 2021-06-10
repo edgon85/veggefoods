@@ -1,0 +1,62 @@
+<ng-container *ngIf="(products$ | async) as productos">
+    <section *ngIf="productos.length === 0" class="cart-empty">
+        <div class="image">
+            <img src="assets/images/cart_empty.png" alt="">
+        </div>
+        <p>¡OOOPS! Tu carrito de compras está vacío <br> selecciona una categoría</p>
+        <div class="contenido">
+            <app-sidebar></app-sidebar>
+        </div>
+    </section>
+    <section *ngIf="productos.length > 0" class="carrito-detail">
+        <div class="cart-list">
+            <div class="responsiveTbl">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos">
+                            <td>
+                                <div class="image">
+                                    <img [src]="producto.product.imagen" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="nombre-detalle">
+                                    <strong>{{ producto.product.nombre }}</strong>
+                                    <span>Este producto se vende por {{ producto.product.masa }}</span>
+                                </div>
+                            </td>
+                            <!-- <td><span class="price">£40 / hr</span></td> -->
+                            <td>Q{{ producto.product.precio | number: '1.2':'en'}}</td>
+                            <td>
+                                <div class="contenedor-incrementador">
+                                    <app-incrementador (actualizaValor)="producto.quantity = $event"
+                                        [progresoIncrementador]="producto.quantity" [cartItemId]="producto.cartItemId">
+                                    </app-incrementador>
+                                </div>
+                            </td>
+                            <td><strong>Q {{ producto.total | number: '1.2':'en'}}</strong></td>
+                            <td><button (click)="deleteToCart(producto.cartItemId)" class="btn"><i
+                                        class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="cart-price-detail">
+            <app-total-cart-detail></app-total-cart-detail>
+            <button (click)="checkout()" class="btn-pagar">Pasar a caja</button>
+            <button routerLink="/productos/categoria/verduras" class="btn-pagar">Seguir comprando</button>
+        </div>
+    </section>
+</ng-container>

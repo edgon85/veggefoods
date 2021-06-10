@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="row d-flex justify-content-between px-3 top">
+        <div class="d-flex">
+            <!-- <h5>Orden <span class="text-primary font-weight-bold">#{{ numberOrder }}</span></h5> -->
+        </div>
+        <div class="d-flex flex-column text-sm-right">
+            <p class="mb-0">Fecha de pedido: <span>{{ orderDate | date}}</span></p>
+            <!-- <p>USPS <span class="font-weight-bold">234094567242423422898</span></p> -->
+        </div>
+    </div> <!-- Add class 'active' to progress -->
+    <div class="row d-flex justify-content-center myProgressbar">
+        <div class="col-12">
+            <ul id="progressbar" class="text-center">
+                <li [ngClass]="{'active': orderProcessed}" class="step0"></li>
+                <li [ngClass]="{'active': orderShipped}" class="step0"></li>
+                <li [ngClass]="{'active': orderInRoute}" class="step0"></li>
+                <li [ngClass]="{'active': orderArrived}" class="step0"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row justify-content-between top">
+        <div class="row d-flex icon-content"> <img class="icon" src="assets/images/order-processed.png">
+            <div class="d-flex flex-column">
+                <p class="font-weight-bold">Orden<br>recibida</p>
+            </div>
+        </div>
+        <div class="row d-flex icon-content"> <img class="icon" src="assets/images/order-shipped.png">
+            <div class="d-flex flex-column">
+                <p class="font-weight-bold">Despachando<br>orden</p>
+            </div>
+        </div>
+        <div class="row d-flex icon-content"> <img class="icon" src="assets/images/order-in-route.png">
+            <div class="d-flex flex-column">
+                <p class="font-weight-bold">Orden<br>En camino</p>
+            </div>
+        </div>
+        <div class="row d-flex icon-content"> <img class="icon" src="assets/images/order-arrived.png">
+            <div class="d-flex flex-column">
+                <p class="font-weight-bold">Orden<br>Entregada</p>
+            </div>
+        </div>
+    </div>
+</div>

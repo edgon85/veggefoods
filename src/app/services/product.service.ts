@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ProductoModel } from '../models/product.model';
-import { from, pipe } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  urlProduct = 'https://de-volada-ce752.firebaseio.com';
+  // urlProduct = 'https://de-volada-ce752.firebaseio.com';
+  private urlProduct = environment.firebase.databaseURL;
 
   constructor(private http: HttpClient) {}
 
@@ -16,18 +17,50 @@ export class ProductService {
   // Obtiene todos los productos
   // ==================================================== //
   public getAllProducts() {
-    let url = this.urlProduct + '/products.json';
+    const url =
+      this.urlProduct + '/products.json?orderBy="disponible"&equalTo=true';
 
     const data = this.http.get(url).pipe(map(this.crearArreglo));
 
     return data;
   }
 
+  // ==================================================== //
+  // Obtiene todos los productos destacados
+  // ==================================================== //
+  public getProductosDesacados() {
+    const url =
+      this.urlProduct + '/products.json?orderBy="destacado"&equalTo=true';
+
+    return this.http.get(url).pipe(
+      map((data) => {
+        const datos = Object.keys(data).map((k) => data[k]);
+        return datos.filter((f) => f.disponible === true);
+      })
+    );
+  }
+  
+  // ==================================================== //
+  // Obtiene todos los productos destacados
+  // ==================================================== //
+  public getlistaOrganicos() {
+    const url =
+      this.urlProduct + '/lista-organicos.json';
+
+    return this.http.get(url).pipe(
+      map((data) => {
+        const datos = Object.keys(data).map((k) => data[k]);
+        // return datos.filter((f) => f.disponible === true);
+        return datos;
+      })
+    );
+  }
+
   // ====================================================
   // Obtiene un producto
   // ====================================================
   public getProduct(slug: string) {
-    let url = this.urlProduct + `/products/${slug}.json`;
+    const url = this.urlProduct + `/products/${slug}.json`;
 
     return this.http.get(url);
   }
@@ -38,10 +71,8 @@ export class ProductService {
   // ==================================================== //
   private crearArreglo(productosObj: object) {
     const productos: ProductoModel[] = [];
-    Object.keys(productosObj).forEach(key => {
+    Object.keys(productosObj).forEach((key) => {
       const producto: ProductoModel = productosObj[key];
-      // producto.id = key;
-      // console.log( producto);
       productos.push(producto);
     });
 

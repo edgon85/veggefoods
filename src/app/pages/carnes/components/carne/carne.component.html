@@ -1,0 +1,122 @@
+
+<section class="pestanias">
+    <button #eyelashBeef (click)="selectEyelashBeef()" class="link">Res</button>
+    <button #eyelashChicken (click)="selectEyelashChicken()" class="link">Pollo</button>
+    <button #eyelashSeaFood (click)="selectEyelashSeaFood()" class="link">Mariscos</button>
+    <button #eyelashSausages (click)="selectEyelashSausages()" class="link">Embutidos</button>
+</section>
+
+
+<section class="organicos">
+    <div class="container">
+
+        <!-- ============================================ -->
+        <!-- res -->
+        <!-- ============================================ -->
+        <section class="organicos__item" *ngIf="btnBeef">
+            <div class="organicos__item-title">
+                <h3>Carne de res</h3>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['subcategoria'] === 'res'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!-- fin res -->
+        <!-- ============================================ -->
+
+        <!-- ============================================ -->
+        <!-- Pollo -->
+        <!-- ============================================ -->
+        <section class="organicos__item" *ngIf="btnChicken">
+            <div class="organicos__item-title">
+                <h3>Carne de pollo</h3>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['subcategoria'] === 'pollo'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!-- Pollo res -->
+        <!-- ============================================ -->
+
+        <!-- ============================================ -->
+        <!-- Mariscos -->
+        <!-- ============================================ -->
+        <section class="organicos__item" *ngIf="btnSeaFood">
+            <div class="organicos__item-title">
+                <h3>Mariscos</h3>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['subcategoria'] === 'mariscos'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!-- Fin Mariscos -->
+        <!-- ============================================ -->
+
+        <!-- ============================================ -->
+        <!-- Embutidos -->
+        <!-- ============================================ -->
+        <section class="organicos__item" *ngIf="btnSausages">
+            <div class="organicos__item-title">
+                <h3>Embutidos</h3>
+            </div>
+            <div class="organicos__item-body">
+                <div *ngIf="cargando" class="loading mt-5">
+                    <app-loading></app-loading>
+                </div>
+                <div *ngIf="!cargando" class="container-products">
+                    <div class="featured-products">
+                        <ng-container *ngFor="let prod of productos">
+                            <ng-container *ngIf="prod['subcategoria'] === 'embutidos'">
+                                <app-card-product [producto]="prod"></app-card-product>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================ -->
+        <!-- fin embutidos -->
+        <!-- ============================================ -->
+
+        <div class="mb-5"></div>
+
+    </div>
+</section>
+
+<app-floating-button></app-floating-button>

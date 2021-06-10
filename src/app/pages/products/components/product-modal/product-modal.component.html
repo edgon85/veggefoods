@@ -1,0 +1,67 @@
+<div class="myModal">
+    <div class="overlay" [class.active]="modalProducService.ocultarModal">
+        <div class="popup" *ngIf="modalProducService.product">
+            <button (click)="closeModal()" class="btn-close-popup"><i class="fas fa-times"></i></button>
+            <div class="popup-content">
+                <div class="image">
+                    <img [src]="modalProducService.product.imagen | noImage" alt="">
+                </div>
+                <div class="detail">
+                    <div class="title-detail-price">
+                        <h2 class="detail-title">{{ modalProducService.product.nombre }}</h2>
+                        <p class="detail-price">
+                            <span class="discount" *ngIf="modalProducService.product.precio < modalProducService.product.descuento">Q{{modalProducService.product.descuento | number: '1.2':'en'}}</span>
+                            <span class="price">Q{{modalProducService.product.precio | number: '1.2':'en'}}</span>
+                            <small class="mass">c/{{modalProducService.product.masa}}</small>
+                        </p>
+
+                        <div class="detail-text">
+                            <div [innerHTML]="modalProducService.product.detalle | domeseguroProductdetail"></div>
+                        </div>
+
+                    </div>
+                    <div class="incrementador" *ngIf="!modalProducService.isInCart">
+                        <app-incrementador (actualizaValor)="cantidadProductDetail = $event" [progresoIncrementador]="cantidadProductDetail"></app-incrementador>
+                    </div>
+
+                    <div class="options" *ngIf="!modalProducService.isInCart">
+                        <form [formGroup]="forma">
+                            <div class="form-group" *ngIf="modalProducService.product.opciones.madurez">
+                              <label>Seleccione la madurez</label>
+                              <select class="form-control" formControlName="madurez">
+                                <option>Verde (7 días)</option>
+                                <option>Normal (3 a 5 días)</option>
+                                <option>Maduro (Para hoy)</option>
+                              </select>
+                            </div>
+
+                              <div class="myTest custom-control custom-checkbox">
+                                <input formControlName="isComentarioChecked" type="checkbox" class="custom-control-input" id="customCheck1" (change)="changeTexboxValue($event)">
+                                <label class="custom-control-label" for="customCheck1">Agregar comentario para este producto</label>
+                              </div>
+
+                            <div class="form-group" *ngIf="isComentario">
+
+                              <textarea formControlName="especificacion"  class="form-control" placeholder="Comenta cómo quiere recibir este producto"></textarea>
+                            </div>
+                          </form>
+                    </div>
+                    <div class="button-add" *ngIf="!modalProducService.isInCart">
+                        <button (click)="addToCart(modalProducService.product)">Agregar al carrito</button>
+                    </div>
+                    <div class="isInCart" *ngIf="modalProducService.isInCart">
+                        <p>Este producto ya esta en su carrito</p>
+                        <div class="buttons">
+                            <div class="button-add">
+                                <button (click)="verCarrito()">Ver carrito</button>
+                            </div>
+                            <div class="button-add">
+                                <button (click)="closeModal()">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

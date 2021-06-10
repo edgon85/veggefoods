@@ -1,56 +1,91 @@
-<div class="py-1 bg-primary">
-    <div class="container">
-        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-            <div class="col-lg-12 d-block">
-                <div class="row d-flex">
-                    <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
-                            <span class="icon-phone2"><i class="fas fa-phone-alt"></i></span></div>
-                        <span class="text">+ 502 51430832</span>
+<nav class="navbar">
+    <div class="nav-wrapper">
+        <div class="content">
+            <div class="logo" routerLink="/inicio">
+                <img src="assets/images/logos/vegetalgo-logo.png" alt="Vegetal Go tu mercado en linea a precio de mercado" />
+            </div>
+            <div class="menu-content">
+                <div class="menu-list">
+                    <div class="icon cancel-btn">
+                        <i class="fas fa-times"></i>
                     </div>
-                    <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
-                            <span class="icon-paper-plane"><i class="fas fa-paper-plane"></i></span></div>
-                        <span class="text">info@vegefoods.com</span>
+
+                    <li (click)="removeClases()" class="active">
+                        <a routerLinkActive="active" routerLink="/inicio">Inicio</a>
+                    </li>
+                    <li class="nav-link">
+                        <a class="m-tienda pointer">Tienda <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown tienda">
+                            <ul>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/frutas">Frutas</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/verduras">Verduras</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/semillas">Semillas</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/especias">Especias</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/carnes">Carnes</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/orgánicos">Orgánicos</a>
+                                </li>
+                                <li (click)="removeClases()" class="dropdown-link dropdown-link-tienda">
+                                    <a routerLink="/productos/categoria/varios">Varios</a>
+                                </li>
+                                <!-- <div class="arrow"></div> -->
+                                <div class=""></div>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-link">
+                        <a  class="m-cuenta pointer">Mi cuenta <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown cuenta">
+                            <ul>
+                                <li (click)="removeClases()" *ngIf="!isloggedIn" class="dropdown-link dropdown-link-cuenta">
+                                    <a routerLink="/auth/login">Iniciar sesión</a>
+                                </li>
+                                <li (click)="removeClases()" *ngIf="!isloggedIn" class="dropdown-link dropdown-link-cuenta">
+                                    <a class="dropdown-link-cuenta" routerLink="/auth/register">Crear cuenta</a>
+                                </li>
+
+                                <li (click)="removeClases()" *ngIf="isloggedIn" class="dropdown-link dropdown-link-cuenta">
+                                    <a routerLink="/cuenta/pedidos">Mis pedidos</a>
+                                </li>
+                                <li (click)="removeClases()" *ngIf="isloggedIn" class="dropdown-link dropdown-link-cuenta">
+                                    <a routerLink="/cuenta/perfil">Mi Cuenta</a>
+                                </li>
+                                <li (click)="removeClases()" *ngIf="isloggedIn" class="dropdown-link-cuenta dropdown-link">
+                                    <a (click)="logout()" href="#">Cerrar Sesión</a>
+                                </li>
+                                <div class=""></div>
+                            </ul>
+                        </div>
+                    </li>
+                    <li (click)="removeClases()">
+                        <a routerLink="/cart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i>[{{ total$ | async }}]</a>
+                    </li>
+                    <li (click)="removeClases()">
+                        <a routerLink="/busqueda/q=" routerLinkActive="active" ><i class="fas fa-search"></i></a>
+                    </li>
+                </div>
+                <div class="navbuttons">
+                    <div class="icon search-btn" (click)="redirectBuscar('search')">
+                        <i class="fas fa-search"></i>
                     </div>
-                    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">Entregamos los 7 dias de la semana</span>
+                    <div class="icon cart-btn" (click)="redirectBuscar('cart')">
+                        <i class="fas fa-shopping-cart"></i> <small>[{{ total$ | async }}]</small>
+                    </div>
+                    <div class="icon menu-btn">
+                        <i class="fas fa-bars"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href="#">Vegefoods</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i> Menu
-        </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a routerLink="/inicio" class="nav-link">Inicio</a></li>
-                <!-- <li class="nav-item"><a href="#" class="nav-link">Tienda</a></li> -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Tienda</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" routerLink="/productos/categoria/frutas">Frutas</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/vegetales">Vegetales</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/semillas">Semillas</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/chiles">Chiles</a>
-                        <a class="dropdown-item" routerLink="/productos/categoria/aceites">Productos regia</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
-                <!-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
-                <li class="nav-item cta cta-colored"><a routerLink="/cart" class="nav-link"><span
-                            class="icon-shopping_cart"><i
-                                class="fas fa-shopping-cart"></i></span>[{{ total$ | async }}]</a></li>
-
-            </ul>
         </div>
     </div>
 </nav>
