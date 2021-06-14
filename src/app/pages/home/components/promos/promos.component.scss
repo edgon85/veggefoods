@@ -1,0 +1,121 @@
+@import "../../../../../variables.scss";
+
+.promo {
+  .promo-wrapper {
+    max-width: 900px;
+    margin: auto;
+
+    padding-inline: 10px;
+    .promo-container {
+      border-radius: 10px;
+      background-image: url(../../../../../assets/images/home/fondo.png);
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .img {
+        margin-top: auto;
+        height: 200px;
+        img {
+          height: 100%;
+          border-bottom-left-radius: 10px;
+        }
+
+        &:last-child {
+          display: none;
+        }
+      }
+
+      .text-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-block: 5px;
+        margin-inline-end: 20px;
+
+        .title {
+          h2,
+          h3,
+          h4 {
+            padding: 0;
+            margin: 0;
+          }
+
+          h3 {
+            font-size: 1.5rem;
+            font-family: $font-primary;
+            font-weight: 300;
+            color: #537368;
+          }
+
+          h2 {
+            color: #da8e6e;
+          }
+
+          text-align: center;
+        }
+
+        .code {
+          .box {
+            border: 2px solid #da8e6e;
+            padding: 2px;
+            text-align: center;
+            margin-block: 5px;
+            p {
+              font-size: 1rem;
+              &:first-child {
+                color: #da8e6e;
+              }
+              &:last-child {
+                color: #537368;
+                text-transform: uppercase;
+              }
+            }
+          }
+
+          p {
+            padding: 0;
+            margin: 0;
+            line-height: 1.2;
+            color: #da8e6e;
+            font-size: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 567px) {
+  .promo {
+    .promo-wrapper {
+      .promo-container {
+        justify-content: space-between;
+
+        .text-content {
+          margin-inline-end: 0;
+          .title {
+            h3 {
+              font-size: 2rem;
+            }
+
+            h2 {
+              font-size: 2.5rem;
+            }
+
+            text-align: center;
+          }
+        }
+
+        .img {
+          &:last-child {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
