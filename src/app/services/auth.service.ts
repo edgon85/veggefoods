@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   // ========================================= //
-  // actualizar usuario //
+  // Crear usuario en database//
   // ========================================= //
   private createUserData(id: string, usuario: UsuarioModel) {
     const userRef: AngularFirestoreDocument = this.afs.doc(`users/${id}`);
@@ -83,6 +83,7 @@ export class AuthService {
       email: usuario.email,
       nombre: usuario.nombre,
       uid: id,
+      orders: 0,
       direccion: '',
       telefono: '',
       timestamp: date.toString(),
