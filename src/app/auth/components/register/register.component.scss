@@ -49,6 +49,10 @@
             line-height: 1.5;
           }
 
+          input[type='email']{
+            text-transform: lowercase;
+          }
+
           input {
             display: block;
             width: 100%;
@@ -76,6 +80,7 @@
           justify-content: space-between;
           align-items: center;
           font-size: 0.6rem;
+          margin-block-end: 1rem;
 
           .remember {
             display: flex;
@@ -102,13 +107,16 @@
               &::before {
                 position: absolute;
                 left: 0;
-                // top: 4px;
                 font-family: 'Font Awesome 5 Free';
                 content: '\f0c8';
-                /* border: 1px solid #9e9e9e;
-                border-radius: 3px;
-                width: 1.1em;
-                height: 1.1em; */
+              }
+            }
+          }
+          span{
+            strong{
+              a{
+                text-decoration: none;
+                color: $primary;
               }
             }
           }
@@ -124,6 +132,7 @@
             background: $primary;
             color: $white;
             width: 100%;
+             padding-block: 5px;
             text-transform: uppercase;
             outline: none;
           }
