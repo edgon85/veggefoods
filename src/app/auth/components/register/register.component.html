@@ -4,39 +4,41 @@
             <div class="title">
                 <h3>crear nueva cuenta</h3>
             </div>
-            <form class="form">
+            <form [formGroup]="formRegister" class="form">
                 <div class="my-form">
                     <label>Ingrese su nombre</label>
-                    <input type="text" placeholder="Nombre">
+                    <input formControlName="firstName" type="text" placeholder="Nombre">
+                    <span *ngIf="validateField('firstName')">* campo requerido</span>
                 </div>
                 <div class="my-form">
                     <label>Ingrese su apellido</label>
-                    <input type="text" placeholder="Apellido">
+                    <input formControlName="lastName" type="text" placeholder="Apellido">
+                    <span *ngIf="validateField('lastName')">* campo requerido</span>
                 </div>
                 <div class="my-form">
                     <label>Ingrese su correo eléctronico</label>
-                    <input type="email" placeholder="Correo">
+                    <input formControlName="email" type="email" placeholder="Correo">
+                    <span *ngIf="validateField('email')">* requerido, ej: ejemplo@correo.com</span>
                 </div>
                 <div class="my-form">
                     <label>Ingrese una contraseña</label>
-                    <input type="password" placeholder="Contraseña">
+                    <input formControlName="password" type="password" placeholder="Contraseña">
+                    <span *ngIf="validateField('password')" >* requerido, la contraseña debe tener minimo 6 caracteres</span>
                 </div>
                 <div class="options">
                     <div class="remember">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">Recordar mi usuario</label>
+                       <!--  <input type="checkbox" id="remember">
+                        <label for="remember">Recordar mi usuario</label> -->
                     </div>
                     <span>¿Ya tienes cuenta? / <strong><a routerLink="/auth/login">ingresar</a></strong></span>
                 </div>
                 <div class="button">
-                    <button class="btn-register">crear</button>
+                    <button (click)="btnCreateAcount()"  class="btn-register">crear</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 
 <!-- <div class="limiter animated fadeInRight">
     <div class="container-login100">
