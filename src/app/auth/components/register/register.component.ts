@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioModel } from '../../../interfaces/user.interface';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -15,14 +15,18 @@ export class RegisterComponent implements OnInit {
 
   formRegister: FormGroup;
 
-  myPatern: string = '[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[\.][a-zA-Z]{2,}$';
+  myPatern: string =
+    "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[.][a-zA-Z]{2,}$";
 
   user: UsuarioModel;
 
   redirectCheckoutURL: string = '';
 
-
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.initFormRegister();
     if (localStorage.getItem('ckeckoutUrl') !== null) {
       this.redirectCheckoutURL = localStorage.getItem('ckeckoutUrl');
@@ -31,8 +35,11 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
+  /* <=====================================================> */
+  /* <======== Form a new user acount =================> */
+  /* <=====================================================> */
   initFormRegister() {
     this.formRegister = this.fb.group({
       firstName: ['', Validators.required],
@@ -41,15 +48,17 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+  /* <=====================================================> */
 
-
+  /* <=====================================================> */
+  /* <======== button new user acount =================> */
+  /* <=====================================================> */
   btnCreateAcount() {
-
     if (this.formRegister.invalid) {
       return Object.values(this.formRegister.controls).forEach((control) => {
         if (control instanceof FormGroup) {
-          Object.values(control.controls).forEach(
-            (resp) => resp.markAsTouched(),
+          Object.values(control.controls).forEach((resp) =>
+            resp.markAsTouched()
           );
         } else {
           control.markAsTouched();
@@ -57,13 +66,15 @@ export class RegisterComponent implements OnInit {
       });
     }
 
-
     if (this.formRegister.valid) {
       this.registerUser();
     }
   }
+  /* <=====================================================> */
 
-
+  /* <=====================================================> */
+  /* <======== Register a new user acount =================> */
+  /* <=====================================================> */
   registerUser() {
     const userData = this.formRegister.value;
 
@@ -95,127 +106,36 @@ export class RegisterComponent implements OnInit {
           showConfirmButton: true,
         });
       });
-
   }
+  /* <=====================================================> */
 
-
+  /* <=====================================================> */
+  /* <========Validate Field email and password ===========> */
+  /* <=====================================================> */
   validateField(nombre: string) {
-    return this.formRegister.get(nombre).invalid && this.formRegister.get(nombre).touched;
+    return (
+      this.formRegister.get(nombre).invalid &&
+      this.formRegister.get(nombre).touched
+    );
   }
+  /* <=====================================================> */
 
-
+  /* <================ Handle Errors =============> */
   handleErrorAuth(error: string): string {
-    let _authError: string;
-
-    switch (error) {
-      case 'auth/user-not-found':
-        _authError = 'El usuario con este correo electrónico no existe.';
-        break;
-      case 'auth/wrong-password':
-        _authError = 'Su contraseña es incorrecta.';
-        break;
-      case 'auth/user-disabled':
-        _authError =
-          'El usuario con este correo electrónico ha sido deshabilitado.';
-        break;
-      case 'auth/too-many-requests':
-        _authError = 'Demasiadas solicitudes Intenta nuevamente más tarde.';
-        break;
-      case 'auth/operation-not-allowed':
-        _authError =
-          'Iniciar sesión con correo electrónico y contraseña no está habilitado.';
-        break;
-      case 'auth/email-already-in-use':
-        _authError =
-          'La dirección de correo electrónico ya está en uso por otra cuenta.';
-        break;
-      default:
-        _authError = 'Ocurrió un error :(';
-    }
-    return _authError;
+    const DEFAULT_ERROR = 'Ocurrió un error :(';
+    const ERRORS = {
+      'auth/user-not-found':
+        'El usuario con este correo electrónico no existe.',
+      'auth/wrong-password': 'Su contraseña es incorrecta.',
+      'auth/user-disabled':
+        'El usuario con este correo electrónico ha sido deshabilitado.',
+      'auth/too-many-requests':
+        'Demasiadas solicitudes Intenta nuevamente más tarde.',
+      'auth/operation-not-allowed':
+        'Iniciar sesión con correo electrónico y contraseña no está habilitado.',
+      'auth/email-already-in-use':
+        'La dirección de correo electrónico ya está en uso.',
+    };
+    return ERRORS[error] || DEFAULT_ERROR;
   }
-
 }
-
-/*   usuario: UsuarioModel;
-
-  recordarme: boolean = false;
-
-  redirectCheckoutURL: string = '';
-
-  constructor(private auth: AuthService, private router: Router) {
-    if (localStorage.getItem('ckeckoutUrl') !== null) {
-      this.redirectCheckoutURL = localStorage.getItem('ckeckoutUrl');
-    } else {
-      this.redirectCheckoutURL = '/inicio';
-    }
-  }
-
-  ngOnInit() {
-    this.usuario = new UsuarioModel();
-    // this.usuario.email = 'edgon85@gmail.com';
-  }
-
-  onSubmit(form: NgForm) {
-    if (form.invalid) {
-      return;
-    }
-
-    Swal.fire({
-      allowOutsideClick: false,
-      title: 'Espere por favor...',
-      icon: 'info',
-    });
-    Swal.showLoading();
-
-    this.auth
-      .createAcount(this.usuario)
-      .then((resp) => {
-        Swal.close();
-        if (this.recordarme) {
-          localStorage.setItem('email', this.usuario.email);
-        }
-        this.router.navigateByUrl(this.redirectCheckoutURL);
-      })
-      .catch((err) => {
-        Swal.close();
-        Swal.fire({
-          title: 'Error al crear cuenta',
-          text: this.handleErrorAuth(err.code),
-          icon: 'error',
-          showConfirmButton: true,
-        });
-      });
-  }
-
-  handleErrorAuth(error: string): string {
-    let _authError: string;
-
-    switch (error) {
-      case 'auth/user-not-found':
-        _authError = 'El usuario con este correo electrónico no existe.';
-        break;
-      case 'auth/wrong-password':
-        _authError = 'Su contraseña es incorrecta.';
-        break;
-      case 'auth/user-disabled':
-        _authError =
-          'El usuario con este correo electrónico ha sido deshabilitado.';
-        break;
-      case 'auth/too-many-requests':
-        _authError = 'Demasiadas solicitudes Intenta nuevamente más tarde.';
-        break;
-      case 'auth/operation-not-allowed':
-        _authError =
-          'Iniciar sesión con correo electrónico y contraseña no está habilitado.';
-        break;
-      case 'auth/email-already-in-use':
-        _authError =
-          'La dirección de correo electrónico ya está en uso por otra cuenta.';
-        break;
-      default:
-        _authError = 'Ocurrió un error :(';
-    }
-    return _authError;
-  }
-} */

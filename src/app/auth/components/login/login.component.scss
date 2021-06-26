@@ -49,6 +49,9 @@
             line-height: 1.5;
           }
 
+          input[type="email"]{
+            text-transform: lowercase;
+          }
           input {
             display: block;
             width: 100%;
@@ -67,6 +70,10 @@
             &::placeholder {
               color: #ced4da;
             }
+          }
+          span{
+            font-size: 10px;
+            color: red;
           }
         }
 
@@ -144,14 +151,17 @@
         .forgot-password {
           text-align: center;
           margin-block-start: 2rem;
-          h6 {
-            a {
+      
+            button {
+              border: none;
+              background: $white;
               color: rgba($color: $primary, $alpha: 1.0);
               text-decoration: none;
               text-transform: uppercase;
-
+              cursor: pointer;
+              outline: none;
             }
-          }
+          
         }
       }
     }
@@ -193,17 +203,6 @@
           }
         }
 
-        .forgot-password {
-          text-align: center;
-          h6 {
-            a {
-              color: rgba($color: $primary, $alpha: 0.5) !important;
-              &:hover{
-                color: rgba($color: $primary, $alpha: 1.0) !important;
-              }
-            }
-          }
-        }
       }
     }
   }
