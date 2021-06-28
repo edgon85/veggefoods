@@ -46,7 +46,7 @@ export class AuthService {
   public getStatus() {
     return this.afAuth.authState.pipe(
       catchError((error) => {
-        return throwError('chido!');
+        return throwError('Get status error!', error);
       }),
       map((resp) => resp)
     );

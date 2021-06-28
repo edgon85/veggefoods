@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 import { UsuarioModel } from '../../../../interfaces/user.interface';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { map } from 'rxjs/operators';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-edit-user',
@@ -26,8 +27,8 @@ export class EditUserComponent implements OnInit {
   edadInput: Date;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
+    private afAuth: AngularFireAuth,
     private fb: FormBuilder
   ) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
@@ -46,9 +47,15 @@ export class EditUserComponent implements OnInit {
   // obtener uid de usuario y datos del productos //
   // <===============================================================> //
   initDataUser() {
-    this.authService.getuser().subscribe((resp) => {
-      this.obtenerUsuario(resp.uid);
-    });
+    this.afAuth.auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          this.obtenerUsuario(user.uid);
+        } else {
+          console.log(';-)')
+        }
+      }
+    );
   }
 
   // <===============================================================> //
@@ -56,27 +63,34 @@ export class EditUserComponent implements OnInit {
   // con sus datos //
   // <===============================================================> //
   obtenerUsuario(uid: string) {
-    this.userService.getUserById(uid).subscribe((resp) => {
-      this.usuario = resp;
-      this.cargando = false;
-
-      this.edadInput = new Date(resp.edad);
-
-      // this.forma.setValue({
-      this.forma.reset({
-        correo: resp.email,
-        nombre: resp.nombre,
-        telefono: resp.telefono,
-        edad: this.edadInput,
-        /* direccion: {
-          departamento: Departamento.Quetzaltenango,
-          municipio: Municipio.Quetzaltenango,
-          zona: Zona.Zona1,
-          ubicacion: '',
-          referencia: '',
-        },*/
-      });
-    });
+    this.userService.getUserById(uid)
+      .pipe(
+        map(
+          (resp) => {
+            this.usuario = resp;
+            this.cargando = false;
+      
+            this.edadInput = new Date(resp.edad);
+      
+            // this.forma.setValue({
+            this.forma.reset({
+              correo: resp.email,
+              nombre: resp.nombre,
+              telefono: resp.telefono,
+              edad: this.edadInput,
+              /* direccion: {
+                departamento: Departamento.Quetzaltenango,
+                municipio: Municipio.Quetzaltenango,
+                zona: Zona.Zona1,
+                ubicacion: '',
+                referencia: '',
+              },*/
+            });
+          }
+        )
+      )
+      
+      .subscribe();
   }
 
   // <===============================================================> //
@@ -84,10 +98,6 @@ export class EditUserComponent implements OnInit {
   // <===============================================================> //
   formularioCheckout() {
     this.forma = this.fb.group({
-      /*  correo: [
-        '',
-        [Validators.required, Validators.pattern(this.emailValidaror)],
-      ], */
       correo: [{ value: '', disabled: true }, Validators.required],
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],

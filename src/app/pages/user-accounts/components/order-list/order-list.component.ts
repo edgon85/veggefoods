@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import { Observable } from 'rxjs';
 import { OrderInterface } from '../../../../interfaces/order.interface';
-import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-order-list',
@@ -22,8 +22,8 @@ export class OrderListComponent implements OnInit {
   order$: Observable<OrderInterface>;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
+    private afAuth: AngularFireAuth,
     private router: Router
   ) {}
 
@@ -36,10 +36,15 @@ export class OrderListComponent implements OnInit {
   /* <Obtener llistado de pedidos> */
   /* <====================================================> */
   obtenerPedidos() {
-    this.authService.getStatus().subscribe((resp) => {
-      this.userUid = resp.uid;
-      this.orders$ = this.userService.getAllOrders(resp.uid);
-      this.cargando = false;
+
+    this.afAuth.auth.onAuthStateChanged((user) => {
+      if (user.uid) {
+        this.userUid = user.uid;
+        this.orders$ = this.userService.getAllOrders(user.uid);
+        this.cargando = false;
+      } else {
+        console.log(';-)');
+      }
     });
   }
 
