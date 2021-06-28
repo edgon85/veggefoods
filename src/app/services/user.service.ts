@@ -40,7 +40,7 @@ export class UserService {
       .valueChanges()
       .pipe(
         catchError((error) => {
-          return throwError('chido!');
+          return throwError('Error get user by id!', error);
         }),
         map((resp) => resp)
       );

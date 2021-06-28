@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { OrderInterface } from '../../../../interfaces/order.interface';
-import { AuthService } from '../../../../services/auth.service';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-order-detail',
@@ -35,18 +35,37 @@ export class OrderDetailComponent implements OnInit {
     private router: ActivatedRoute,
     private route: Router,
     private userService: UserService,
-    private authService: AuthService
+    private afAuth: AngularFireAuth,
   ) {
     this.router.params.subscribe((resp) => (this.orderId = resp['id']));
   }
 
   ngOnInit() {
     this.cargando = true;
-    this.authService.getStatus().subscribe((resp) => {
-      this.userUid = resp.uid;
-      this.verDetalle(this.userUid, this.orderId);
-    });
-  }
+    this.afAuth.auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          this.userUid = user.uid;
+          this.verDetalle(this.userUid, this.orderId);
+        }
+        else {
+          console.log(';-)')
+        }
+      }
+    );
+    /* this.authService
+      .getStatus()
+      .pipe(
+        map((resp) => {
+
+          if (resp.uid) {
+            this.userUid = resp.uid;
+            this.verDetalle(this.userUid, this.orderId);
+          }
+        })
+      )
+      .subscribe();*/
+  } 
 
   /* <====================================================> */
   /* Detalle de pedido */

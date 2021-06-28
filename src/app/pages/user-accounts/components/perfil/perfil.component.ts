@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import { AuthService } from '../../../../services/auth.service';
 import { UsuarioModel } from '../../../../interfaces/user.interface';
+import { map } from 'rxjs/operators';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-perfil',
@@ -17,7 +19,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -29,14 +32,29 @@ export class PerfilComponent implements OnInit {
   // obtener uid de usuario y datos del productos //
   // <===============================================================> //
   initDataUser() {
-    this.authService.getuser().subscribe(
+
+    this.afAuth.auth.onAuthStateChanged(
       (resp) => {
-        this.obtenerUsuario(resp.uid);
-      },
-      (err) => {
-        console.log('ups');
+        if (resp) {
+          this.obtenerUsuario(resp.uid);
+        }
+        else {
+          console.log('no hay usuario')
+        }
       }
     );
+    /* this.authService.getuser()
+      .pipe(
+        map(resp => {
+          if (resp.uid == null) {
+
+          } else {
+            this.obtenerUsuario(resp.uid);
+          }
+        })
+      )
+      .subscribe(
+    ); */
   }
 
   // <===============================================================> //
