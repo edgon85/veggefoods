@@ -19,7 +19,6 @@ import {
 } from '../../../../interfaces/checkout.interface';
 
 import * as moment from 'moment';
-import { CuponService } from '../../../../services/cupon.service';
 import { SettingsService } from '../../../../services/settings.service';
 import { TotalService } from 'src/app/services/total.service';
 import { Totals } from 'src/app/interfaces/totals.interface';
@@ -170,7 +169,6 @@ export class CheckoutComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(this.emailValidaror)],
       ],
-      // correo: [{ value: 'Nancy', disabled: true }, Validators.required],
       nombre: ['', Validators.required],
       telefono: [
         '',
@@ -182,9 +180,9 @@ export class CheckoutComponent implements OnInit {
         ],
       ],
       direccion: this.fb.group({
-        departamento: ['', Validators.required],
-        municipio: ['', Validators.required],
-        zona: ['', Validators.required],
+        departamento: [''],
+        municipio: [''],
+        zona: [''],
         ubicacion: ['', Validators.required],
         referencia: [''],
       }),

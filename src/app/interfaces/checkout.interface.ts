@@ -47,4 +47,5 @@ export enum Zona {
   Zona9 = 'Zona 9',
   Zona10 = 'Zona 10',
   Zona11 = 'Zona 11',
+  Zona12 = 'Zona 12',
 }
